@@ -240,5 +240,3 @@ Hard refresh or clear cache. If you’re on IPFS/IPNS/Arweave, gateway caches ca
 * **Royalties not paid on a resale** → Depends on the marketplace. Foxy exposes EIP-2981 correctly; some platforms ignore royalties.
 
 ---
-
-If you want, I can also turn this into a polished in-app **Docs** page (same tone/sections) and wire it to `/docs/foxy-creator` so your CTA buttons land on brand.
