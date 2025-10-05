@@ -1,0 +1,516 @@
+// src/abis/BBYMarketplaceAbi.ts
+// Full on-chain ABI (functions, events, errors, constructor, receive)
+export const BBYMarketplaceAbi = [
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" }
+    ],
+    "name": "cancelAuction",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_feeRecipient", "type": "address" },
+      { "internalType": "address", "name": "_admin", "type": "address" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  { "inputs": [], "name": "AlreadySettled", "type": "error" },
+  { "inputs": [], "name": "AuctionEnded", "type": "error" },
+  { "inputs": [], "name": "AuctionNotStarted", "type": "error" },
+  { "inputs": [], "name": "BidTooLow", "type": "error" },
+  { "inputs": [], "name": "FailedCall", "type": "error" },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "balance", "type": "uint256" },
+      { "internalType": "uint256", "name": "needed", "type": "uint256" }
+    ],
+    "name": "InsufficientBalance",
+    "type": "error"
+  },
+  { "inputs": [], "name": "InsufficientQuantity", "type": "error" },
+  { "inputs": [], "name": "InvalidParams", "type": "error" },
+  { "inputs": [], "name": "ListingsPaused", "type": "error" },
+  { "inputs": [], "name": "NotActive", "type": "error" },
+  { "inputs": [], "name": "NotApprovedToTransfer", "type": "error" },
+  { "inputs": [], "name": "NotOwnerOrAdmin", "type": "error" },
+  { "inputs": [], "name": "NotSeller", "type": "error" },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "owner", "type": "address" }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "account", "type": "address" }
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
+  },
+  { "inputs": [], "name": "ReentrancyGuardReentrantCall", "type": "error" },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "address", "name": "admin", "type": "address" }
+    ],
+    "name": "AdminWalletUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true,  "internalType": "uint256", "name": "id",      "type": "uint256" }
+    ],
+    "name": "AuctionCancelled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true,  "internalType": "uint256", "name": "id",       "type": "uint256" },
+      { "indexed": true,  "internalType": "address", "name": "seller",   "type": "address" },
+      { "indexed": true,  "internalType": "address", "name": "nft",      "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "tokenId",  "type": "uint256" },
+      { "indexed": false, "internalType": "bool",    "name": "is1155",   "type": "bool" },
+      { "indexed": false, "internalType": "uint256", "name": "quantity", "type": "uint256" },
+      { "indexed": false, "internalType": "uint96",  "name": "reservePrice", "type": "uint96" },
+      { "indexed": false, "internalType": "uint32",  "name": "start",    "type": "uint32" },
+      { "indexed": false, "internalType": "uint32",  "name": "end",      "type": "uint32" }
+    ],
+    "name": "AuctionCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "uint96", "name": "minIncrementBps", "type": "uint96" },
+      { "indexed": false, "internalType": "uint32", "name": "timeBuffer",      "type": "uint32" }
+    ],
+    "name": "AuctionSettingsUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true,  "internalType": "uint256", "name": "id",              "type": "uint256" },
+      { "indexed": false, "internalType": "address", "name": "winner",          "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "amount",          "type": "uint256" },
+      { "indexed": false, "internalType": "address", "name": "royaltyReceiver", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "royaltyPaid",     "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "platformPaid",    "type": "uint256" }
+    ],
+    "name": "AuctionSettled",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" }
+    ],
+    "name": "bid",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true,  "internalType": "uint256", "name": "id",     "type": "uint256" },
+      { "indexed": true,  "internalType": "address", "name": "bidder", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" },
+      { "indexed": false, "internalType": "uint32",  "name": "newEnd", "type": "uint32" }
+    ],
+    "name": "BidPlaced",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id",       "type": "uint256" },
+      { "internalType": "uint256", "name": "quantity", "type": "uint256" }
+    ],
+    "name": "buy",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" }
+    ],
+    "name": "cancelListing",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nft",       "type": "address" },
+      { "internalType": "bool",    "name": "is1155",    "type": "bool" },
+      { "internalType": "uint256", "name": "tokenId",   "type": "uint256" },
+      { "internalType": "uint256", "name": "quantity",  "type": "uint256" },
+      { "internalType": "uint96",  "name": "reservePrice","type": "uint96" },
+      { "internalType": "uint32",  "name": "startTime", "type": "uint32" },
+      { "internalType": "uint32",  "name": "endTime",   "type": "uint32" }
+    ],
+    "name": "createAuction",
+    "outputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "nft",       "type": "address" },
+          { "internalType": "bool",    "name": "is1155",    "type": "bool" },
+          { "internalType": "uint256", "name": "tokenId",   "type": "uint256" },
+          { "internalType": "uint256", "name": "quantity",  "type": "uint256" },
+          { "internalType": "uint96",  "name": "unitPrice", "type": "uint96" }
+        ],
+        "internalType": "struct BBYMarketplace.BatchListingInput[]",
+        "name": "inps",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "listBatch",
+    "outputs": [
+      { "internalType": "uint256", "name": "firstId", "type": "uint256" },
+      { "internalType": "uint256", "name": "count",   "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true,  "internalType": "uint256", "name": "id",       "type": "uint256" },
+      { "indexed": true,  "internalType": "address", "name": "seller",   "type": "address" },
+      { "indexed": true,  "internalType": "address", "name": "nft",      "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "tokenId",  "type": "uint256" },
+      { "indexed": false, "internalType": "bool",    "name": "is1155",   "type": "bool" },
+      { "indexed": false, "internalType": "uint256", "name": "quantity", "type": "uint256" },
+      { "indexed": false, "internalType": "uint96",  "name": "unitPrice","type": "uint96" }
+    ],
+    "name": "Listed",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nft",       "type": "address" },
+      { "internalType": "bool",    "name": "is1155",    "type": "bool" },
+      { "internalType": "uint256", "name": "tokenId",   "type": "uint256" },
+      { "internalType": "uint256", "name": "quantity",  "type": "uint256" },
+      { "internalType": "uint96",  "name": "unitPrice", "type": "uint96" }
+    ],
+    "name": "listFixedPrice",
+    "outputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" }
+    ],
+    "name": "ListingCancelled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true,  "internalType": "uint256", "name": "id",          "type": "uint256" },
+      { "indexed": false, "internalType": "uint96",  "name": "newUnitPrice","type": "uint96" }
+    ],
+    "name": "ListingPriceUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "bool", "name": "paused", "type": "bool" }
+    ],
+    "name": "NewListingsPaused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true,  "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true,  "internalType": "address", "name": "newOwner",      "type": "address" }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "uint96",  "name": "bps",       "type": "uint96" },
+      { "indexed": false, "internalType": "address", "name": "recipient", "type": "address" }
+    ],
+    "name": "PlatformFeeUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true,  "internalType": "uint256", "name": "id",          "type": "uint256" },
+      { "indexed": true,  "internalType": "address", "name": "buyer",       "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "quantity",    "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "totalPaid",   "type": "uint256" },
+      { "indexed": false, "internalType": "address", "name": "royaltyReceiver", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "royaltyPaid", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "platformPaid","type": "uint256" }
+    ],
+    "name": "Purchased",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true,  "internalType": "address", "name": "nft",      "type": "address" },
+      { "indexed": false, "internalType": "address", "name": "receiver", "type": "address" },
+      { "indexed": false, "internalType": "uint96",  "name": "bps",      "type": "uint96" }
+    ],
+    "name": "RoyaltyOverrideSet",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "admin_", "type": "address" }
+    ],
+    "name": "setAdminWallet",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint96", "name": "minIncrementBps_", "type": "uint96" },
+      { "internalType": "uint32", "name": "timeBuffer_",      "type": "uint32" }
+    ],
+    "name": "setAuctionSettings",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "bool", "name": "paused", "type": "bool" } ],
+    "name": "setNewListingsPaused",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint96",  "name": "bps",       "type": "uint96" },
+      { "internalType": "address", "name": "recipient", "type": "address" }
+    ],
+    "name": "setPlatformFee",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nft",      "type": "address" },
+      { "internalType": "address", "name": "receiver", "type": "address" },
+      { "internalType": "uint96",  "name": "bps",      "type": "uint96" }
+    ],
+    "name": "setRoyaltyOverride",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "uint256", "name": "id", "type": "uint256" } ],
+    "name": "settleAuction",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "address", "name": "newOwner", "type": "address" } ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id",            "type": "uint256" },
+      { "internalType": "uint96",  "name": "newUnitPrice",  "type": "uint96" }
+    ],
+    "name": "updateListingPrice",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  { "inputs": [], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  { "stateMutability": "payable", "type": "receive" },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "activeListingIdsByCollection",
+    "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "", "type": "address" },
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "activeListingIdsBySeller",
+    "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "adminWallet",
+    "outputs": [ { "internalType": "address", "name": "", "type": "address" } ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+    "name": "auctions",
+    "outputs": [
+      { "internalType": "address", "name": "seller",        "type": "address" },
+      { "internalType": "address", "name": "nft",           "type": "address" },
+      { "internalType": "uint256", "name": "tokenId",       "type": "uint256" },
+      { "internalType": "bool",    "name": "is1155",        "type": "bool" },
+      { "internalType": "uint256", "name": "quantity",      "type": "uint256" },
+      { "internalType": "uint96",  "name": "reservePrice",  "type": "uint96" },
+      { "internalType": "uint32",  "name": "startTime",     "type": "uint32" },
+      { "internalType": "uint32",  "name": "endTime",       "type": "uint32" },
+      { "internalType": "address", "name": "highestBidder", "type": "address" },
+      { "internalType": "uint96",  "name": "highestBid",    "type": "uint96" },
+      { "internalType": "bool",    "name": "settled",       "type": "bool" },
+      { "internalType": "bool",    "name": "active",        "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "address", "name": "", "type": "address" } ],
+    "name": "collectionRoyalty",
+    "outputs": [
+      { "internalType": "address", "name": "receiver", "type": "address" },
+      { "internalType": "uint96",  "name": "bps",      "type": "uint96" },
+      { "internalType": "bool",    "name": "set",      "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "address", "name": "", "type": "address" } ],
+    "name": "collectionSalesCount",
+    "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "address", "name": "", "type": "address" } ],
+    "name": "collectionSalesVolume",
+    "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "address", "name": "", "type": "address" } ],
+    "name": "collectionUnitsSold",
+    "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "address", "name": "nft", "type": "address" } ],
+    "name": "getActiveListingsByCollection",
+    "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "address", "name": "seller", "type": "address" } ],
+    "name": "getActiveListingsBySeller",
+    "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "address", "name": "nft", "type": "address" } ],
+    "name": "getCollectionTotals",
+    "outputs": [
+      { "internalType": "uint256", "name": "salesCount", "type": "uint256" },
+      { "internalType": "uint256", "name": "salesVolume", "type": "uint256" },
+      { "internalType": "uint256", "name": "unitsSold",   "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTotals",
+    "outputs": [
+      { "internalType": "uint256", "name": "salesCount", "type": "uint256" },
+      { "internalType": "uint256", "name": "salesVolume","type": "uint256" },
+      { "internalType": "uint256", "name": "unitsSold",  "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+    "name": "listings",
+    "outputs": [
+      { "internalType": "address", "name": "seller",    "type": "address" },
+      { "internalType": "address", "name": "nft",       "type": "address" },
+      { "internalType": "uint256", "name": "tokenId",   "type": "uint256" },
+      { "internalType": "uint96",  "name": "unitPrice", "type": "uint96" },
+      { "internalType": "bool",    "name": "is1155",    "type": "bool" },
+      { "internalType": "uint256", "name": "quantity",  "type": "uint256" },
+      { "internalType": "bool",    "name": "active",    "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  { "inputs": [], "name": "minBidIncrementBps", "outputs": [ { "internalType": "uint96", "name": "", "type": "uint96" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "newListingsPaused",  "outputs": [ { "internalType": "bool",  "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "nextAuctionId",      "outputs": [ { "internalType": "uint256","name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "nextListingId",      "outputs": [ { "internalType": "uint256","name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "owner",              "outputs": [ { "internalType": "address","name": "", "type": "address" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "platformFeeBps",     "outputs": [ { "internalType": "uint96", "name": "", "type": "uint96" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "platformFeeRecipient","outputs":[ { "internalType": "address","name": "", "type": "address" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "timeBuffer",         "outputs": [ { "internalType": "uint32","name": "", "type": "uint32" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "totalSalesCount",     "outputs":[ { "internalType": "uint256","name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "totalSalesVolume",    "outputs":[ { "internalType": "uint256","name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" },
+  { "inputs": [], "name": "totalUnitsSold",      "outputs":[ { "internalType": "uint256","name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" },
+  {
+    "inputs": [ { "internalType": "address", "name": "", "type": "address" } ],
+    "name": "withdrawable",
+    "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+] as const;
+
+export type BBYMarketplaceAbiType = typeof BBYMarketplaceAbi;
+export default BBYMarketplaceAbi;
