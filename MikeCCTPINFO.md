@@ -1,6 +1,3 @@
-Alright — here’s a complete, production-grade CCTP v2 compendium tailored to your stack (Ethers v6 + viem + Reown/AppKit + Node/Express). I’ve rewritten and consolidated every section of what you pasted into one coherent “how-to build the whole system” with ready-to-drop code, robust error handling, and the exact semantics (finality thresholds, domains, fees, contracts, APIs).
-
----
 
 # CCTP v2 — Full Compendium (Architecture → Contracts → APIs → Code)
 
@@ -690,8 +687,6 @@ contract MyCctpV2Receiver is IAppReceiverV2 {
 * Fees API reference: **GET `/v2/burn/USDC/fees`**. ([Circle Developers][7])
 
 ---
-
-If you want, I can also drop in a **Wagmi/Reown** variant of the panel, a **Next.js API route** for serverless polling, and a **chains config** pre-filled for Base↔OP↔Arbitrum↔Polygon PoS (mainnet & sepolia/amoy) that plugs straight into your app.
 
 [1]: https://developers.circle.com/cctp/technical-guide?utm_source=chatgpt.com "CCTP Technical Guide"
 [2]: https://developers.circle.com/cctp/technical-guide "CCTP Technical Guide"
