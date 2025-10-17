@@ -1,0 +1,13 @@
+{
+  "name": "DanceMonkey 1 of 1",
+  "description": "One-of-one YT 'DanceMonkey'. Includes a linked YouTube clip for rich playback.",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/dancemonkey.png",
+  "animation_url": "https://www.youtube.com/watch?v=q0hyYWKXF0Q",
+  "youtube_url": "https://www.youtube.com/watch?v=q0hyYWKXF0Q",
+  "background_color": "0D0D0D",
+  "attributes": [
+    { "trait_type": "Edition", "value": "1 of 1" },
+    { "trait_type": "Media", "value": "Image + YouTube" },
+    { "trait_type": "Year", "value": 2025 }
+  ]
+}
