@@ -1,0 +1,17 @@
+{
+  "name": "War of the Worlds Collection — #1",
+  "description": "War Of The Worlds - In this modern retelling of H.G. Wells' sci-fi classic, civilization is laid to ruin when a race of super aliens invades Earth.  The story tells of a man named George Herbert who is separated from his wife and child when a Martian invasion begins. He tries to make his way to Washington, D.C. to reunite with them as the world is torn apart. But civilization is laid to ruin when a race of super aliens ultimately invades Earth!\n2005. Stars: C. Thomas Howell, Rhett Giles, Andrew Lauer\nUnder license from The Asylum. All rights reserved.",
+  "external_url": "https://your-site.example/collection/<COLLECTION_ADDRESS>/1",
+  "image": "https://ntvb.tmsimg.com/assets/p160318_v_h10_ab.jpg?w=1280&h=720",
+  "animation_url": "https://www.youtube.com/watch?v=fyiY68aHedw",
+  "youtube_url": "https://www.youtube.com/watch?v=fyiY68aHedw",
+  "background_color": "0D0D0D",
+  "attributes": [
+    { "trait_type": "Collection", "value": "War of the Worlds Collection" },
+    { "trait_type": "Edition Number", "value": 1 },
+    { "trait_type": "Year", "value": 2005 },
+    { "trait_type": "Media", "value": "Image + YouTube" },
+    { "trait_type": "Stars", "value": "C. Thomas Howell; Rhett Giles; Andrew Lauer" },
+    { "trait_type": "License", "value": "Under license from The Asylum. All rights reserved." }
+  ]
+}
