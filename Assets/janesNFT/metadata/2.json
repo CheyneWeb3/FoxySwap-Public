@@ -1,10 +1,10 @@
 {
-  "name": "DJ Jane — Live at Foxy Forest Lounge",
+  "name": "DJ Jane — Live at Foxy Forest Lounge 2",
   "description": "Illustrated red-hot fox DJ Jane at the decks in a neon-lit club. Edition metadata with video preview support.",
-  "animation_url": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/1.mp4",
-  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/djjane.png",
+  "animation_url": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/2.mp4",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/djjane2.png",
   "external_url": "https://foxyswap.net/market/home",
-  "youtube_url": "https://www.youtube.com/watch?v=x_YYPl91pks",
+  "youtube_url": "https://www.youtube.com/watch?v=wSuS6nx5_UA",
   "background_color": "0B0F1A",
   "attributes": [
     { "trait_type": "Theme", "value": "Nightclub" },
