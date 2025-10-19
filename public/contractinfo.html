@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RSMS Token Contract — Technical Documentation</title>
+  <meta name="description" content="Comprehensive, structured documentation for the RSMS ERC-20 token contract, including fees, treasury tax, dividend distribution, limits, admin controls, and flow diagrams." />
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --panel: #11141b;
+      --muted: #9aa4b2;
+      --text: #e8eef8;
+      --primary: #6aa9ff;
+      --accent: #7cf6d3;
+      --warn: #ffcd6a;
+      --danger: #ff7b7b;
+      --ok: #8ee59c;
+      --code-bg: #0f1320;
+      --border: #1e2430;
+      --shadow: 0 6px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f8fafc;
+        --panel: #ffffff;
+        --text: #0e1726;
+        --muted: #475569;
+        --primary:#2458ff;
+        --accent:#0ea5e9;
+        --warn:#b45309;
+        --danger:#dc2626;
+        --ok:#059669;
+        --code-bg:#0b1020;
+        --border:#e5e7eb;
+        --shadow: 0 6px 30px rgba(2,6,23,.10);
+      }
+    }
+    * { box-sizing: border-box }
+    html,body { height:100% }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 90% -10%, rgba(36,88,255,.12), transparent 60%),
+        radial-gradient(1000px 600px at -10% 10%, rgba(14,165,233,.12), transparent 60%),
+        var(--bg);
+      line-height: 1.65;
+    }
+    .container{ max-width: 1100px; margin: 0 auto; padding: 28px 22px 80px }
+    header.hero{
+      position:relative;
+      padding: 42px 22px 24px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(36,88,255,.18), rgba(14,165,233,.12) 45%, transparent 65%),
+        var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .kicker{ color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 12px }
+    h1{
+      margin: 8px 0 10px;
+      font-size: clamp(28px, 3.4vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -.02em;
+    }
+    .sub{ color: var(--muted); max-width: 60ch }
+    .grid{
+      display: grid; gap: 18px; margin-top: 22px;
+      grid-template-columns: repeat(12, minmax(0,1fr));
+    }
+    .card{
+      grid-column: span 12;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      box-shadow: var(--shadow);
+    }
+    @media (min-width: 900px){ .span-6{ grid-column: span 6 } .span-4{ grid-column: span 4 } .span-8{ grid-column: span 8 } }
+    h2{ font-size: clamp(22px, 2.6vw, 28px); margin: 6px 0 8px; }
+    h3{ font-size: 18px; margin: 6px 0 6px; }
+    p{ margin: 10px 0 }
+    .muted{ color: var(--muted) }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 600;
+      background: rgba(106,169,255,.12); color: var(--primary); border: 1px solid rgba(106,169,255,.3)
+    }
+    .list{ margin: 8px 0 0 18px }
+    .list li{ margin: 4px 0 }
+    .toc{
+      display:flex; flex-wrap:wrap; gap:8px; margin-top: 12px
+    }
+    .toc a{
+      text-decoration:none; color: var(--muted); border: 1px dashed var(--border);
+      padding:6px 10px; border-radius: 999px; transition: .2s ease;
+      background: linear-gradient(0deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+    }
+    .toc a:hover{ color: var(--text); border-style: solid }
+    code, pre{ font-family: var(--mono) }
+    pre{
+      margin: 10px 0; padding: 14px 16px;
+      background: var(--code-bg);
+      color: #d3e1ff; border-radius: 12px; overflow:auto; border: 1px solid rgba(255,255,255,.08)
+    }
+    .kv{
+      width:100%; border-collapse: collapse; overflow: hidden; border-radius: 12px;
+      border:1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.02), transparent)
+    }
+    .kv th, .kv td{ padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border) }
+    .kv th{ font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted) }
+    .kv tr:last-child td{ border-bottom: 0 }
+    .callout{
+      padding: 12px 14px; border-radius: 12px; border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(124,246,211,.10), rgba(124,246,211,.02));
+    }
+    .pill{
+      display:inline-block; padding: 4px 9px; border-radius: 999px; font-size: 12px; font-weight: 700
+    }
+    .pill.ok{ background: rgba(142,229,156,.18); color: var(--ok) }
+    .pill.warn{ background: rgba(255,205,106,.18); color: var(--warn) }
+    .pill.danger{ background: rgba(255,123,123,.18); color: var(--danger) }
+    .figure{
+      background: var(--panel); border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+      box-shadow: var(--shadow); margin: 10px 0
+    }
+    .figure img{ display:block; width:100%; height:auto }
+    .figure figcaption{ padding: 10px 12px; color: var(--muted); font-size: 13px }
+    footer{
+      margin-top: 36px; color: var(--muted); font-size: 13px; text-align: center
+    }
+    a.anchor{ color: inherit; text-decoration: none }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="kicker">Technical Documentation</span>
+      <h1>📘 RSMS Token Contract</h1>
+      <p class="sub">An ERC-20 token with rUSDC rewards, buy/sell fees, a treasury tax, whitelist/anti-whale controls, and an automated swap-&-distribute pipeline powered by a <code>DividendDistributor</code>.</p>
+
+      <div class="toc" aria-label="On this page">
+        <a href="#overview">Overview</a>
+        <a href="#deploy">Deploy Params</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#state">Core State</a>
+        <a href="#transfers">Transfers</a>
+        <a href="#fees">Fees</a>
+        <a href="#rewards">Rewards</a>
+        <a href="#whitelist">Whitelist</a>
+        <a href="#antiwhale">Anti-Whale</a>
+        <a href="#admin">Admin</a>
+        <a href="#events">Events</a>
+        <a href="#security">Security</a>
+        <a href="#example">Example Tokenomics</a>
+        <a href="#flow">Flow Diagram</a>
+      </div>
+    </header>
+
+    <!-- 1. Overview -->
+    <section id="overview" class="card">
+      <h2><a class="anchor" href="#overview">1) Overview</a></h2>
+      <ul class="list">
+        <li><strong>Reward distribution</strong> in an external ERC-20 (e.g., <code>rUSDC</code>).</li>
+        <li><strong>Buy/Sell fees</strong> funding rewards + marketing.</li>
+        <li><strong>Treasury tax</strong> applied to every transfer.</li>
+        <li><strong>DividendDistributor</strong> for automated holder payouts.</li>
+        <li><strong>Anti-whale</strong> max tx &amp; max wallet controls.</li>
+        <li><strong>Whitelist</strong>—gate transfers before launch if desired.</li>
+        <li><strong>Auto swap</strong> of accrued fees → ETH for distribution.</li>
+      </ul>
+      <p class="muted">Built atop OpenZeppelin’s <code>Ownable</code>, <code>Context</code>, and <code>IERC20</code>.</p>
+    </section>
+
+    <!-- 2. Deploy Params -->
+    <section id="deploy" class="card">
+      <h2><a class="anchor" href="#deploy">2) Deployment Parameters (<code>DeployParams</code>)</a></h2>
+      <table class="kv" role="table">
+        <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>initialOwner</td><td>address</td><td>Receives total supply &amp; <em>Ownable</em> ownership.</td></tr>
+          <tr><td>name_, symbol_, decimals_</td><td>string, string, uint8</td><td>ERC-20 metadata.</td></tr>
+          <tr><td>marketingWallet</td><td>address</td><td>Receives marketing ETH after swaps.</td></tr>
+          <tr><td>treasury</td><td>address</td><td>Destination for the treasury tax.</td></tr>
+          <tr><td>treasuryTaxBps</td><td>uint256 (BPS)</td><td>Treasury tax rate applied to all transfers.</td></tr>
+          <tr><td>rewardToken</td><td>address</td><td>External reward token (e.g., rUSDC).</td></tr>
+          <tr><td>rewardTokenDecimals</td><td>uint256</td><td>Decimals of reward token.</td></tr>
+          <tr><td>router</td><td>address</td><td>DEX router (UniswapV2 style).</td></tr>
+          <tr><td>buyRewardFee / buyMarketingFee</td><td>uint256</td><td>Buy side fees.</td></tr>
+          <tr><td>sellMarketingFee / sellRewardFee</td><td>uint256</td><td>Sell side fees.</td></tr>
+          <tr><td>feeDenominator</td><td>uint256</td><td>Basis (e.g., <code>100</code> or <code>10000</code>) for fee math.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 3. Tokenomics -->
+    <section id="tokenomics" class="card">
+      <h2><a class="anchor" href="#tokenomics">3) Tokenomics</a></h2>
+      <p><strong>Total Supply</strong> = <code>100,000,000 × 10^decimals</code></p>
+      <div class="grid">
+        <div class="span-6 card" style="padding:14px">
+          <h3>Fee Structure (<code>feeStruct</code>)</h3>
+          <ul class="list">
+            <li><code>buyRewardFee</code> → rUSDC rewards on buys</li>
+            <li><code>buyMarketingFee</code> → marketing on buys</li>
+            <li><code>sellRewardFee</code> → rUSDC rewards on sells</li>
+            <li><code>sellMarketingFee</code> → marketing on sells</li>
+            <li><code>denominator</code> → divisor for all fee math</li>
+          </ul>
+        </div>
+        <div class="span-6 card" style="padding:14px">
+          <h3>Treasury Tax</h3>
+          <p>Flat tax (in BPS) on every transfer → credited directly to <code>TREASURY</code>.</p>
+          <span class="pill warn">Applied to all transfers</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Core State -->
+    <section id="state" class="card">
+      <h2><a class="anchor" href="#state">4) Core State Variables</a></h2>
+      <ul class="list">
+        <li><strong>ERC-20</strong>: balances, allowances.</li>
+        <li><strong>Fee control</strong>: <code>isMarketPair</code>, <code>IsChargePair</code>, <code>isDividendExempt</code>.</li>
+        <li><strong>Whitelist</strong>: <code>isWhitelisted</code>, <code>whitelistEnabled</code>.</li>
+        <li><strong>Limits</strong>: <code>maxTransaction</code>, <code>maxWallet</code>.</li>
+        <li><strong>Swap system</strong>: <code>swapThreshold</code>, <code>swapEnabled</code>, <code>swapbylimit</code>.</li>
+        <li><strong>Dividends</strong>: <code>DividendDistributor</code> instance &amp; <code>distributorGas</code>.</li>
+      </ul>
+    </section>
+
+    <!-- 5. Transfers -->
+    <section id="transfers" class="card">
+      <h2><a class="anchor" href="#transfers">5) Transfers</a></h2>
+      <h3><code>transfer</code> &amp; <code>transferFrom</code></h3>
+      <ul class="list">
+        <li>Whitelist + Anti-whale checks (if enabled).</li>
+        <li>Buy/Sell fee deduction (for market pairs).</li>
+        <li>Treasury tax deduction.</li>
+        <li>Dividend shares updated; optional <code>swapBack</code> if threshold is reached.</li>
+      </ul>
+      <h3><code>_transfer</code> internals</h3>
+      <ol class="list">
+        <li>Evaluate <code>shouldNotTakeFee</code>.</li>
+        <li>Apply treasury tax.</li>
+        <li>Accrue fees to contract &amp; update recipient balance.</li>
+        <li>Update <code>DividendDistributor</code> shares and optionally <code>process</code>.</li>
+      </ol>
+    </section>
+
+    <!-- 6. Fees -->
+    <section id="fees" class="card">
+      <h2><a class="anchor" href="#fees">6) Fees</a></h2>
+      <h3><code>takeFee</code></h3>
+      <ul class="list">
+        <li><strong>Buy</strong>: <code>buyRewardFee</code> + <code>buyMarketingFee</code>.</li>
+        <li><strong>Sell</strong>: <code>sellRewardFee</code> + <code>sellMarketingFee</code>.</li>
+        <li>Accrued fee tokens remain in the contract.</li>
+      </ul>
+      <h3><code>swapBack</code></h3>
+      <ul class="list">
+        <li>Swaps accrued tokens → ETH using the router.</li>
+        <li>Splits ETH between <strong>Marketing</strong> and <strong>Rewards</strong>.</li>
+        <li>Sends rewards ETH to the distributor; marketing ETH to <code>marketingWallet</code>.</li>
+      </ul>
+    </section>
+
+    <!-- 7. Rewards -->
+    <section id="rewards" class="card">
+      <h2><a class="anchor" href="#rewards">7) Rewards (Dividends)</a></h2>
+      <ul class="list">
+        <li>Payouts are in an external ERC-20 (<code>rewardToken</code>, e.g., rUSDC).</li>
+        <li>Exemptions: pair, contract, dead address, etc.</li>
+        <li><code>manualProcess()</code> lets anyone trigger distribution with the configured gas cap.</li>
+      </ul>
+      <div class="callout"><strong>Note:</strong> Distributor converts ETH to the reward token and allocates pro-rata based on holder shares.</div>
+    </section>
+
+    <!-- 8. Whitelist -->
+    <section id="whitelist" class="card">
+      <h2><a class="anchor" href="#whitelist">8) Whitelist System</a></h2>
+      <p class="muted">Typically enabled pre-launch to restrict transfers.</p>
+      <ul class="list">
+        <li><code>addToWhitelist(address)</code></li>
+        <li><code>removeFromWhitelist(address)</code></li>
+        <li><code>setWhitelistEnabled(bool)</code></li>
+      </ul>
+    </section>
+
+    <!-- 9. Anti-Whale -->
+    <section id="antiwhale" class="card">
+      <h2><a class="anchor" href="#antiwhale">9) Anti-Whale Controls</a></h2>
+      <ul class="list">
+        <li>Max transaction &amp; wallet caps; gated by <code>AntiWhaleActive</code>.</li>
+        <li><code>setAntiWhalePercentage(uint per)</code> → sets both caps as <code>per/1000</code> of supply (min 0.5%).</li>
+        <li><code>removeLimits()</code> → disables anti-whale protections.</li>
+      </ul>
+      <span class="pill ok">Good for launch</span>
+    </section>
+
+    <!-- 10. Admin -->
+    <section id="admin" class="card">
+      <h2><a class="anchor" href="#admin">10) Admin Functions</a></h2>
+      <div class="grid">
+        <div class="span-6">
+          <ul class="list">
+            <li><code>setMarketingWallet(address)</code></li>
+            <li><code>setFeeSetting(uint,uint,uint,uint)</code></li>
+            <li><code>setChargeFee(address,bool)</code></li>
+            <li><code>setDistributorSettings(uint gas)</code></li>
+            <li><code>setIsDividendExempt(address,bool)</code></li>
+            <li><code>setSwapBackSettings(bool, bool, uint)</code></li>
+            <li><code>openTrade()</code></li>
+          </ul>
+        </div>
+        <div class="span-6">
+          <ul class="list">
+            <li><code>rescueFunds()</code> (ETH)</li>
+            <li><code>rescueTokens(address token, address to, uint amount)</code></li>
+          </ul>
+          <p class="muted">Buy/Sell subtotal limits enforced: <strong>1% ≤ subtotal ≤ 30%</strong> per side.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Events -->
+    <section id="events" class="card">
+      <h2><a class="anchor" href="#events">11) Events</a></h2>
+      <table class="kv">
+        <thead><tr><th>Event</th><th>When</th></tr></thead>
+        <tbody>
+          <tr><td><code>SwapTokensForETH(uint256 amountIn, address[] path)</code></td><td>Emitted during contract token → ETH swap.</td></tr>
+          <tr><td><code>Transfer</code>, <code>Approval</code></td><td>Standard ERC-20 events.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 12. Security -->
+    <section id="security" class="card">
+      <h2><a class="anchor" href="#security">12) Security Considerations</a></h2>
+      <ul class="list">
+        <li><span class="pill ok">Swap guard:</span> <code>inSwap</code> modifier protects reentrancy during <code>swapBack</code>.</li>
+        <li><span class="pill warn">Centralized admin:</span> Owner can change key addresses and rescue funds—governance/timelock recommended for production.</li>
+        <li><span class="pill danger">Fee bounds:</span> Hard caps limit misconfiguration (≤ 30% per side).</li>
+      </ul>
+    </section>
+
+    <!-- 13. Example Tokenomics -->
+    <section id="example" class="card">
+      <h2><a class="anchor" href="#example">13) Example Tokenomics</a></h2>
+      <p>Assume <strong>Buy = 5%</strong>, <strong>Sell = 5%</strong>, <strong>Treasury = 0.5%</strong>:</p>
+      <div class="grid">
+        <div class="span-4 card" style="padding:14px">
+          <h3>Buy (1000)</h3>
+          <ul class="list">
+            <li>3% → Reward pool (rUSDC)</li>
+            <li>2% → Marketing</li>
+          </ul>
+        </div>
+        <div class="span-4 card" style="padding:14px">
+          <h3>Sell (1000)</h3>
+          <ul class="list">
+            <li>3% → Reward pool</li>
+            <li>2% → Marketing</li>
+          </ul>
+        </div>
+        <div class="span-4 card" style="padding:14px">
+          <h3>Treasury Tax</h3>
+          <p>0.5% of every transfer → <code>TREASURY</code>.</p>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:10px">
+        <strong>In short:</strong> RSMS routes buy/sell fees into automated marketing + rUSDC rewards, while a separate treasury tax applies to every transfer.
+      </div>
+    </section>
+
+    <!-- Flow Diagram -->
+    <section id="flow" class="card">
+      <h2><a class="anchor" href="#flow">14) System Flow Diagram</a></h2>
+      <p class="muted">High-level flow of transfer → fee accrual → swapBack → distributor → rUSDC payouts.</p>
+      <figure class="figure">
+        <!-- If you saved the diagram from chat, place it alongside this file and keep the same file name: -->
+        <img src="flow.png" alt="RSMS transfer, swapBack, and dividend distribution flow diagram" />
+        <figcaption>Transfer Process (fees &amp; treasury) → Swap &amp; Fee Conversion → Dividend Distribution in rUSDC.</figcaption>
+      </figure>
+      <pre><code>// Diagram quick legend:
+Blue: transfers     •  Green: rewards    •  Orange: marketing    •  Red: treasury
+</code></pre>
+    </section>
+
+    <footer>
+      Made for RSMS — single-file HTML documentation. Print friendly; works in light or dark mode.
+    </footer>
+  </div>
+</body>
+</html>

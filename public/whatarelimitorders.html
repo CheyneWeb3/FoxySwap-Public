@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FoxySwap — DeFi Order Types on EVM (Market, Limit, Stop)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --accent:#9ee6ff; --text:#fff; --subtext:rgba(255,255,255,.86);
+      --muted:rgba(255,255,255,.62); --panel:rgba(15,18,22,.56);
+      --panel-alt:rgba(15,18,22,.33); --border:rgba(255,255,255,.14);
+      --radius:14px;
+      --fadeDur:24s;       /* total slideshow cycle (4 slides × 6s each) */
+      --fadeStay:18%;      /* time a slide stays fully visible */
+      --fadeX:8%;          /* crossfade portion */
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{
+      margin:0; padding:0; min-height:100%;
+      color:var(--text); background:#070a0d;
+      font-family:ui-sans-serif,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      overflow-x:hidden;
+    }
+
+    /* ====== BACKGROUND STACK ====== */
+    .bg-root{ position:fixed; inset:0; z-index:-10; overflow:hidden; }
+
+    /* Slides (CSS-only crossfade) */
+    .slides{ position:absolute; inset:0; }
+    .slide{
+      position:absolute; inset:0;
+      background-size:cover; background-position:center;
+      opacity:0;
+      animation: fadeCycle var(--fadeDur) linear infinite;
+      will-change:opacity;
+    }
+    /* 4 slides with staggered delays */
+    .slide.s1{ animation-delay: 0s; }
+    .slide.s2{ animation-delay: calc(var(--fadeDur) / 4); }
+    .slide.s3{ animation-delay: calc(var(--fadeDur) / 2); }
+    .slide.s4{ animation-delay: calc(var(--fadeDur) * 3 / 4); }
+
+    /* Keyframes: 0..100%; show -> crossfade -> hide -> idle */
+    @keyframes fadeCycle{
+      /* start hidden */
+      0%{ opacity:0; }
+      /* fade in */
+      calc(var(--fadeX)) { opacity:1; }
+      /* stay visible */
+      calc(var(--fadeX) + var(--fadeStay)) { opacity:1; }
+      /* fade out */
+      calc(var(--fadeX) + var(--fadeStay) + var(--fadeX)) { opacity:0; }
+      /* remain hidden until next loop */
+      100%{ opacity:0; }
+    }
+
+    /* Animated blob layer (CSS-only) */
+    .blobs{
+      position:absolute; inset:-15%; z-index:-9; pointer-events:none;
+      background:
+        radial-gradient(40% 35% at 12% 18%, rgba(0,165,255,.55), transparent 60%),
+        radial-gradient(45% 40% at 80% 28%, rgba(255,0,153,.45), transparent 60%),
+        radial-gradient(35% 30% at 50% 78%, rgba(0,255,180,.50), transparent 60%);
+      filter: blur(22px) saturate(1.15);
+      animation: blobDrift 38s ease-in-out infinite;
+      mix-blend-mode: screen;
+      opacity:.85;
+    }
+    @keyframes blobDrift{
+      0%  { transform: rotate(0deg) scale(1.05); }
+      25% { transform: rotate(6deg) scale(1.07); }
+      50% { transform: rotate(12deg) scale(1.08); }
+      75% { transform: rotate(6deg) scale(1.06); }
+      100%{ transform: rotate(0deg) scale(1.05); }
+    }
+
+    /* Dark veil to boost contrast; backdrop blur if supported */
+    .veil{
+      position:absolute; inset:0; z-index:-8;
+      background:rgba(0,0,0,.42);
+      -webkit-backdrop-filter: blur(10px);
+              backdrop-filter: blur(10px);
+    }
+
+    /* ====== TOPBAR ====== */
+    .topbar{
+      position:sticky; top:0; z-index:5;
+      background: linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,0));
+      border-bottom:1px solid var(--border);
+      -webkit-backdrop-filter: blur(10px);
+              backdrop-filter: blur(10px);
+    }
+    .topbar-inner{
+      max-width:1200px; margin:0 auto; padding:.75rem 1rem;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--text); font-weight:700; }
+    .brand img{ height:28px; width:28px; object-fit:contain; border-radius:6px; }
+    .nav{ display:flex; gap:1.25rem; }
+    .nav a{ color:var(--subtext); text-decoration:none; font-size:.95rem; }
+    .nav a:hover{ color:var(--text); }
+
+    /* ====== CONTENT ====== */
+    .container{ max-width:1000px; margin:0 auto; padding:2rem 1rem 4rem; }
+    .hero{
+      margin-top:2.3rem; padding:1.25rem; border-radius:var(--radius);
+      background:var(--panel-alt); border:1px solid var(--border);
+      -webkit-backdrop-filter: blur(6px);
+              backdrop-filter: blur(6px);
+    }
+    .hero h1{
+      margin:0 0 .5rem 0; color:var(--accent);
+      font-size:clamp(1.6rem,3.2vw,2.2rem);
+      text-shadow:0 0 18px rgba(130,230,255,.35);
+      line-height:1.2;
+    }
+    .hero p{ margin:.2rem 0 0; color:var(--subtext); }
+
+    .grid{ display:grid; gap:1.25rem; margin-top:1.25rem; grid-template-columns:1fr; }
+    @media (min-width:900px){ .grid{ grid-template-columns:1.2fr .8fr; } }
+
+    .panel{
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:var(--radius); padding:1.25rem; box-shadow:0 6px 24px rgba(0,0,0,.35);
+      -webkit-backdrop-filter: blur(6px);
+              backdrop-filter: blur(6px);
+    }
+    .panel h2{ margin:.2rem 0 1rem; color:var(--accent); font-size:1.25rem; }
+    .panel h3{ margin:1.1rem 0 .5rem; color:var(--subtext); font-size:1.08rem; }
+    .panel p, .panel li{ color:var(--subtext); line-height:1.65; }
+    .muted{ color:var(--muted); }
+
+    .placeholder{
+      height:220px; display:grid; place-items:center; margin:1rem 0;
+      border:1px dashed rgba(255,255,255,.34); border-radius:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      color:var(--muted); font-size:.95rem;
+    }
+
+    .table{ width:100%; border-collapse:collapse; overflow:hidden; border-radius:10px; border:1px solid var(--border); }
+    .table th, .table td{
+      padding:.8rem .9rem; text-align:left; font-size:.95rem; border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,.02); color:var(--subtext);
+    }
+    .table th{ color:var(--text); background:rgba(255,255,255,.06); }
+    .table tr:last-child td{ border-bottom:none; }
+
+    .callout{ margin:1rem 0; padding:.9rem 1rem; border-left:4px solid var(--accent); background:rgba(0,0,0,.35); border-radius:10px; }
+    .chip{ display:inline-flex; gap:.5rem; font-size:.85rem; padding:.35rem .6rem; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--subtext); }
+    code.badge{
+      padding:.15rem .4rem; border-radius:6px; border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.85rem; color:var(--subtext);
+    }
+    .footer{ margin-top:2rem; padding:1rem; text-align:center; color:var(--muted); }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .slide, .blobs{ animation:none !important; opacity:1 !important; }
+      .slides .slide:not(.s1){ display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== BACKGROUND: SLIDES + BLOBS + VEIL (CSS-ONLY) ===== -->
+  <div class="bg-root" aria-hidden="true">
+    <div class="slides">
+      <div class="slide s1" style="background-image:url('https://foxynftstats.netlify.app/images/foxyBkg.png');"></div>
+      <div class="slide s2" style="background-image:url('https://i.pinimg.com/originals/aa/77/4a/aa774a8029af39a4a9aeb8eb8d908a99.jpg');"></div>
+      <div class="slide s3" style="background-image:url('https://s1.1zoom.me/big0/609/345421-svetik.jpg');"></div>
+      <div class="slide s4" style="background-image:url('https://rare-gallery.com/thumbs/832582-Canada-Parks-Mountains-Forests-Scenery-Banff-Clouds.jpg');"></div>
+    </div>
+    <div class="blobs"></div>
+    <div class="veil"></div>
+  </div>
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <img src="/foxonly.png" alt="FoxySwap" />
+        <span>FoxySwap Learn</span>
+      </a>
+      <nav class="nav">
+        <a href="/swap">Swap</a>
+        <a href="/liquidity">Liquidity</a>
+        <a href="/info">Analytics</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== CONTENT ===== -->
+  <main class="container">
+    <section class="hero">
+      <h1>DeFi Order Types on EVM — Market, Limit & Stop</h1>
+      <p class="muted">How FoxySwap approaches execution on decentralised EVM chains (AMMs, intents, keepers, and risk controls).</p>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <h2>The Core DeFi Idea</h2>
+        <p>
+          On decentralised EVM blockchains, orders are smart-contract interactions. You balance <em>speed</em>,
+          <em>price control</em>, and <em>automation</em> while paying gas and facing on-chain conditions (mempool,
+          MEV, liquidity depth). FoxySwap aligns these into three familiar modes:
+          <strong>Market</strong>, <strong>Limit</strong>, and <strong>Stop</strong> orders.
+        </p>
+
+        <div class="placeholder">[Diagram — AMM pathing, aggregator routes, keeper/intents flow]</div>
+
+        <h2>Quick Definitions (DeFi Context)</h2>
+        <ul>
+          <li><strong>Market Swap:</strong> Execute now via AMMs/aggregators at the best on-chain quotes within your
+              <em>slippage tolerance</em>.</li>
+          <li><strong>Limit Order:</strong> Execute only at your target price or better, typically via off-chain order
+              books/intents or on-chain keeper execution (no fill until price meets conditions).</li>
+          <li><strong>Stop Order:</strong> Trigger at a specific price to <em>exit risk</em> (stop-loss) or
+              <em>enter momentum</em> (breakout). Implemented via keeper bots or intents → on-chain execution.</li>
+        </ul>
+
+        <h2>Side-by-Side (EVM-Native)</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Goal</th>
+              <th>How It Executes</th>
+              <th>Trade-off</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Market</td>
+              <td>Immediate fill</td>
+              <td>Direct AMM swap (Uniswap-style) / aggregator route; respects user slippage</td>
+              <td>Subject to price impact, MEV, and slippage; fastest settlement</td>
+            </tr>
+            <tr>
+              <td>Limit</td>
+              <td>Price control</td>
+              <td>Off-chain quote/intents or on-chain keeper submits txn when midprice hits your target</td>
+              <td>May not fill; relies on keeper timing and liquidity at trigger</td>
+            </tr>
+            <tr>
+              <td>Stop</td>
+              <td>Automated trigger</td>
+              <td>Keeper monitors price → sends txn to exit/enter on trigger (stop-market or stop-limit)</td>
+              <td>Whipsaws can trigger; stop-market may slip; stop-limit can miss fill</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="placeholder">[Graphic — price vs slippage tolerance vs gas budget]</div>
+
+        <h2>Concrete EVM Examples</h2>
+
+        <h3>1) Market Swap (AMM)</h3>
+        <p>
+          Swap <code class="badge">TOKEN</code> → <code class="badge">WETH</code> now. You approve once
+          (or use Permit2), set <em>slippage</em> (e.g., 0.5%), submit the transaction, and pay gas.
+          <span class="chip">Pro: instant</span> <span class="chip">Con: slippage/MEV risk</span>
+        </p>
+
+        <h3>2) Limit Order (Keeper/Intent)</h3>
+        <p>
+          You want <code class="badge">WETH</code> at a cheaper price. Place a limit order at your target.
+          A keeper (or solver) only executes on-chain when the price meets your level within your
+          tolerances. No price match → no fill → no swap.
+        </p>
+
+        <h3>3) Stop Order (Protective Exit)</h3>
+        <p>
+          You’re long <code class="badge">TOKEN</code> from 1.00 and will bail at 0.92. A stop-market exits
+          quickly at/through 0.92 (may slip); a stop-limit exits only at 0.92 or better (safer price,
+          but can miss in fast drops).
+        </p>
+
+        <h3>4) Stop Order (Breakout Entry)</h3>
+        <p>
+          Consolidation top is 1.20. Place a buy stop at 1.21 to enter if momentum confirms. The keeper
+          submits your txn once the on-chain oracle/quote crosses your trigger.
+        </p>
+
+        <div class="callout">
+          <strong>Note:</strong> In DeFi, “stop” is the <em>trigger</em>. Execution can be
+          <em>stop-market</em> (fast, can slip) or <em>stop-limit</em> (price-controlled, can miss).
+        </div>
+
+        <h2>Choosing the Right Tool on FoxySwap</h2>
+        <ul>
+          <li><strong>Use Market</strong> for time-sensitive swaps and simple rebalances.</li>
+          <li><strong>Use Limit</strong> when you care more about price than immediacy.</li>
+          <li><strong>Use Stop</strong> to automate exits (risk caps) or breakout entries.</li>
+        </ul>
+
+        <div class="placeholder">[Flowchart — “Which should I use?” with market/limit/stop branches]</div>
+
+        <h2>DeFi-Specific Pitfalls (and Fixes)</h2>
+        <ul>
+          <li><strong>High price impact:</strong> Pools are thin. <em>Fix:</em> split orders; let aggregator route across pools.</li>
+          <li><strong>Slippage reverts:</strong> Slippage too tight. <em>Fix:</em> widen tolerance slightly or trade during peak liquidity.</li>
+          <li><strong>MEV sandwiching:</strong> Public mempool risk. <em>Fix:</em> use private relays/MEV-protection if available.</li>
+          <li><strong>Allowance gotchas:</strong> Missing or too low allowance. <em>Fix:</em> approve exact or use Permit2; monitor spenders.</li>
+          <li><strong>Gas spikes:</strong> Network congestion. <em>Fix:</em> set max fee caps; avoid volatile windows; batch actions when possible.</li>
+        </ul>
+
+        <h2>Mini-Glossary (EVM)</h2>
+        <p><code class="badge">Slippage</code> Allowed % difference between quote and execution to avoid failed swaps.</p>
+        <p><code class="badge">Price Impact</code> Change caused by your trade size vs pool depth.</p>
+        <p><code class="badge">Allowance</code> ERC-20 approval letting a contract spend your tokens.</p>
+        <p><code class="badge">Permit2</code> Gas-efficient delegated approvals (signature-based).</p>
+        <p><code class="badge">MEV</code> Miner/validator extractable value; can include sandwiches and reorders.</p>
+
+        <div class="callout">
+          <strong>Pro Setup:</strong> For large orders, consider TWAP (time-weighted) execution, private orderflow,
+          or staged limits to reduce impact and MEV exposure.
+        </div>
+
+        <h2>Summary</h2>
+        <p>
+          On FoxySwap, <strong>Market</strong>, <strong>Limit</strong>, and <strong>Stop</strong> map to how you
+          balance speed, price control, and automation on decentralised EVM chains. Combine them with sensible
+          slippage, MEV awareness, and gas planning to trade efficiently and safely.
+        </p>
+      </article>
+
+      <aside class="panel">
+        <h2>Quick Reference</h2>
+        <ul>
+          <li><strong>Fastest:</strong> Market (AMM/aggregator)</li>
+          <li><strong>Best Price Control:</strong> Limit (keeper/intent)</li>
+          <li><strong>Automation:</strong> Stop (exit/entry trigger)</li>
+          <li><strong>Protect a long:</strong> Sell Stop</li>
+          <li><strong>Protect a short:</strong> Buy Stop</li>
+        </ul>
+
+        <div class="placeholder">[Sidebar — keeper/intents schematic]</div>
+
+        <h2>FAQ</h2>
+        <h3>Why did my market swap slip?</h3>
+        <p>Liquidity was thin or price moved between quote and inclusion. Increase liquidity sources or adjust slippage.</p>
+
+        <h3>Do limits/Stops guarantee fills?</h3>
+        <p>Limits guarantee price (or better), not execution. Stops are triggers; stop-market usually fills (may slip), stop-limit may miss.</p>
+
+        <h3>What about approvals?</h3>
+        <p>ERC-20 tokens require an approval for the router/executor. Revoke or reduce allowances you no longer need.</p>
+
+        <div class="callout">
+          <strong>Tip:</strong> Pair a limit entry with a stop-loss and a take-profit limit for a fully defined on-chain trade.
+        </div>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      FoxySwap on EVM is non-custodial. DeFi involves risk. Trade responsibly.
+    </footer>
+  </main>
+</body>
+</html>

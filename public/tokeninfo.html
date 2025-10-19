@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GWB Token — Stable rUSDC Rewards</title>
+  <meta name="description" content="GWB Token — Earn stable rUSDC rewards just by holding. 5/5 tax split with 3% to holders and 2% to marketing, LP, and development." />
+  <meta property="og:title" content="GWB Token — Stable Rewards, Strong Growth" />
+  <meta property="og:description" content="Earn rUSDC just by holding. 3% of every buy & sell goes to holders. 2% funds marketing, LP, and development." />
+  <meta name="theme-color" content="#0b0f14" />
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#101722; --muted:#8ea3b7; --text:#e6f0ff; --accent:#5cc8ff; --line:#1c2736; --good:#86efac; --warn:#fbbf24;
+
+      /* ── EDIT THESE (must total 100) ── */
+      --p-liq:60;          /* Liquidity */
+      --p-unreleased:25;   /* Unreleased */
+      --p-team:7;          /* Token team vesting */
+      --p-mkt:5;           /* Marketing */
+      --p-owner:2;         /* Owner vesting */
+      --p-other:1;         /* Other */
+
+      /* Colors */
+      --c-liq:#5cc8ff;
+      --c-unreleased:#94a3b8;
+      --c-team:#fda4af;
+      --c-mkt:#fbbf24;
+      --c-owner:#a78bfa;
+      --c-other:#86efac;
+
+      /* cumulative stops for conic gradient */
+      --a1: calc(var(--p-liq)*1%);
+      --a2: calc((var(--p-liq)+var(--p-unreleased))*1%);
+      --a3: calc((var(--p-liq)+var(--p-unreleased)+var(--p-team))*1%);
+      --a4: calc((var(--p-liq)+var(--p-unreleased)+var(--p-team)+var(--p-mkt))*1%);
+      --a5: calc((var(--p-liq)+var(--p-unreleased)+var(--p-team)+var(--p-mkt)+var(--p-owner))*1%);
+      --a6: 100%;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:linear-gradient(180deg,#0a0f14 0%,#0b0f14 100%);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    .wrap{max-width:1100px;margin-inline:auto;padding:28px}
+    .hero{display:grid; gap:24px; align-items:center; grid-template-columns: 1.1fr .9fr;}
+    .badge{display:inline-flex;gap:10px;align-items:center;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:rgba(92,200,255,.08)}
+    h1{font-size:clamp(28px,3.6vw,46px);line-height:1.15;margin:8px 0 10px}
+    .lead{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:70ch}
+    .card{background:linear-gradient(180deg,#101722 0%,#0e151f 100%);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted);font-size:12px}
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:10px}
+    .kpi{background:rgba(92,200,255,.06);border:1px solid var(--line);border-radius:14px;padding:14px}
+    .kpi h3{margin:0 0 4px;font-size:18px}
+    .list{margin:0;padding-left:18px}
+    .list li{margin:6px 0}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:22px 0}
+    .section-title{font-size:22px;margin:0 0 8px}
+    .em{color:var(--good)}
+    .note{color:var(--muted);font-size:14px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg,#112031 0%,#0f1b2a 100%);color:var(--text);font-weight:600;cursor:pointer;transition:.2s transform,.2s box-shadow}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(92,200,255,.08)}
+    .btn.secondary{background:#0f1520}
+    footer{color:var(--muted);font-size:13px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
+    @media (max-width: 940px){.hero{grid-template-columns:1fr}}
+    @media (max-width: 700px){.grid.cols-3{grid-template-columns:1fr}; .grid.cols-2{grid-template-columns:1fr}}
+    .ring{position:relative;overflow:hidden;border-radius:16px}
+    .ring:after{content:"";position:absolute;inset:-120px -60px auto auto;width:280px;height:280px;border-radius:50%;background:radial-gradient(closest-side,rgba(92,200,255,.12),transparent 65%);transform:translate(30px,-20px);pointer-events:none;filter:blur(1px)}
+    code.badge{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px}
+
+    /* ── Distribution chart styles ───────────────────────────────────────── */
+    .dist-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:center}
+    @media (max-width: 940px){.dist-wrap{grid-template-columns:1fr}}
+    .donut{
+      width:min(360px,80vw);aspect-ratio:1/1;border-radius:50%;
+      background:
+        conic-gradient(
+          var(--c-liq) 0 var(--a1),
+          var(--c-unreleased) var(--a1) var(--a2),
+          var(--c-team) var(--a2) var(--a3),
+          var(--c-mkt) var(--a3) var(--a4),
+          var(--c-owner) var(--a4) var(--a5),
+          var(--c-other) var(--a5) var(--a6)
+        );
+      position:relative;margin:auto;border:1px solid var(--line);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 8px 24px rgba(0,0,0,.25);
+    }
+    .donut:before{
+      content:"";position:absolute;inset:12%;border-radius:50%;background:linear-gradient(180deg,#0b121c,#0b0f14);border:1px solid var(--line);
+    }
+    .donut-center{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:12px;pointer-events:none;}
+    .donut-center h3{margin:0;font-size:18px}
+    .legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .legend .row{display:flex;align-items:center;gap:10px;background:#0e1520;border:1px solid var(--line);border-radius:12px;padding:10px}
+    .swatch{width:12px;height:12px;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.3) inset}
+    .pct{margin-left:auto;color:var(--muted)}
+    .tbl{width:100%;border-collapse:separate;border-spacing:0 8px}
+    .tbl th{color:var(--muted);font-weight:600;text-align:left;font-size:13px}
+    .tbl td,.tbl th{padding:10px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#0f1622}
+    .tbl tr td:first-child,.tbl tr th:first-child{border-left:1px solid var(--line);border-top-left-radius:10px;border-bottom-left-radius:10px}
+    .tbl tr td:last-child,.tbl tr th:last-child{border-right:1px solid var(--line);border-top-right-radius:10px;border-bottom-right-radius:10px}
+    .tot-row td{background:#0e1520;font-weight:700}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <span class="badge">🚀 <strong>Golden Wombat</strong> — Stable Rewards, Strong Growth, Built for Holders</span>
+        <h1>💰 Earn rUSDC Just by Holding</h1>
+        <p class="lead">
+          3% of every buy &amp; sell goes directly into a reward pool. Rewards are paid in <strong>rUSDC</strong>,
+          a stable ERC-20 token, so your passive income isn’t affected by market swings. No staking. No lock-ups.
+          Just hold GWB and earn.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#taxes">📊 View Tax Split</a>
+          <a class="btn secondary" href="#deployment">🧭 Token Deployment</a>
+        </div>
+      </div>
+      <div class="grid cols-1">
+        <div class="kpis">
+          <div class="kpi">
+            <h3>3% ➜ rUSDC</h3>
+            <div class="note">Every buy &amp; sell goes to holder rewards</div>
+          </div>
+          <div class="kpi">
+            <h3>2% ➜ Growth</h3>
+            <div class="note">Marketing, LP, &amp; development</div>
+          </div>
+          <div class="kpi">
+            <h3>5% / 5%</h3>
+            <div class="note">Buy / Sell tax — fair &amp; balanced</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- TAXES -->
+    <section id="taxes" class="grid cols-2">
+      <article class="card ring">
+        <div class="pill">📊 Fair &amp; Powerful Tax Structure — 5% Buy / 5% Sell</div>
+        <h2 class="section-title" style="margin-top:10px">Buy Tax (5%)</h2>
+        <ul class="list">
+          <li><strong>3%</strong> → Distributed to holders in <strong>rUSDC</strong> stable rewards.</li>
+          <li><strong>2%</strong> → Marketing, liquidity, and development fund.</li>
+        </ul>
+        <h2 class="section-title" style="margin-top:16px">Sell Tax (5%)</h2>
+        <ul class="list">
+          <li><strong>3%</strong> → Distributed to holders in <strong>rUSDC</strong> stable rewards.</li>
+          <li><strong>2%</strong> → Marketing, liquidity, and development fund.</li>
+        </ul>
+        <p class="note" style="margin-top:10px">
+          This split ensures constant passive income for holders, healthy liquidity growth, and funding for project expansion.
+        </p>
+      </article>
+
+      <!-- TREASURY / PROTECTION -->
+      <article class="grid cols-1" style="gap:16px">
+        <div class="card ring">
+          <div class="pill">🏦 Treasury &amp; Development Fuel</div>
+          <ul class="list" style="margin-top:10px">
+            <li>Every trade helps fund the treasury, liquidity pool, and dev wallet.</li>
+            <li>Built-in marketing allocation keeps the project visible and active long-term.</li>
+          </ul>
+        </div>
+        <div class="card ring">
+          <div class="pill">🛡 Holder Protection</div>
+          <ul class="list" style="margin-top:10px">
+            <li>Anti-Whale measures: limits on max transactions and wallet size to prevent huge dumps.</li>
+            <li>Whitelist mode for fair launches — no sniper bots or unfair early entries.</li>
+            <li>LP injections from taxes help stabilize the price and reduce volatility.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- AUTOMATION -->
+    <section class="grid cols-2">
+      <article class="card ring">
+        <div class="pill">♻️ Automatic Fee Processing</div>
+        <ul class="list" style="margin-top:10px">
+          <li>Taxes are collected in GWB.</li>
+          <li>GWB is automatically swapped for ETH.</li>
+          <li>ETH is used to buy <strong>rUSDC</strong> for holder rewards and fund marketing/LP/dev wallets.</li>
+        </ul>
+      </article>
+      <article id="why" class="card ring">
+        <div class="pill">🔥 Why GWB is a Must-Hold</div>
+        <ul class="list" style="margin-top:10px">
+          <li><span class="em">Stable rewards in rUSDC</span> protect your earnings from market crashes.</li>
+          <li>Continuous liquidity growth supports a strong price floor.</li>
+          <li>Marketing and dev funding are built-in, ensuring the project always has fuel to grow.</li>
+          <li>Community-first tokenomics encourage long-term holding instead of quick dumps.</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- TOKEN DEPLOYMENT & DISTRIBUTION -->
+    <section id="deployment" class="card ring">
+      <div class="pill">📦 Token Deployment & Distribution</div>
+      <h2 class="section-title" style="margin-top:10px">How GWB Supply Is Allocated at Launch</h2>
+
+      <div class="dist-wrap" style="margin-top:8px">
+        <!-- Donut Chart -->
+        <div class="card" style="display:grid;place-items:center">
+          <div class="donut" role="img" aria-label="Token distribution donut chart">
+            <div class="donut-center">
+              <div>
+                <h3>GWB Distribution</h3>
+                <div class="note">Matches percentages below</div>
+              </div>
+            </div>
+          </div>
+          <div class="legend" style="margin-top:14px; width:100%">
+            <div class="row"><span class="swatch" style="background:var(--c-liq)"></span><strong>Liquidity</strong><span class="pct" data-key="liq"></span></div>
+            <div class="row"><span class="swatch" style="background:var(--c-unreleased)"></span><strong>Unreleased</strong><span class="pct" data-key="unreleased"></span></div>
+            <div class="row"><span class="swatch" style="background:var(--c-team)"></span><strong>Token Team (Vesting)</strong><span class="pct" data-key="team"></span></div>
+            <div class="row"><span class="swatch" style="background:var(--c-mkt)"></span><strong>Marketing</strong><span class="pct" data-key="mkt"></span></div>
+            <div class="row"><span class="swatch" style="background:var(--c-owner)"></span><strong>Owner (Vesting)</strong><span class="pct" data-key="owner"></span></div>
+            <div class="row"><span class="swatch" style="background:var(--c-other)"></span><strong>Other</strong><span class="pct" data-key="other"></span></div>
+          </div>
+        </div>
+
+        <!-- Details / Vesting Table -->
+        <div class="card">
+          <h3 style="margin:0 0 10px">Allocation Details & Vesting</h3>
+          <table class="tbl" aria-label="Allocation and vesting table">
+            <thead>
+              <tr>
+                <th>Bucket</th>
+                <th>Percent</th>
+                <th>Cliff</th>
+                <th>Vesting</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Liquidity</td>
+                <td>60%</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Initial LP at launch. LP tokens locked.</td>
+              </tr>
+              <tr>
+                <td>Unreleased</td>
+                <td>25%</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Not in circulation; unminted or timelocked.</td>
+              </tr>
+              <tr>
+                <td>Token Team (Vesting)</td>
+                <td>7%</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>Team allocations with transparent vesting.</td>
+              </tr>
+              <tr>
+                <td>Marketing</td>
+                <td>5%</td>
+                <td>—</td>
+                <td>As needed</td>
+                <td>Campaigns, partnerships, growth.</td>
+              </tr>
+              <tr>
+                <td>Owner (Vesting)</td>
+                <td>2%</td>
+                <td>TBD</td>
+                <td>TBD</td>
+                <td>Owner allocation with vesting; disclosed schedule.</td>
+              </tr>
+              <tr>
+                <td>Other</td>
+                <td>1%</td>
+                <td>—</td>
+                <td>—</td>
+                <td>Reserve or miscellaneous needs.</td>
+              </tr>
+              <tr class="tot-row">
+                <td>Total</td>
+                <td>100%</td>
+                <td colspan="3">Matches donut chart.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="divider"></div>
+          <h4 style="margin:0 0 6px">Deployment Checklist</h4>
+          <ul class="list">
+            <li>✅ Mint GWB token with deployer multisig; route per allocations above.</li>
+            <li>✅ Seed initial liquidity; lock LP tokens.</li>
+            <li>✅ Enable taxes (5/5) with <strong>3% rUSDC rewards</strong> & <strong>2% growth</strong>.</li>
+            <li>✅ Activate anti-whale limits & whitelist mode (if using fair launch).</li>
+            <li>✅ Publish contract, audits, and lock/vesting proofs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:12px">
+        Note: Holder rewards are paid in <strong>rUSDC</strong> via fee processing on every trade (3%). The distribution above describes <em>token supply</em> at deployment, not ongoing rUSDC reward flow.
+      </p>
+    </section>
+
+    <footer>
+      <div class="note">
+        ⚠️ Disclaimer: This page is informational and not financial advice. Cryptocurrency involves risk. Do your own research.
+      </div>
+    </footer>
+  </main>
+
+  <!-- Auto-fill legend numbers from CSS variables -->
+  <script>
+    (function(){
+      const root = getComputedStyle(document.documentElement);
+      const get = k => (root.getPropertyValue('--p-' + k) || '').trim();
+      const keys = ['liq','unreleased','team','mkt','owner','other'];
+      keys.forEach(k=>{
+        const el = document.querySelector('.pct[data-key="'+k+'"]');
+        if(el) el.textContent = get(k) ? get(k) + '%' : '';
+      });
+    })();
+  </script>
+</body>
+</html>

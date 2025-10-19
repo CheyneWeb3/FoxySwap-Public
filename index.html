@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FoxySwap Brand Assets</title>
+  <style>
+    :root{
+      /* Theme swatches (edit if you want different hexes) */
+      --primary:#1976d2;
+      --secondary:#9c27b0;
+      --info:#0288d1;
+      --success:#2e7d32;
+      --warning:#ed6c02;
+      --error:#d32f2f;
+
+      /* Custom brand */
+      --brand-lime:#A6F500;
+      --brand-forest:#163A2E;
+      --brand-mint:#26E0A0;
+      --brand-orange:#FF8A00;
+
+      /* Greys (MUI defaults) */
+      --g-50:#fafafa;  --g-100:#f5f5f5; --g-200:#eeeeee; --g-300:#e0e0e0; --g-400:#bdbdbd;
+      --g-500:#9e9e9e; --g-600:#757575; --g-700:#616161; --g-800:#424242; --g-900:#212121;
+
+      --bg:#0f1412;
+      --paper:#121a17;
+      --text:#e7f2ee;
+      --muted:rgba(255,255,255,.7);
+      --divider:rgba(255,255,255,.12);
+      --radius:16px;
+      --shadow:0 6px 24px rgba(0,0,0,.24);
+      --container:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      color:var(--text); background:var(--bg);
+    }
+    .container{ max-width:var(--container); margin:0 auto; padding:0 20px; }
+    /* Hero */
+    .hero{
+      position:relative; min-height:240px; background:url(/foxyall.png) center/cover no-repeat;
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55));
+      backdrop-filter:blur(2px);
+    }
+    .hero-inner{ position:relative; z-index:1; padding:24px 0 28px; }
+    .hero-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+    h1{ margin:0; font-size:28px; letter-spacing:.2px; }
+    .subtitle{ color:var(--muted); margin-top:8px; }
+
+    /* Buttons */
+    .btn-row{ display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{
+      --pad:10px 14px; --border:1px solid transparent;
+      display:inline-flex; align-items:center; gap:8px; padding:var(--pad);
+      border:var(--border); border-radius:12px; text-decoration:none; cursor:pointer; user-select:none;
+      font-weight:600; transition:.15s ease;
+    }
+    .btn svg{ width:18px; height:18px; }
+    .btn-contained{ background:#1f2a26; color:#fff; border-color:transparent; box-shadow:var(--shadow); }
+    .btn-contained:hover{ transform:translateY(-1px); opacity:.95; }
+    .btn-outlined{ background:transparent; color:#fff; border-color:var(--divider); }
+    .btn-outlined:hover{ background:rgba(255,255,255,.06); }
+
+    /* Sections */
+    section{ padding:28px 0; }
+    .overline{ text-transform:uppercase; font-size:12px; letter-spacing:1px; opacity:.8; }
+    .divider{ height:1px; background:var(--divider); margin:8px 0 16px; }
+
+    /* Grid */
+    .grid{ display:grid; gap:16px; }
+    @media (min-width:600px){ .grid.cols-2{ grid-template-columns:repeat(2,1fr); } }
+    @media (min-width:900px){ .grid.cols-3{ grid-template-columns:repeat(3,1fr); } }
+    @media (min-width:1200px){ .grid.cols-5{ grid-template-columns:repeat(5,1fr); } .grid.cols-6{ grid-template-columns:repeat(6,1fr); } }
+
+    /* Card */
+    .card{
+      background:var(--paper); border:1px solid var(--divider); border-radius:var(--radius);
+      overflow:hidden; display:flex; flex-direction:column; height:100%;
+    }
+    .card-media{
+      height:160px; display:flex; align-items:center; justify-content:center;
+      background:#0c120f; border-bottom:1px solid var(--divider);
+    }
+    .card-media img{ max-height:96px; max-width:80%; object-fit:contain; }
+    .card-body{ padding:14px; }
+    .card-title{ font-size:14px; font-weight:700; margin:0 0 8px; }
+    .inline-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+
+    /* Chips (usage rules) */
+    .chip{
+      border:1px solid var(--divider); border-radius:999px; padding:10px 12px; width:100%;
+      background:rgba(255,255,255,.03);
+    }
+
+    /* Swatches */
+    .swatch{
+      border:1px solid var(--divider); border-radius:14px; overflow:hidden; background:var(--paper);
+    }
+    .swatch-top{
+      height:88px; display:flex; align-items:center; justify-content:center; font-weight:800;
+    }
+    .swatch-body{ padding:12px; }
+    .swatch-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .mono{ font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .actions{ display:flex; gap:6px; }
+    .icon-btn{
+      display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+      border:1px solid var(--divider); background:transparent; border-radius:8px; cursor:pointer;
+      transition:.15s ease; color:#fff;
+    }
+    .icon-btn:hover{ background:rgba(255,255,255,.06); }
+    .token{ margin-top:6px; opacity:.8; font-size:12px; }
+
+    /* Footer CTA row */
+    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="hero-row">
+        <h1>FoxySwap Brand Assets</h1>
+        <div class="btn-row">
+          <a class="btn btn-outlined" href="/docs/ui-kit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"/><path d="M5 5h5V3H3v7h2V5z"/><path d="M19 19H5V9H3v12h16v-2z"/></svg>
+            Open Brand Kit
+          </a>
+          <a class="btn btn-contained" href="/foxy-brand-kit.zip" download>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zM12 2 6.5 7.5l1.41 1.41L11 5.83V16h2V5.83l3.09 3.08 1.41-1.41L12 2z"/></svg>
+            Download Kit
+          </a>
+        </div>
+      </div>
+      <p class="subtitle">Official logos, colors, and usage. Don’t alter proportions or recolor marks.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Logos -->
+    <section>
+      <div class="overline">LOGOS</div>
+      <div class="divider"></div>
+
+      <div class="grid cols-3">
+        <!-- FoxySwap — Full Lockup -->
+        <article class="card">
+          <div class="card-media"><img src="/foxyall.png" alt="FoxySwap full logo" /></div>
+          <div class="card-body">
+            <h3 class="card-title">FoxySwap — Full Lockup</h3>
+            <div class="inline-actions">
+              <a class="btn btn-outlined" href="/foxyall.png" download>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zM12 2 6.5 7.5l1.41 1.41L11 5.83V16h2V5.83l3.09 3.08 1.41-1.41L12 2z"/></svg>
+                PNG
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- FoxySwap — Text -->
+        <article class="card">
+          <div class="card-media"><img src="/foxtext.png" alt="FoxySwap text" /></div>
+          <div class="card-body">
+            <h3 class="card-title">FoxySwap — Text</h3>
+            <div class="inline-actions">
+              <a class="btn btn-outlined" href="/foxtext.png" download>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zM12 2 6.5 7.5l1.41 1.41L11 5.83V16h2V5.83l3.09 3.08 1.41-1.41L12 2z"/></svg>
+                PNG
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Foxy — Mark (Head) -->
+        <article class="card">
+          <div class="card-media"><img src="/foxonly.png" alt="Foxy mark" /></div>
+          <div class="card-body">
+            <h3 class="card-title">Foxy — Mark (Head)</h3>
+            <div class="inline-actions">
+              <a class="btn btn-outlined" href="/foxonly.png" download>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zM12 2 6.5 7.5l1.41 1.41L11 5.83V16h2V5.83l3.09 3.08 1.41-1.41L12 2z"/></svg>
+                PNG
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Foxy — Compact -->
+        <article class="card">
+          <div class="card-media"><img src="/smalltestlogo.png" alt="Foxy compact" /></div>
+          <div class="card-body">
+            <h3 class="card-title">Foxy — Compact</h3>
+            <div class="inline-actions">
+              <a class="btn btn-outlined" href="/smalltestlogo.png" download>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zM12 2 6.5 7.5l1.41 1.41L11 5.83V16h2V5.83l3.09 3.08 1.41-1.41L12 2z"/></svg>
+                PNG
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Roburna Badge -->
+        <article class="card">
+          <div class="card-media"><img src="/arborswap.png" alt="Roburna badge" /></div>
+          <div class="card-body">
+            <h3 class="card-title">Roburna Badge</h3>
+            <div class="inline-actions">
+              <a class="btn btn-outlined" href="/arborswap.png" download>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zM12 2 6.5 7.5l1.41 1.41L11 5.83V16h2V5.83l3.09 3.08 1.41-1.41L12 2z"/></svg>
+                PNG
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Theme Colors -->
+    <section>
+      <div class="overline">THEME COLORS</div>
+      <div class="divider"></div>
+      <div class="grid cols-6">
+        <div class="swatch" data-label="Primary"  data-hex="--primary"  data-token="primary.main"></div>
+        <div class="swatch" data-label="Secondary" data-hex="--secondary" data-token="secondary.main"></div>
+        <div class="swatch" data-label="Info"      data-hex="--info"      data-token="info.main"></div>
+        <div class="swatch" data-label="Success"   data-hex="--success"   data-token="success.main"></div>
+        <div class="swatch" data-label="Warning"   data-hex="--warning"   data-token="warning.main"></div>
+        <div class="swatch" data-label="Error"     data-hex="--error"     data-token="error.main"></div>
+      </div>
+    </section>
+
+    <!-- Custom Brand Colors -->
+    <section>
+      <div class="overline">CUSTOM BRAND COLORS</div>
+      <div class="divider"></div>
+      <div class="grid cols-6">
+        <div class="swatch" data-label="Lime"   data-hex="--brand-lime"   data-token="brand.lime"></div>
+        <div class="swatch" data-label="Forest" data-hex="--brand-forest" data-token="brand.forest"></div>
+        <div class="swatch" data-label="Mint"   data-hex="--brand-mint"   data-token="brand.mint"></div>
+        <div class="swatch" data-label="Orange" data-hex="--brand-orange" data-token="brand.orange"></div>
+      </div>
+    </section>
+
+    <!-- Neutrals -->
+    <section>
+      <div class="overline">NEUTRALS</div>
+      <div class="divider"></div>
+      <div class="grid cols-6">
+        <div class="swatch" data-label="Grey 900" data-hex="--g-900" data-token="grey.900"></div>
+        <div class="swatch" data-label="Grey 800" data-hex="--g-800" data-token="grey.800"></div>
+        <div class="swatch" data-label="Grey 700" data-hex="--g-700" data-token="grey.700"></div>
+        <div class="swatch" data-label="Grey 600" data-hex="--g-600" data-token="grey.600"></div>
+        <div class="swatch" data-label="Grey 500" data-hex="--g-500" data-token="grey.500"></div>
+        <div class="swatch" data-label="Grey 400" data-hex="--g-400" data-token="grey.400"></div>
+        <div class="swatch" data-label="Grey 300" data-hex="--g-300" data-token="grey.300"></div>
+        <div class="swatch" data-label="Grey 200" data-hex="--g-200" data-token="grey.200"></div>
+        <div class="swatch" data-label="Grey 100" data-hex="--g-100" data-token="grey.100"></div>
+        <div class="swatch" data-label="Grey 50"  data-hex="--g-50"  data-token="grey.50"></div>
+      </div>
+    </section>
+
+    <!-- Usage Rules -->
+    <section>
+      <div class="overline">USAGE RULES</div>
+      <div class="divider"></div>
+      <div class="grid cols-2">
+        <div class="chip">Use Light logo on dark backgrounds; Dark logo on light backgrounds.</div>
+        <div class="chip">Maintain clearspace = 1× mark height.</div>
+        <div class="chip">Do not stretch, recolor, outline, or add effects.</div>
+        <div class="chip">Minimum sizes: 24px (UI) / 48px (marketing).</div>
+        <div class="chip">Link back to this page for the latest files.</div>
+      </div>
+    </section>
+
+    <hr class="divider" style="margin:24px 0" />
+
+    <!-- CTAs -->
+    <section class="cta-row" style="padding-top:0;">
+      <a class="btn btn-contained" href="/FoxySwap-Brand-Guide.pdf" download>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zM12 2 6.5 7.5l1.41 1.41L11 5.83V16h2V5.83l3.09 3.08 1.41-1.41L12 2z"/></svg>
+        Download Brand Guide (PDF)
+      </a>
+      <a class="btn btn-outlined" href="/foxy-brand-kit.zip" download>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zM12 2 6.5 7.5l1.41 1.41L11 5.83V16h2V5.83l3.09 3.08 1.41-1.41L12 2z"/></svg>
+        Download Brand Kit (ZIP)
+      </a>
+    </section>
+
+  </main>
+
+  <script>
+    // Build each swatch block from its data-* attributes
+    function hexFromVar(varName){
+      // Convert CSS var reference (e.g., "--primary") to computed hex
+      const el = document.documentElement;
+      const val = getComputedStyle(el).getPropertyValue(varName).trim();
+      return val || "#000000";
+    }
+    function contrastColor(hex){
+      // Basic luminance check for contrast text
+      const n = hex.replace("#","");
+      const r = parseInt(n.substring(0,2),16);
+      const g = parseInt(n.substring(2,4),16);
+      const b = parseInt(n.substring(4,6),16);
+      const yiq = (r*299 + g*587 + b*114)/1000;
+      return yiq >= 128 ? "#000" : "#fff";
+    }
+    function makeIcon(pathD){
+      const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+      svg.setAttribute("viewBox","0 0 24 24");
+      svg.setAttribute("fill","currentColor");
+      svg.setAttribute("aria-hidden","true");
+      svg.style.width="18px"; svg.style.height="18px";
+      const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+      p.setAttribute("d",pathD); svg.appendChild(p); return svg;
+    }
+    const COPY_ICON_D = "M16 1H4c-1.1 0-2 .9-2 2v12h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z";
+    const CHECK_ICON_D = "M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z";
+
+    document.querySelectorAll(".swatch").forEach(node=>{
+      const label = node.dataset.label || "Color";
+      const varName = node.dataset.hex || "--primary";
+      const token  = node.dataset.token || "";
+      const hex = (varName.startsWith("--")) ? hexFromVar(varName) : varName;
+      const top = document.createElement("div");
+      top.className="swatch-top";
+      top.style.background=hex;
+      top.style.color=contrastColor(hex);
+      top.textContent = label;
+
+      const body = document.createElement("div");
+      body.className="swatch-body";
+
+      const row  = document.createElement("div"); row.className="swatch-row";
+      const code = document.createElement("div"); code.className="mono"; code.textContent = hex.toUpperCase();
+      const actions = document.createElement("div"); actions.className="actions";
+
+      const btnHex = document.createElement("button");
+      btnHex.className="icon-btn"; btnHex.title="Copy HEX";
+      btnHex.appendChild(makeIcon(COPY_ICON_D));
+      btnHex.addEventListener("click", async ()=>{
+        try{
+          await navigator.clipboard.writeText(hex);
+          btnHex.replaceChildren(makeIcon(CHECK_ICON_D));
+          btnHex.title="Copied!";
+          setTimeout(()=>{ btnHex.replaceChildren(makeIcon(COPY_ICON_D)); btnHex.title="Copy HEX"; }, 1200);
+        }catch{}
+      });
+      actions.appendChild(btnHex);
+
+      if (token){
+        const btnTok = document.createElement("button");
+        btnTok.className="icon-btn"; btnTok.title="Copy token";
+        btnTok.appendChild(makeIcon(COPY_ICON_D));
+        btnTok.addEventListener("click", async ()=>{
+          try{
+            await navigator.clipboard.writeText(token);
+            btnTok.replaceChildren(makeIcon(CHECK_ICON_D));
+            btnTok.title="Copied!";
+            setTimeout(()=>{ btnTok.replaceChildren(makeIcon(COPY_ICON_D)); btnTok.title="Copy token"; }, 1200);
+          }catch{}
+        });
+        actions.appendChild(btnTok);
+      }
+
+      row.appendChild(code); row.appendChild(actions);
+      body.appendChild(row);
+
+      if (token){
+        const tok = document.createElement("div"); tok.className="token mono"; tok.textContent = token;
+        body.appendChild(tok);
+      }
+
+      node.appendChild(top);
+      node.appendChild(body);
+    });
+  </script>
+</body>
+</html>
