@@ -1,0 +1,37 @@
+{
+  "name": "DJ Jane — Live at Foxy Forest Lounge",
+  "description": "Illustrated red-hot fox DJ Jane at the decks in a neon-lit club. Edition metadata with video preview support.",
+  "image": "ipfs://REPLACE_CID/dj-foxy.png",
+  "animation_url": "ipfs://REPLACE_CID/dj-foxy.mp4",
+  "external_url": "https://foxyswap.net/market",
+  "youtube_url": "https://youtu.be/REPLACE_VIDEO_ID",
+  "background_color": "0B0F1A",
+  "attributes": [
+    { "trait_type": "Theme", "value": "Nightclub" },
+    { "trait_type": "Style", "value": "Digital Illustration" },
+    { "trait_type": "Palette", "value": "Neon" },
+    { "trait_type": "Format", "value": "PNG (RGBA)" },
+    { "trait_type": "Width", "value": 309 },
+    { "trait_type": "Height", "value": 422 },
+    { "trait_type": "Aspect Ratio", "value": 0.732227 },
+    { "trait_type": "Image SHA-256", "value": "81ac8801d34c5f6b7d13e52ac9a8d48fa3f2444b7e709eda09f99ef1a72cab7f" }
+  ],
+  "properties": {
+    "category": "image",
+    "files": [
+      {
+        "uri": "ipfs://REPLACE_CID/dj-foxy.png",
+        "type": "image/png",
+        "sha256": "81ac8801d34c5f6b7d13e52ac9a8d48fa3f2444b7e709eda09f99ef1a72cab7f",
+        "size_bytes": 279483,
+        "width": 309,
+        "height": 422
+      },
+      {
+        "uri": "ipfs://REPLACE_CID/dj-foxy.mp4",
+        "type": "video/mp4",
+        "note": "Optional animated preview / full clip for animation_url"
+      }
+    ]
+  }
+}
