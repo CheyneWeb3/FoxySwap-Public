@@ -6,9 +6,7 @@
   "external_url": "https://foxyswap.net/market/home",
 
   "youtube_url": "https://www.youtube.com/watch?v=Ix0yUVVMk8w",
-  "youtube_urls": [
-    "https://www.youtube.com/watch?v=x_YYPl91pks"
-  ],
+  "youtube_urls": "https://www.youtube.com/watch?v=x_YYPl91pks",
 
   "background_color": "0B0F1A",
   "attributes": [
