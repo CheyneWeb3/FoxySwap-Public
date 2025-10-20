@@ -4,12 +4,7 @@
   "animation_url": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/1.mp4",
   "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/djjane.png",
   "external_url": "https://foxyswap.net/market/home",
-
-  "youtube_url": "https://www.youtube.com/watch?v=Ix0yUVVMk8w",
-  "youtube_urls": [
-    "https://www.youtube.com/watch?v=x_YYPl91pks",
-    
-  ],
+  "youtube_url": "https://www.youtube.com/watch?v=x_YYPl91pks",
   "background_color": "0B0F1A",
   "attributes": [
     { "trait_type": "Theme", "value": "Nightclub" },
@@ -33,13 +28,10 @@
         "height": 422
       },
       {
-        "uri": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/1.mp4",
+        "uri": "ipfs://REPLACE_CID/dj-foxy.mp4",
         "type": "video/mp4",
-        "note": "Optional animated preview."
+        "note": "Optional animated preview / full clip for animation_url"
       }
-    ],
-    "youtube_urls": [
-      "https://www.youtube.com/watch?v=x_YYPl91pks",
     ]
   }
 }
