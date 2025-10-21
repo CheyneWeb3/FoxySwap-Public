@@ -1,0 +1,45 @@
+{
+  "name": "Shinobi — Forest",
+  "description": "A lone shinobi moves like mist through the whispering cedars. Moonlight on steel, breath held, the forest itself an ally.",
+  "external_url": "https://foxyswap.net/market/{chainId}/token/{contractAddress}/{tokenId}",
+  "image": "ipfs://QmYourCID/images/shinobi-forest.png",
+  "animation_url": "ipfs://QmYourCID/animation/shinobi-forest.mp4",
+  "background_color": "0B0F1A",
+
+  "youtube_url": "https://www.youtube.com/watch?v=XXXXXXXXXXX",
+  "youtube_urls": [
+    "https://www.youtube.com/watch?v=YYYYYYYYYYY",
+    "https://www.youtube.com/watch?v=ZZZZZZZZZZZ"
+  ],
+
+  "attributes": [
+    { "trait_type": "Clan", "value": "Kitsune" },
+    { "trait_type": "Mask", "value": "Onyx Tengu" },
+    { "trait_type": "Weapon", "value": "Nodachi" },
+    { "trait_type": "Element", "value": "Wind" },
+    { "trait_type": "Rank", "value": "Jōnin" },
+    { "trait_type": "Forest", "value": "Whispering Cedars" },
+    { "trait_type": "Time of Day", "value": "Moonlit" },
+    { "trait_type": "Background", "value": "Deep Forest" },
+    { "trait_type": "Rarity", "value": "Legendary" },
+
+    { "display_type": "number", "trait_type": "Stealth", "value": 92, "max_value": 100 },
+    { "display_type": "number", "trait_type": "Chakra Control", "value": 88, "max_value": 100 },
+    { "display_type": "boost_percentage", "trait_type": "Forest Movement Speed", "value": 15 }
+  ],
+
+  "properties": {
+    "category": "video",
+    "files": [
+      {
+        "uri": "ipfs://QmYourCID/animation/shinobi-forest.mp4",
+        "type": "video/mp4"
+      },
+      {
+        "uri": "ipfs://QmYourCID/images/shinobi-forest.png",
+        "type": "image/png"
+      }
+    ],
+    "compiler": "Foxy Creator • ChatGPT"
+  }
+}
