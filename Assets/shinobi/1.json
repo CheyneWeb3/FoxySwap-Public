@@ -1,7 +1,7 @@
 {
   "name": "Shinobi — Forest",
   "description": "A lone shinobi moves like mist through the whispering cedars. Moonlight on steel, breath held, the forest itself an ally.",
-  "external_url": "https://retrogames.pro/2022/10/29/shinobi-mame-243-play-online-in-your-browser/",
+  "external_url": "https://defiarcade.netlify.app/play/shinobi",
   "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/shinobi/1.gif",
   "animation_url": "https://github.com/CheyneWeb3/FoxySwap-Public/raw/refs/heads/main/Assets/shinobi/1.mp4",
   "background_color": "0B0F1A",
