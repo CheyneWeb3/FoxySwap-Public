@@ -1,15 +1,15 @@
 {
   "name": "Shinobi — Forest",
   "description": "A lone shinobi moves like mist through the whispering cedars. Moonlight on steel, breath held, the forest itself an ally.",
-  "external_url": "https://foxyswap.net/market/{chainId}/token/{contractAddress}/{tokenId}",
-  "image": "ipfs://QmYourCID/images/shinobi-forest.png",
-  "animation_url": "ipfs://QmYourCID/animation/shinobi-forest.mp4",
+  "external_url": "https://retrogames.pro/2022/10/29/shinobi-mame-243-play-online-in-your-browser/",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/shinobi/1.gif",
+  "animation_url": "https://github.com/CheyneWeb3/FoxySwap-Public/raw/refs/heads/main/Assets/shinobi/1.mp4",
   "background_color": "0B0F1A",
 
-  "youtube_url": "https://www.youtube.com/watch?v=XXXXXXXXXXX",
+  "youtube_url": "https://www.youtube.com/watch?v=Soyt3nTDfQ4&pp=ygUMc2hpbm9iaSBtYW1l",
   "youtube_urls": [
-    "https://www.youtube.com/watch?v=YYYYYYYYYYY",
-    "https://www.youtube.com/watch?v=ZZZZZZZZZZZ"
+    "https://www.youtube.com/watch?v=lqScgMHVe3c&pp=ygUMc2hpbm9iaSBtYW1l",
+    "https://www.youtube.com/watch?v=Soyt3nTDfQ4&pp=ygUMc2hpbm9iaSBtYW1l"
   ],
 
   "attributes": [
@@ -32,12 +32,12 @@
     "category": "video",
     "files": [
       {
-        "uri": "ipfs://QmYourCID/animation/shinobi-forest.mp4",
+        "uri": "https://www.youtube.com/watch?v=Soyt3nTDfQ4&pp=ygUMc2hpbm9iaSBtYW1l",
         "type": "video/mp4"
       },
       {
-        "uri": "ipfs://QmYourCID/images/shinobi-forest.png",
-        "type": "image/png"
+        "uri": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/shinobi/1.gif",
+        "type": "image/gif"
       }
     ],
     "compiler": "Foxy Creator • ChatGPT"
