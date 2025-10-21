@@ -28,7 +28,7 @@
         "height": 422
       },
       {
-        "uri": "ipfs://REPLACE_CID/dj-foxy.mp4",
+        "uri": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/1.mp4",
         "type": "video/mp4",
         "note": "Optional animated preview / full clip for animation_url"
       }
