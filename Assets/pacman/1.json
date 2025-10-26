@@ -1,0 +1,36 @@
+{
+  "name": "Pacman — Neon Maze",
+  "description": "Glossy, yellow Pacman chomps a trail of glowing pellets across a retro-futuristic grid while three neon ghosts close in. No text, no coins—just the classic chase reimagined.",
+  "external_url": "https://defiarcade.netlify.app/play/pacman",
+  "image": "https://64.media.tumblr.com/tumblr_m660jgJyuL1rr86mho1_500.gif",
+  "animation_url": "https://64.media.tumblr.com/tumblr_m660jgJyuL1rr86mho1_500.gif",
+  "background_color": "0B0F1A",
+
+  "youtube_url": "https://www.youtube.com/watch?v=IqoRcA1aqMk&pp=ygUGcGFjbWFu",
+
+
+  "attributes": [
+    { "trait_type": "Game", "value": "Pacman (Meme Variant)" },
+    { "trait_type": "Maze", "value": "Neon Grid" },
+    { "trait_type": "Pellets", "value": "Classic Dots" },
+    { "trait_type": "Ghost Squad", "value": "Trio — Red/Cyan/Purple (Shades)" },
+    { "trait_type": "Background", "value": "Vaporwave Night" },
+    { "trait_type": "Era", "value": "1980s Arcade" },
+    { "trait_type": "Rarity", "value": "Epic" },
+
+    { "display_type": "number", "trait_type": "Speed", "value": 88, "max_value": 100 },
+    { "display_type": "number", "trait_type": "Pellet Chain", "value": 4, "max_value": 10 },
+    { "display_type": "boost_percentage", "trait_type": "Chomp Combo Bonus", "value": 12 }
+  ],
+
+  "properties": {
+    "category": "image",
+    "files": [
+      {
+        "uri": "https://64.media.tumblr.com/tumblr_m660jgJyuL1rr86mho1_500.gif",
+        "type": "image/png"
+      }
+    ],
+    "compiler": "Foxy Creator • ChatGPT"
+  }
+}
