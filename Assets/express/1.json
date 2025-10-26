@@ -1,0 +1,36 @@
+{
+  "name": "Express Raider — Train Heist",
+  "description": "Dash across roaring boxcars with bare-knuckle brawls, then leap to horseback for side-scroll shootouts. Dodge signs, kick bandits, and rack up points across shifting stage types. Classic Old West chaos from Data East, 1986.",
+  "external_url": "https://defiarcade.netlify.app/play/express",
+  "image": "https://1.bp.blogspot.com/-M9go0qLUgzY/WBthuD9SkeI/AAAAAAAAE30/_p2V33pV1OcEy2CNHzZvDxoTFnz5LScZgCLcB/s1600/exprraid%2Bmamedimitris.jpg",
+
+  "background_color": "1A0E0B",
+
+  "youtube_url": "https://www.youtube.com/watch?v=KsqnCZdd2Dg",
+
+  "attributes": [
+    { "trait_type": "Game", "value": "Express Raider (Arcade)" },
+    { "trait_type": "Publisher", "value": "Data East" },
+    { "trait_type": "Release Year", "value": "1986" },
+    { "trait_type": "Setting", "value": "Old West Train Robbery" },
+    { "trait_type": "Stage Mode A", "value": "Train Roof — Run & Brawl" },
+    { "trait_type": "Stage Mode B", "value": "Horseback — Ride & Shoot" },
+    { "trait_type": "Rarity", "value": "Epic" },
+
+    { "display_type": "number", "trait_type": "Speed", "value": 72, "max_value": 100 },
+    { "display_type": "number", "trait_type": "Brawl Skill", "value": 80, "max_value": 100 },
+    { "display_type": "number", "trait_type": "Marksmanship", "value": 68, "max_value": 100 },
+    { "display_type": "boost_percentage", "trait_type": "Heist Combo Bonus", "value": 10 }
+  ],
+
+  "properties": {
+    "category": "image",
+    "files": [
+      {
+        "uri": "https://1.bp.blogspot.com/-M9go0qLUgzY/WBthuD9SkeI/AAAAAAAAE30/_p2V33pV1OcEy2CNHzZvDxoTFnz5LScZgCLcB/s1600/exprraid%2Bmamedimitris.jpg",
+        "type": "image/gif"
+      }
+    ],
+    "compiler": "Foxy Creator • ChatGPT"
+  }
+}
