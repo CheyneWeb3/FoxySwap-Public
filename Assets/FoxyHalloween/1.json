@@ -1,0 +1,27 @@
+{
+  "name": "Foxy Halloween #1 — Freemint",
+  "description": "Foxy hosts a Halloween party in the forest under string lights and a bright moon, joined by a witch fox, mummy raccoon, pirate rabbit, skeleton bear, and ghostly owl. Freemint edition.",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/halloween1.png",
+  "animation_url": null,
+  "external_url": "https://foxyswap.net",
+  "background_color": "0F0F14",
+  "attributes": [
+    { "trait_type": "Theme", "value": "Halloween" },
+    { "trait_type": "Setting", "value": "Moonlit Forest Party" },
+    { "trait_type": "Lead", "value": "Foxy (Vampire)" },
+    { "trait_type": "Friends", "value": "Witch Fox" },
+    { "trait_type": "Friends", "value": "Mummy Raccoon" },
+    { "trait_type": "Friends", "value": "Pirate Rabbit" },
+    { "trait_type": "Friends", "value": "Skeleton Bear" },
+    { "trait_type": "Friends", "value": "Ghost Owl" },
+    { "trait_type": "Edition", "value": "Freemint" },
+    { "trait_type": "Year", "value": "2025" }
+  ],
+  "properties": {
+    "files": [
+      { "uri": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/halloween1.png", "type": "image/png" }
+    ],
+    "category": "image",
+    "creators": [{ "address": "0x18Ff7f454B6A3233113f51030384F49054DD27BF", "share": 0 }]
+  }
+}
