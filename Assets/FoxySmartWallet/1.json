@@ -1,9 +1,8 @@
 {
   "name": "Foxy 6551 Smart Wallet #1",
   "description": "Foxy 6551 Smart Wallet NFTs give you a token-bound smart wallet and application to manage your tokens, coins and other DeFi assets. This NFT controls a 6551 smart account that can hold ERC-20, ERC-721, ERC-1155 and other supported DeFi positions.",
-  "image": "ipfs://YOUR_FOXY_SMART_WALLET_IMAGE_CID",
-  "animation_url": "https://YOUR_DAPP_URL_HERE/app/wallet/1",
-  "external_url": "https://YOUR_DAPP_URL_HERE",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/FoxySmartWallet/0a2432d6-a564-4188-9bd9-312b5eefbbd2.png",
+  "external_url": "https://foxyswap.net/market/home",
   "attributes": [
     { "trait_type": "Collection",        "value": "Foxy 6551 Smart Wallet NFts" },
     { "trait_type": "Symbol",           "value": "FOXED6551" },
