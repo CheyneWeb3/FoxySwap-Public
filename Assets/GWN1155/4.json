@@ -1,0 +1,23 @@
+{
+  "name": "Jungle Juice — Ganja White Night x Liquid Stranger",
+  "description": "Music NFT referencing the official animated video for \"Jungle Juice\" by Ganja White Night & Liquid Stranger, with visuals by My Name Is Ebo (@my.name.is.ebo). Originally released in 2019 via SubCarbon x Wakaan. This token is a collectible and does not grant copyright or commercial rights to the underlying music or artwork; all rights remain with the original creators and labels.",
+  "external_url": "https://www.youtube.com/watch?v=n1E9RlPzdrY",
+ "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/GWN1155/4.png",
+  "youtube_url": "https://www.youtube.com/watch?v=n1E9RlPzdrY",
+  "background_color": "05040A",
+  "attributes": [
+    { "trait_type": "Track", "value": "Jungle Juice" },
+    { "trait_type": "Primary Artist", "value": "Ganja White Night" },
+    { "trait_type": "Featuring", "value": "Liquid Stranger" },
+    { "trait_type": "Animator", "value": "My Name Is Ebo (@my.name.is.ebo)" },
+    { "trait_type": "Label", "value": "SubCarbon x Wakaan" },
+    { "trait_type": "Release Date", "display_type": "date", "value": 1568073600 },
+    { "trait_type": "Genre", "value": "Dubstep / Bass" },
+    { "trait_type": "BPM", "value": 145 },
+    { "trait_type": "Key", "value": "D♯ Minor" },
+    { "trait_type": "Video Format", "value": "Animated Music Video" }
+  ]
+}
+
+
+  
