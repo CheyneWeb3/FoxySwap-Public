@@ -1,0 +1,21 @@
+{
+  "name": "Dark Heart Surgery — Ganja White Night",
+  "description": "Music NFT referencing the official animated video for \"Dark Heart Surgery\" by Belgian bass duo Ganja White Night, with visuals by My Name Is Ebo (@my.name.is.ebo). Originally released as part of the 2019 album \"The One\" on SubCarbon Records, this token is a collectible and does not grant any copyright or commercial rights to the underlying music or artwork; all rights remain with the original creators and label.",
+  "external_url": "https://ganjawhitenight.com/",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/GWN1155/3.png",
+  "animation_url": "https://www.youtube.com/embed/-95EAvUfJos",
+  "youtube_url": "https://www.youtube.com/watch?v=-95EAvUfJos",
+  "background_color": "050309",
+  "attributes": [
+    { "trait_type": "Track", "value": "Dark Heart Surgery" },
+    { "trait_type": "Artist", "value": "Ganja White Night" },
+    { "trait_type": "Album", "value": "The One" },
+    { "trait_type": "Animator", "value": "My Name Is Ebo (@my.name.is.ebo)" },
+    { "trait_type": "Label", "value": "SubCarbon Records" },
+    { "trait_type": "Release Date", "display_type": "date", "value": 1571702400 },
+    { "trait_type": "Genre", "value": "Dubstep / Bass" },
+    { "trait_type": "BPM", "value": 90 },
+    { "trait_type": "Key", "value": "F Minor" },
+    { "trait_type": "Video Format", "value": "Animated Music Video" }
+  ]
+}
