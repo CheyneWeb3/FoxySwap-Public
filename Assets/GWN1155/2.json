@@ -1,1 +1,19 @@
-
+{
+  "name": "Chak Chel — Ganja White Night",
+  "description": "Music NFT showcasing the animated video for “Chak Chel” by Ganja White Night, with visuals by My Name Is Ebo (@my.name.is.ebo). Released via SubCarbon Records on 5 February 2018. This token does not transfer copyright of the song or artwork; rights remain with the original artist and label.",
+  "external_url": "https://ganjawhitenight.com/",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/GWN1155/1.png",
+  "youtube_url": "https://www.youtube.com/watch?v=nk9GFvtFP74",
+  "background_color": "1F1E23",
+  "attributes": [
+    { "trait_type": "Track", "value": "Chak Chel" },
+    { "trait_type": "Artist", "value": "Ganja White Night" },
+    { "trait_type": "Animator", "value": "My Name Is Ebo (@my.name.is.ebo)" },
+    { "trait_type": "Label", "value": "SubCarbon Records" },
+    { "trait_type": "Release Date", "display_type": "date", "value": 1517779200 },
+    { "trait_type": "Genre", "value": "Dubstep / Bass" },
+    { "trait_type": "BPM", "value": 145 },
+    { "trait_type": "Key", "value": "C♯ / D♭ minor" },
+    { "trait_type": "Video Format", "value": "Animated Music Video" }
+  ]
+}
