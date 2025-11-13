@@ -1,9 +1,8 @@
 {
   "name": "Headband — Ganja White Night x Subtronics",
   "description": "Music NFT referencing the official animated video for \"Headband\" by Ganja White Night & Subtronics, with visuals by My Name Is Ebo (@my.name.is.ebo). Originally released on SubCarbon Records in 2019, \"Headband\" is a 109 BPM dubstep cut in A minor. This token does not grant copyright to the underlying music or artwork; all rights remain with the original creators and label.",
-  "external_url": "https://ganjawhitenight.com/",
-  "image": "https://your-domain.com/nfts/headband-cover.png",
-  "animation_url": "https://www.youtube.com/embed/khMSU031Or0",
+  "external_url": "https://www.youtube.com/watch?v=khMSU031Or0",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/GWN1155/1.png",
   "youtube_url": "https://www.youtube.com/watch?v=khMSU031Or0",
   "background_color": "05030A",
   "attributes": [
