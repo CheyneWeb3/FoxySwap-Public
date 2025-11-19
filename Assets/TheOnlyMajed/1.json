@@ -1,0 +1,51 @@
+{
+  "name": "All Around Me (Majed Remix) — Luna Orbit x Majed",
+  "description": "Music NFT referencing the official audio for \"All Around Me (Majed Remix)\" by Luna Orbit, remixed by Majed, as distributed on YouTube via Label Engine. Released in 2025 via broke / Oury. This token is a collectible and does not grant copyright or commercial rights to the underlying music or artwork; all rights remain with the original creators, songwriters and labels.",
+  "external_url": "https://www.youtube.com/watch?v=fXa8EDMEQHM",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/TheOnlyMajed/1.png",
+  "youtube_url": "https://www.youtube.com/watch?v=fXa8EDMEQHM",
+  "background_color": "05040A",
+  "attributes": [
+    {
+      "trait_type": "Track",
+      "value": "All Around Me (Majed Remix)"
+    },
+    {
+      "trait_type": "Primary Artist",
+      "value": "Luna Orbit"
+    },
+    {
+      "trait_type": "Remixer",
+      "value": "Majed"
+    },
+    {
+      "trait_type": "Songwriters",
+      "value": "Luna Orbit, Majed Majed, Master Produções Remix"
+    },
+    {
+      "trait_type": "Label",
+      "value": "broke / Oury"
+    },
+    {
+      "trait_type": "Release Date",
+      "display_type": "date",
+      "value": 1745280000
+    },
+    {
+      "trait_type": "Genre",
+      "value": "Dance / Electronic"
+    },
+    {
+      "trait_type": "BPM",
+      "value": 132
+    },
+    {
+      "trait_type": "Key",
+      "value": "B♭ Minor"
+    },
+    {
+      "trait_type": "Video Format",
+      "value": "Official Audio Stream"
+    }
+  ]
+}
