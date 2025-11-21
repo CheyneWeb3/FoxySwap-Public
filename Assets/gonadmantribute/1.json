@@ -2,7 +2,7 @@
   "name": "GonadMan NFT Tribute",
   "description": "Goney had discovered the True Boredom of spending too much time with the woman he loved.\n\nThis piece is a fan-made Gonad Man tribute, capturing the deadpan, surf-comic humour of the original strip. It is a collectible tribute NFT and does not grant any copyright or commercial rights to the underlying characters, artwork or brand. All rights to Gonad Man and related material remain with their respective original creators and rights holders.",
   "external_url": "https://www.gonadman.com",
-  "image": "/mnt/data/2afbf4ac-94c6-4025-ba49-2e8fe5a71136.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/gonadmantribute/1.png",
   "attributes": [
     {
       "trait_type": "Tribute",
@@ -26,7 +26,7 @@
     },
     {
       "trait_type": "Tags",
-      "value": "#gonadman #nadsy #wavesmag #surfcomic #sutho #suthosbackside"
+      "value": "#gonadman #nadsy #wavesmag #surfcomic #sutho #suthosbackside #nochicksallowed"
     }
   ]
 }
