@@ -1,0 +1,11 @@
+{
+  "name": "Gay Bomb",
+  "description": "Rainbow-painted cartoon bomb drifting through a pink sky with falling streamers. Does it work? I didn’t ask and they didn’t tell! This artwork is purely satirical and does not endorse real-world gaybombs in any way shape or form.",
+  "image": "",
+  "external_url": "",
+  "attributes": [
+    { "trait_type": "Theme", "value": "Satire" },
+    { "trait_type": "Style", "value": "Cartoon" },
+    { "trait_type": "Palette", "value": "Rainbow & Pink" }
+  ]
+}
