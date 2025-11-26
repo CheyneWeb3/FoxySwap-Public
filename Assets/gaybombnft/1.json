@@ -1,8 +1,8 @@
 {
   "name": "Gay Bomb",
   "description": "Rainbow-painted cartoon bomb drifting through a pink sky with falling streamers. Does it work? I didn’t ask and they didn’t tell! This artwork is purely satirical and does not endorse real-world gaybombs in any way shape or form.",
-  "image": "",
-  "external_url": "",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/gaybombnft/1.png",
+  "external_url": "https://en.wikipedia.org/wiki/Gay_bomb",
   "attributes": [
     { "trait_type": "Theme", "value": "Satire" },
     { "trait_type": "Style", "value": "Cartoon" },
