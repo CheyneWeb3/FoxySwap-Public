@@ -1,0 +1,35 @@
+{
+  "name": "Vanlife Uwuu #1",
+  "description": "Vanlife Uwuu is the businessman’s escape: a bigger home than his tiny capsule apartment and a ticket to the open road. This anime-style NFT shows a Japanese salaryman with his compact kei van, part of a growing carpark camp of office workers who turned their commute into the biggest vanlife camp you’ve ever seen.",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/VanlifeUwuu/1.png",
+  "attributes": [
+    {
+      "trait_type": "Series",
+      "value": "Vanlife Uwuu"
+    },
+    {
+      "trait_type": "Lifestyle",
+      "value": "Businessman Vanlife"
+    },
+    {
+      "trait_type": "Home Upgrade",
+      "value": "Bigger than Capsule Home"
+    },
+    {
+      "trait_type": "Van Type",
+      "value": "Japanese Kei Van"
+    },
+    {
+      "trait_type": "Carpark Camp",
+      "value": "Mega Office Lot"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Cream & Navy"
+    },
+    {
+      "trait_type": "Style",
+      "value": "Anime"
+    }
+  ]
+}
