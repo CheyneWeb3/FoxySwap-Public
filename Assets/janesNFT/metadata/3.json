@@ -1,0 +1,38 @@
+{
+  "name": "Plain Jane — Skate Graffiti 3",
+  "description": "Illustrated Plain Jane skating in front of a vivid graffiti wall, spray can in hand. Bold street-art palette with high-contrast neon tones.",
+  "animation_url": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/3.mp4",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/djjane3.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "youtube_url": "https://www.youtube.com/watch?v=wSuS6nx5_UA",
+  "background_color": "0B0F1A",
+  "attributes": [
+    { "trait_type": "Theme", "value": "Skate Graffiti" },
+    { "trait_type": "Character", "value": "Plain Jane" },
+    { "trait_type": "Style", "value": "Digital Illustration" },
+    { "trait_type": "Palette", "value": "Neon Street" },
+    { "trait_type": "Format", "value": "PNG (RGBA)" },
+    { "trait_type": "Width", "value": 348 },
+    { "trait_type": "Height", "value": 403 },
+    { "trait_type": "Aspect Ratio", "value": 0.863524 },
+    { "trait_type": "Image SHA-256", "value": "38a365bbe1fbaa5b0fc798783fefe33aed7e5e2d2b5597f8a0544a86a217636d" }
+  ],
+  "properties": {
+    "category": "image",
+    "files": [
+      {
+        "uri": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/djjane3.png",
+        "type": "image/png",
+        "sha256": "38a365bbe1fbaa5b0fc798783fefe33aed7e5e2d2b5597f8a0544a86a217636d",
+        "size_bytes": 289681,
+        "width": 348,
+        "height": 403
+      },
+      {
+        "uri": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janesNFT/assets/3.mp4",
+        "type": "video/mp4",
+        "note": "Optional animated preview / full clip for animation_url (if you add one later)"
+      }
+    ]
+  }
+}
