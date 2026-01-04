@@ -217,11 +217,10 @@ Release requires:
 
 ## BC-04 — **High** — “Stable backing token” is actually taxed & not stable (FUSDV2)
 
-BridgeCore is designed around an internal “USDC” custody token. You clarified:
+BridgeCore is designed around an internal “USDC” custody token.
 
-* There is **no USDC**
 * The system uses **FUSD**, claimed stable
-* But FUSD is “Safemoon style with taxes”
+* FUSD is “Safemoon style with taxes”
 
 ### Impact on the bridge system
 
