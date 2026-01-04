@@ -1,12 +1,11 @@
 # Roburna Arborswap Bridge System — Comprehensive GPT Created Security Audit Report.
 
-**Revision:** Includes **BridgeCore (flat)** + **FeeManager** + **MultiOwnerGovernance** + **GeneralV2Adapter** + **Vault (implementation you provided)**, and assumes **ValidatorManager is a single EOA operator** (no on-chain threshold validation).
-
 **In-Scope**
 
 * `BridgeCore` / `FeeManager` / `MultiOwnerGovernance` from: `bridgecore251219Flat.sol`
 * `GeneralV2Adapter` from: `GeneralV2Adapter.sol`
 * `Vault.sol` implementation
+* `FUSD.sol` inplace of USDC
 * 
 **Out-of-Scope**
 
@@ -19,426 +18,446 @@
 
 # 1) Executive Summary
 
-### Security Posture
+### Scope 
 
-This bridge is a **trusted-operator bridge** (custodial model) because releases are authorized solely by an **EOA operator**. Under this model, **key compromise = total loss** of bridge-custodied funds.
+This assessment covers the on-chain components of the bridge system:
 
-### Audit Verdict
+1. **BridgeCore** (flat file, includes `BridgeCore`, `FeeManager`, `MultiOwnerGovernance`, OZ deps)
+2. **GeneralV2Adapter** (Uniswap V2-style swap adapter)
+3. **Vault** (implementation you provided)
+4. **FUSDV2** (your “stable” token contract posted here)
 
-**NOT production-ready as-is.**
-There is at least **one Critical functional/security issue** in BridgeCore that breaks the refund safety guarantee for mint/burn deposits, plus **Critical design exposure** due to a single EOA validator.
+### Key Conclusions
 
-### Highest-Risk Items
+* **Critical correctness bug in BridgeCore refunds** for mint/burn deposits (refund tries to withdraw from Vault even though tokens were burned and never vaulted).
+* **Critical design risk:** current “ValidatorManager is an EOA operator” means the bridge is effectively custodial; compromise/malice of that key can drain bridge liquidity and/or mint assets.
+* **High-risk economic/design issue:** the bridge assumes a stable backing token (“USDC”) but you’ve clarified this is **FUSD**, which is **taxed** and behaves like a **fee-on-transfer token** and is **not a true stablecoin**. This undermines:
 
-1. **BC-01 (Critical): Refund for mint/burn deposits is broken** — BridgeCore burns tokens on deposit, but refund attempts to withdraw those tokens from the Vault (which never received them), causing reverts and refund DoS.
-2. **BC-02 (Critical – Design): Single EOA validator** can unilaterally drain vault funds (non-mintable path) and mint assets (mintable path).
-3. **BC-03 (High): 1-hour “signature validity” window** will strand legitimate releases under common operational delays.
+  * accounting correctness (if used as vault backing),
+  * swap correctness (adapter/router methods),
+  * user expectations of stable value.
+* **Validation model mismatch:** A single confirmer will not scale to “multiple validators” unless you implement an on-chain **multi-confirm** system (threshold signatures or on-chain vote-based execution).
+
+### Overall Security Rating
+
+**High Risk / Not production-ready** under the current architecture and token assumptions.
 
 ---
 
-# 2) Methodology & Assumptions
+# 2) Trust Model & Threat Model
 
-### Review Method
+## 2.1 Current Trust Model (Per Your Statement)
 
-* Manual, line-by-line security review of control flows and external call boundaries.
-* Access control review (roles, pausing, privileged actions).
-* Threat modeling aligned to your stated design: **validatorManager is an EOA operator**.
+* “Validator manager is just an address operator that confirms” (single EOA).
+* “Single Gov 1/1 for now” (tests).
 
-### Key Assumptions (Must Hold in Production)
+**Implication:** This is not a trustless bridge. It is a **trusted operator custody system**. Smart contracts cannot prevent malicious or compromised operator releases if the only gate is `msg.sender == validatorManager`.
 
-* The operator only executes releases corresponding to valid deposits.
-* Admin/governance keys are secured and not shared.
-* Vault is correctly configured (supported tokens, bridgeCore set).
-* Swap adapter/router behave as assumed (Uniswap V2-style), and tokens conform to ERC20 expectations (many don’t).
+## 2.2 Primary Threats
+
+1. **Operator key compromise** → immediate draining of vault liquidity / arbitrary releases.
+2. **Malicious operator** → censorship (refuse to release), fabricated releases (release without valid deposits).
+3. **Fee-on-transfer “stable” backing** → break swap assumptions and user accounting; destabilize bridge solvency and UX.
+4. **Refund/liveness failures** → users cannot recover funds after timeout.
 
 ---
 
 # 3) Architecture Overview
 
-## 3.1 BridgeCore
+## 3.1 BridgeCore (Core Bridge)
 
-### Deposit
+### Deposit paths
 
-* Validates: not blacklisted, amount in min/max bounds, token supported.
+* Validations: blacklist, min/max, token support.
 * Generates `depositId`.
-* If token is configured mint/burn:
+* **Mintable/Burnable path:**
 
-  * Transfers tokens into BridgeCore and burns them.
-  * Stores deposit info with `token = originalToken`, `amount = originalAmount`.
-  * **No vault custody created.**
-* Otherwise:
+  * Transfers token into BridgeCore.
+  * Burns token.
+  * Stores deposit info with `token = originalToken` and `amount = originalAmount`.
+  * No Vault custody created.
+* **Non-mintable path:**
 
-  * Converts deposit asset into **USDC** (via swapAdapter).
-  * Deposits USDC into **Vault**.
-  * Stores deposit info with `token = usdcToken`, `amount = usdcAmount`.
+  * Converts deposit asset into “USDC” variable (you intend FUSD) via adapter/router.
+  * Deposits that token into Vault.
+  * Stores deposit info with `token = usdcToken` and `amount = usdcAmount`.
 
-### Release (executeReleaseFromValidator)
+### Release
 
-* Only callable by `msg.sender == validatorManager` (EOA or contract address).
-* Enforces an expiry window: `block.timestamp <= timestamp + 1 hour`
-* Handles two categories:
-
-  * mint/burn route (mints then optional swap, fees)
-  * USDC vault route (withdraw USDC then optional swap, fees)
+* `executeReleaseFromValidator(...)` is callable only by `validatorManager`.
+* Marks deposits processed.
+* Enforces `block.timestamp <= timestamp + 1 hour` (very strict).
+* Withdraws from Vault (stored token) and optionally swaps to output token.
 
 ### Refund
 
-* After 24 hours, allows depositor to refund if not processed.
-* Refund always calls `vault.withdraw(depositInfo.token, depositInfo.amount, depositInfo.user)`.
+* After `REFUND_TIMEOUT`, user can refund unprocessed deposits.
+* Refund currently always calls `vault.withdraw(depositInfo.token, depositInfo.amount, user)`.
 
 ## 3.2 Vault
 
-* Custody for supported ERC20 tokens (and tracks native in accounting, though bridge-core deposit uses ERC20 path).
-* Only `bridgeCore` can call `deposit()` and `withdraw()`.
-* Governance can emergency withdraw and pause/unpause (via governance pauser address).
-* Has internal accounting `tokenBalances[token]` updated only via Vault functions and `receive()`.
+* Custodies ERC20 supported tokens via internal accounting `tokenBalances[token]`.
+* Only BridgeCore can deposit/withdraw.
+* Governance can pause and emergency withdraw.
 
 ## 3.3 GeneralV2Adapter
 
-* Swap wrapper with `whitelistedAdapters[msg.sender]` access control.
-* For token-to-token swaps, always uses 3-hop path: `tokenIn -> wrappedToken -> tokenOut`.
-* Uses SafeERC20 transfers/approvals, and UniswapV2-like router calls.
+* Whitelisted caller.
+* Swaps via Uniswap V2 style router.
+* Always routes token swaps through `wrappedToken` with a 3-hop path.
+* Uses **standard** swap calls (not “supporting fee-on-transfer” variants).
 
-## 3.4 Governance / FeeManager
+## 3.4 FUSDV2
 
-* Governance is owner-based proposals with threshold.
-* FeeManager requires callers to have `ADMIN_ROLE` to call `collectFee` and withdraw.
-
----
-
-# 4) Threat Model (Given Validator = EOA)
-
-With a single EOA “validator manager”:
-
-* **Bridge security is dominated by operational key security**, not Solidity correctness.
-* If that key is compromised, an attacker can:
-
-  * trigger releases to themselves,
-  * drain vault liquidity,
-  * mint arbitrary amounts of mintable tokens (subject to token implementation),
-  * route swaps to value-extract where liquidity allows.
-
-**Therefore, even perfectly written Solidity does not make this bridge safe in production without strong key management or multisig/threshold controls.**
+* ERC20 with configurable buy/sell taxes (up to 25%).
+* Swap-back mechanism that sells accumulated fee tokens for ETH via Uniswap router function that assumes WETH output.
+* Controllers can mint/burn.
 
 ---
 
-# 5) Findings Summary
+# 4) Findings Summary (Final)
 
-| ID          |              Severity | Title                                                                                                                          | Component            |
-| ----------- | --------------------: | ------------------------------------------------------------------------------------------------------------------------------ | -------------------- |
-| **BC-01**   |          **Critical** | Mint/burn deposit refunds are broken (refund withdraws from vault for tokens that were burned & never vaulted)                 | BridgeCore           |
-| **BC-02**   | **Critical (Design)** | Single EOA validator can unilaterally authorize releases & drains; BridgeCore does not verify proofs/signatures                | System / BridgeCore  |
-| **BC-03**   |              **High** | 1-hour release expiry (`timestamp + 1 hour`) will strand legitimate releases                                                   | BridgeCore           |
-| **BC-04**   |              **High** | Misconfiguration can brick deposits/releases (adapter whitelist, FeeManager role, Vault supported token, Vault bridgeCore set) | System               |
-| **BC-05**   |            **Medium** | ERC20 approve patterns may fail (zero-reset tokens) and increase allowance attack surface                                      | BridgeCore / Adapter |
-| **BC-06**   |            **Medium** | RefundExpiredDeposits scales poorly (O(n) scan) and can become uncallable; also batch can revert on a single failing refund    | BridgeCore           |
-| **AD-01**   |            **Medium** | Adapter forces 3-hop path via wrapped token; breaks edge cases (tokenIn/out == wrapped) & adds slippage                        | GeneralV2Adapter     |
-| **VA-01**   |            **Medium** | Vault internal accounting can desync from real balances (direct ERC20 transfers / forced ETH)                                  | Vault                |
-| **VA-02**   |               **Low** | `receive()` restricts native receipts to bridgeCore, but forced ETH can still bypass it; accounting won’t reflect forced funds | Vault                |
-| **GOV-01**  |               **Low** | Governance has no expiry/timelock; permissive execution rules                                                                  | Governance           |
-| **INFO-01** |                  Info | Semantics of outputToken differ across branches; potential UX confusion                                                        | BridgeCore           |
+| ID          |              Severity | Title                                                                                                                      | Component            |
+| ----------- | --------------------: | -------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| **BC-01**   |          **Critical** | Mint/burn deposit refunds are broken: refund withdraws from Vault even though tokens were burned and never vaulted         | BridgeCore           |
+| **BC-02**   | **Critical (Design)** | Single EOA validator can unilaterally authorize releases; compromise = total loss                                          | BridgeCore / System  |
+| **BC-03**   |              **High** | 1-hour release expiry will strand legitimate releases and break liveness                                                   | BridgeCore           |
+| **BC-04**   |              **High** | Using **FUSDV2 as “stable backing”** is economically and technically unsafe (taxed token; not stable)                      | System               |
+| **BC-05**   |              **High** | Swap infrastructure is not compatible with fee-on-transfer tokens (adapter uses non-supporting swap methods)               | Adapter / BridgeCore |
+| **BC-06**   |              **High** | Validation system does not support multiple validators; must implement on-chain threshold/multi-confirm                    | System               |
+| **BC-07**   |            **Medium** | Allowance/approve patterns can fail on nonstandard ERC20s and increase allowance blast radius                              | BridgeCore / Adapter |
+| **BC-08**   |            **Medium** | RefundExpiredDeposits scalability + batch fragility (O(n) scan; single revert can break batch)                             | BridgeCore           |
+| **AD-01**   |            **Medium** | Adapter forces wrapped-token routing; edge cases + higher slippage                                                         | Adapter              |
+| **VA-01**   |            **Medium** | Vault internal accounting can desync from real balances (direct ERC20 transfers / forced ETH)                              | Vault                |
+| **FUSD-01** |              **High** | FUSD is not a stablecoin; taxes + central control + minting make it unsuitable as “stable backing”                         | FUSDV2               |
+| **FUSD-02** |              **High** | Swap-back uses `swapExactTokensForETHSupportingFeeOnTransferTokens` with `baseToken` path; only valid if baseToken is WETH | FUSDV2               |
+| **FUSD-03** |            **Medium** | Token can become non-transferable if swap-back reverts; swap is executed inside `_update`                                  | FUSDV2               |
+| **GOV-01**  |               **Low** | Governance lacks timelock/expiry; permissive execution                                                                     | MultiOwnerGovernance |
 
 ---
 
-# 6) Detailed Findings & Recommendations
+# 5) Detailed Findings & Recommendations
 
-## BC-01 — Critical — Mint/Burn Deposit Refunds Are Broken
+---
 
-### Where
+## BC-01 — **Critical** — Mint/Burn Deposit Refund Logic is Broken
 
-* `deposit()` mintable/burnable branch stores:
+### What happens
 
-  * `token = original token`
-  * `amount = original amount`
-  * burns tokens
-* `refundDeposit()` always:
-
-  * `vault.withdraw(depositInfo.token, depositInfo.amount, depositInfo.user);`
+* Deposit (mintable/burnable): tokens are **burned** in BridgeCore.
+* Stored `DepositInfo.token` / `amount` are set to the original token/amount.
+* Refund always withdraws `DepositInfo.token` from Vault — but Vault never had it.
 
 ### Impact
 
-* **Refund will revert** for mint/burn deposits because Vault never held those tokens.
-* Refund batch processing can be **DoS’d** if one refund reverts.
-* Breaks the primary safety property: “if release doesn’t happen, user can refund.”
+* Refund calls revert for mint/burn deposits.
+* Users can get stuck permanently if release never occurs.
+* Batch refund function can be DoS’d if one refund reverts.
 
 ### Required Fix
 
-Add an explicit deposit type flag and handle refunds correctly:
+Add an explicit deposit classification and refund correctly:
 
-**Recommended design**
+**Recommended structure changes**
 
-* Extend `DepositInfo` with `bool isMintable;`
-* On mintable deposit: set `isMintable=true` and store original fields.
+* Add to `DepositInfo`: `bool isMintable;`
+* On mintable deposit: store `isMintable=true`, store original token+amount.
 * On refund:
 
-  * if `isMintable`: **mint back** `originalAmount` to `user` (reverse the burn)
-  * else: vault withdraw of stored USDC
+  * if `isMintable`: **mint back** to user (reverse burn) or otherwise reverse the burn mechanism.
+  * else: `vault.withdraw(storedToken, storedAmount, user)`
 
-Also: In `refundExpiredDeposits`, wrap each refund in `try/catch` to avoid reverting the entire batch.
-
----
-
-## BC-02 — Critical (Design) — Single EOA Validator = Total Loss on Compromise
-
-### Where
-
-* `executeReleaseFromValidator` gates only:
-
-  * `require(msg.sender == address(validatorManager))`
-
-### Impact
-
-* Operator can release arbitrary vault funds or mint arbitrary mintable tokens.
-* Compromise of operator key drains vault liquidity rapidly.
-
-### Required / Strong Recommendation
-
-* Replace EOA validator with a **multisig** at minimum (2/3 or 3/5).
-* Add operational controls:
-
-  * hardware wallet signers
-  * key rotation process
-  * monitoring and emergency pause runbooks
-* If you want real bridge security: on-chain signature/proof verification (threshold validation).
+Also: make `refundExpiredDeposits()` robust with try/catch and emit “RefundFailed” events.
 
 ---
 
-## BC-03 — High — 1-Hour “Signature Validity” Will Strand Releases
+## BC-02 — **Critical (Design)** — Single EOA Validator = Total Loss on Compromise
 
-### Where
+### What happens
 
-* `require(block.timestamp <= timestamp + SIGNATURE_VALIDITY_PERIOD)` where period is 1 hour.
+BridgeCore trusts:
+
+* `msg.sender == validatorManager`
+
+If validatorManager is an EOA:
+
+* one key can release arbitrary vault funds and/or mint flows.
 
 ### Impact
 
-Legitimate releases delayed > 1 hour will **fail permanently**, forcing refunds and breaking bridge UX.
+* Compromise = full bridge drain.
+* Malicious operator = censorship or theft.
+
+### Required Fix (Minimum)
+
+* Replace validatorManager EOA with **multisig** immediately (2/3+).
+* Add emergency pause + monitoring.
+
+---
+
+## BC-03 — **High** — 1-Hour “Signature Validity” Window Breaks Liveness
+
+### What happens
+
+Release requires:
+
+* `block.timestamp <= timestamp + 1 hours`
+
+### Impact
+
+* If ops/delays exceed 1 hour (common), releases fail permanently.
+* Users are forced into refunds (which are broken for mint/burn deposits currently).
 
 ### Fix
 
-* Remove this check, or extend to days, or replace with a more meaningful replay-prevention mechanism.
-* Replay prevention should rely on `processedDeposits[depositId]`, not short time windows.
+* Remove the check, or increase it to multiple days, or replace with a more meaningful replay control.
+* Replay is already prevented by `processedDeposits[depositId]`.
 
 ---
 
-## BC-04 — High — Misconfiguration Can Brick the Bridge
+## BC-04 — **High** — “Stable backing token” is actually taxed & not stable (FUSDV2)
 
-### Dependencies that must be correct
+BridgeCore is designed around an internal “USDC” custody token. You clarified:
 
-* Adapter: BridgeCore must be whitelisted (`whitelistedAdapters[bridgeCore]=true`)
-* FeeManager: BridgeCore must have `ADMIN_ROLE` or fee collection reverts
-* Vault: must have `bridgeCore` set, must support `usdcToken`
-* BridgeCore: must have `vault`, `usdcToken`, `swapAdapter`, `wrappedToken` set
+* There is **no USDC**
+* The system uses **FUSD**, claimed stable
+* But FUSD is “Safemoon style with taxes”
+
+### Impact on the bridge system
+
+1. **Economic**: Not stable. Bridge collateral is volatile, taxed, and centrally controlled.
+2. **Technical**:
+
+   * Fee-on-transfer behavior can break swap and accounting assumptions.
+   * Users may receive less than expected after swaps.
+   * “Fee always in stable” logic becomes “fee always in taxed token”, unpredictable.
 
 ### Recommendation
 
-Add a `preflightCheck()` view in BridgeCore that validates:
+You should not treat FUSDV2 as a stable backing asset. Either:
 
-* adapter whitelist status for BridgeCore
-* FeeManager admin role for BridgeCore
-* Vault `bridgeCore == address(this)`
-* Vault `isSupportedToken(usdcToken) == true`
-* nonzero critical addresses
+* Use a true stable asset (non-taxed), or
+* If chain lacks stablecoins, bridge should custody a **non-taxed canonical asset** or implement a separate hedging/pegging mechanism (off-chain / overcollateralized).
+
+At minimum, update docs/UI and contract naming so users aren’t misled.
 
 ---
 
-## BC-05 — Medium — Approve Pattern Compatibility & Allowance Risk
+## BC-05 — **High** — Swap adapter not compatible with fee-on-transfer tokens
 
-### Where
-
-* BridgeCore approves vault and adapter via `approve(amount)`; adapter approves router.
+Your adapter uses standard V2 swap methods (typical `swapExactTokensForTokens` style). These are often incompatible with taxed tokens unless “supporting fee-on-transfer” functions are used.
 
 ### Impact
 
-* Some tokens require allowance reset to 0 before changing (e.g., certain stablecoins).
-* Lingering allowances increase blast radius if router/adapter changes.
+* Swaps involving FUSD (taxed on buys/sells via LP) can revert or deliver less than expected.
+* Bridge deposits/releases that rely on swapping can fail in production.
 
 ### Fix
 
-Use `forceApprove()` (OZ SafeERC20) or zero-reset pattern.
+* Add “supportingFeeOnTransferTokens” swap routes in the adapter for tokens flagged as taxed/FOT.
+* Alternatively, disallow taxed tokens from swap paths entirely and require direct payout without swaps.
 
 ---
 
-## BC-06 — Medium — RefundExpiredDeposits Scalability & Batch Fragility
+## BC-06 — **High** — Multi-validator “multiple confirms” requires a new on-chain validation mechanism
 
-### Where
+You asked for a solution where:
 
-* Refund batch scans entire `depositIds` array and processes up to `maxCount`.
+* validator EOA needs fix
+* governance/validators should provide multiple confirmations
 
-### Impact
+### Required Design Change
 
-* As array grows, scanning becomes expensive and can be uncallable.
-* A single revert can break the batch.
+You need a **ValidatorManager contract** that supports threshold confirmation.
 
-### Fix
+Two standard patterns:
 
-* Maintain a `refundCursor` index to avoid rescanning from 0.
-* Use `try/catch` around each refund call.
+### Pattern A — Threshold Signatures (recommended)
 
----
+* Validators sign a typed message (EIP-712) containing:
 
-## AD-01 — Medium — Adapter Forces 3-Hop Wrapped Path
+  * depositId, sourceChainId, targetChainId, token addresses, amounts, recipient, timestamp, deadline, contract address, chainId.
+* BridgeCore verifies **M-of-N** signatures on-chain.
+* No need for multiple on-chain transactions; one execution call includes signatures.
 
-### Where
+**Pros:** efficient, standard bridge pattern
+**Cons:** requires signature aggregation and careful implementation
 
-* `swapExactTokensForTokens(tokenIn, tokenOut...)` always builds:
+### Pattern B — On-chain Multi-Confirm (simple but heavier)
 
-  * `[tokenIn, wrappedToken, tokenOut]`
+* `confirmRelease(depositId, paramsHash)` called by each validator.
+* Store confirmations in mapping.
+* When confirmations >= threshold, anyone (or a role) calls `executeRelease(...)`.
 
-### Impact
+**Pros:** easy conceptually, easy to audit
+**Cons:** multiple on-chain txs; higher gas; needs careful replay/param-binding
 
-* If `tokenIn == wrappedToken` or `tokenOut == wrappedToken`, path degenerates and can revert.
-* Unnecessary hop increases slippage and dependency on wrapped pairs.
+### Governance Integration
 
-### Fix
+If you want governance owners to be validators:
 
-Build conditional paths:
+* Use MultiOwnerGovernance owners as validator set.
+* Set threshold to N (e.g., 2-of-3).
+* But you must still bind the release parameters to a unique hash and prevent tampering.
 
-* if tokenIn == wrappedToken: `[wrappedToken, tokenOut]`
-* if tokenOut == wrappedToken: `[tokenIn, wrappedToken]`
-* else: attempt direct `[tokenIn, tokenOut]` then fallback to wrapped route.
-
----
-
-## VA-01 — Medium — Vault Accounting Desync (TokenBalances vs Real Balances)
-
-### Where
-
-* Vault tracks balances in `tokenBalances[token]` and does **not** reconcile to actual token balances.
-
-### Impact
-
-* Direct transfers to Vault address (ERC20) won’t update `tokenBalances`.
-* Forced ETH can bypass `receive` restrictions (selfdestruct), leaving `tokenBalances[0]` inaccurate.
-* Result: funds can become “stuck” from the contract’s accounting perspective.
-
-### Fix Options
-
-**Option A (Recommended):** Add governance-only sync methods:
-
-* `syncERC20(token)` sets `tokenBalances[token] = IERC20(token).balanceOf(address(this))`
-* `syncNative()` sets `tokenBalances[0] = address(this).balance`
-
-**Option B:** Use `balanceOf()` and `address(this).balance` as truth (and remove internal accounting), but that changes semantics and requires careful review.
+**Non-negotiable:** BridgeCore must validate that the **same exact release parameters** were approved/signed.
 
 ---
 
-## VA-02 — Low — receive() Restriction is Not a Complete Defense
+# 6) Vault Audit (Implementation Provided)
 
-### Where
+## Positive Properties
 
-* `receive()` requires sender is bridgeCore.
+* `onlyBridgeCore` on `deposit()` and `withdraw()`
+* `nonReentrant` and `whenNotPaused` on hot paths
+* governance-controlled emergency withdraw and pause roles
 
-### Note
+## Material Issues
 
-This blocks normal transfers but not forced ETH. That’s fine if you provide sync/recovery.
+### VA-01 — Medium — Internal accounting may desync
 
----
+Vault tracks `tokenBalances[token]` internally. If ERC20 is transferred directly to the vault address (not via vault functions), balances can desync. Native can be forced in via selfdestruct.
 
-## GOV-01 — Low — Governance Has No Timelock/Expiry
+**Impact:** funds can be stuck from accounting perspective.
 
-### Impact
+**Fix:** add governance-only sync methods:
 
-Operational risk: fast execution of sensitive calls if threshold met, no delay for human intervention.
+* `syncERC20(token)` sets internal balance to `IERC20(token).balanceOf(address(this))`
+* `syncNative()` sets internal balance to `address(this).balance`
 
-### Recommendation
+### Native handling mismatch
 
-For production:
-
-* timelock for changes to validator, vault, adapter, fee manager
-* proposal expiry windows
-
----
-
-## INFO-01 — Output Token Semantics Inconsistency
-
-* Some branches treat `outputToken == address(0)` as native, others as “default USDC” semantics.
-* This can confuse integrators and UIs.
-
-**Recommendation:** Standardize meaning of `address(0)` across the system.
+Vault supports native in `fundVault` and emergency native withdrawals, but normal bridge deposit/withdraw disallow native. That’s fine, but document it clearly.
 
 ---
 
-# 7) Centralization & “No Malicious Issue” Reality Check
+# 7) FUSDV2 Audit (Token Presented as “Stable”)
 
-Because the validator is a single EOA:
+## FUSD-01 — High — Not a stablecoin (taxed, centrally controlled, mintable)
 
-* The on-chain system **cannot** ensure non-malicious behavior.
-* The best you can do is:
+### Why
 
-  * reduce exploit surface,
-  * enforce least privilege,
-  * implement circuit breakers,
-  * harden operations (multisig / HSM / monitoring).
+* Configurable buy/sell taxes up to **25%**
+* `onlyOwner` can change taxes and wallets
+* `onlyOwner` can set controllers who can **mint unlimited** supply
+* Blacklist capability
+* Swap-back converts fees to ETH and pays wallets → “meme token” economics, not stable mechanics
 
-If you plan to grow beyond test:
-
-* **Multisig is the minimum** for credibility.
+**Conclusion:** FUSDV2 cannot honestly be treated as a “stable backing token” for a bridge.
 
 ---
 
-# 8) Required Remediation Plan (Ordered)
+## FUSD-02 — High — Swap-back function assumes baseToken is WETH
 
-### Must Fix Before Any Real Users
+In `swapAndDistributeBaseToken()`:
 
-1. **BC-01** mint/burn refund correctness + batch refund resiliency
-2. Replace validator EOA with **multisig** (or implement threshold verification)
+* It builds path `[address(this), baseToken]`
+* Calls `swapExactTokensForETHSupportingFeeOnTransferTokens`
+
+That router function requires the path to end in **WETH** (because it unwraps WETH to ETH).
+If `baseToken` is not WETH, this will revert.
+
+**Impact:** swap-back may fail permanently depending on configuration.
+
+**Fix Options:**
+
+* If baseToken is intended to be WETH, enforce it in constructor:
+
+  * `require(baseToken_ == uniswapV2Router.WETH(), "baseToken must be WETH");`
+* If baseToken is not WETH, use `swapExactTokensForTokensSupportingFeeOnTransferTokens` and then handle baseToken distribution.
+
+---
+
+## FUSD-03 — Medium — Token can become non-transferable if swap-back reverts
+
+Swap-back is called inside `_update` when `swapCondition` is true.
+If swap-back reverts due to:
+
+* no liquidity,
+* wrong router,
+* wrong base token path,
+* router failure,
+
+then **normal token transfers revert**.
+
+**Fix:**
+
+* Make swap-back best-effort: wrap it in try/catch or add a flag to disable swap-back.
+* Consider rate limiting, min amounts, and explicit admin-controlled swap trigger rather than automatic on transfer.
+
+---
+
+## Additional Observations (FUSD)
+
+* `isWhitelisted` mapping is not used for transfer restrictions—likely incomplete design.
+* `liquidityInjectionThreshold` is unused—suggests unfinished “liquidity” logic.
+* Approves router with `type(uint256).max`—ok if router is trusted and immutable, but still a risk surface.
+
+---
+
+# 8) System-Level Impact of Using FUSD as Bridge Custody Token
+
+If BridgeCore’s `usdcToken` is set to FUSD:
+
+* “Fee always paid in stable” becomes “fee in taxed token”
+* If BridgeCore swaps into/out of FUSD on LP pairs, taxes apply and the adapter may revert (BC-05)
+* Even if Vault transfers are tax-free (non-LP), the **DEX interactions are not**
+* Users may receive materially less than expected due to taxes and slippage
+
+**System recommendation:** Do not use a taxed token as the canonical custody asset of a bridge.
+
+---
+
+# 9) Required Remediation Plan (Final)
+
+### Must Fix Before Any Real Usage
+
+1. **Fix BC-01** (mint/burn refund correctness + batch refund resilience)
+2. **Replace EOA validator** with multisig immediately (at least)
+3. Implement a **multi-confirm validation system**:
+
+   * EIP-712 threshold signatures (preferred) or
+   * on-chain confirmations + threshold
+4. Remove or extend **1-hour expiry** (BC-03)
+5. Decide whether FUSD is acceptable at all as custody asset (recommend: no)
+6. Update swap adapter to support fee-on-transfer swaps or disallow such tokens
 
 ### Strongly Recommended
 
-3. Remove/extend **BC-03** 1-hour expiry
-4. Add `preflightCheck()` and deployment guardrails
-5. Fix adapter path edge cases and reduce forced hops
-6. Vault accounting sync/recovery functions
+* Vault sync/reconciliation functions (VA-01)
+* Preflight checks for roles/whitelists/config (to avoid bricking deposits/releases)
+* Add timelocks for changing validator/vault/router/adapter addresses
 
 ---
 
-# 9) Deployment Checklist (Hard Requirements)
+# 10) “Multiple Validators” — A Working Design That Fixes Single Confirm
 
-### Vault
+Here is a practical blueprint you can implement without changing your entire system:
 
-* `governance` set correctly
-* `setBridgeCore(BridgeCoreAddress)`
-* `addSupportedToken(usdcToken)` (ERC20 only; vault deposit/withdraw disallow native)
+## Option 1 (Recommended): ValidatorManager with Threshold EIP-712 Signatures
 
-### BridgeCore
+* Deploy `ValidatorManager` (contract) storing:
 
-* `setVault(VaultAddress)`
-* `setUsdcToken(usdcToken)`
-* `setSwapAdapter(AdapterAddress)`
-* `setWrappedToken(WrappedNativeToken)`
-* `setFeeManager(FeeManagerAddress)`
-* `setValidatorManager(Operator/MultisigAddress)`
-* Set supportedTokens correctly (including native if intended)
+  * `mapping(address=>bool) isValidator`
+  * `uint256 threshold`
+  * `uint256 nonce` or `usedReleaseHash`
+* BridgeCore changes `executeReleaseFromValidator` to:
 
-### Adapter
+  * accept `signatures[]` and `validators[]`
+  * compute `releaseHash = EIP712Hash(params…)`
+  * verify `M` unique validator signatures
+  * mark `releaseHash` used
+  * execute release
 
-* `setWhitelistedAdapter(BridgeCoreAddress, true)`
-* Router and wrapped token set correctly
+**This gives “multiple confirms” in one tx, and removes reliance on EOA operator.**
 
-### FeeManager
+## Option 2: On-chain Confirmations (Governance-as-Validator)
 
-* Grant `ADMIN_ROLE` to BridgeCore (or redesign FeeManager to accept bridge role)
+* Add `confirmRelease(depositId, paramsHash)` callable by validators (governance owners).
+* Once confirmations >= threshold, BridgeCore executes release.
+* Store and check `paramsHash` to ensure all confirm the exact same payload.
 
----
-
-# 10) Recommended Test Suite (Minimal)
-
-### Critical correctness
-
-* Mintable deposit → refund after timeout → success (mint back)
-* Non-mintable deposit → stored in vault as USDC → refund returns USDC
-* Batch refund continues after a single failing entry (if try/catch added)
-
-### Release behavior
-
-* Release under normal delay > 1 hour (validate updated policy)
-* Release for mintable tokens with outputToken swaps
-* Fee paths (including fee swap failure fallback)
-
-### Vault accounting
-
-* Direct ERC20 transfer to Vault → syncERC20 recovers
-* Forced ETH → syncNative recovers
+**This can be integrated directly with your MultiOwnerGovernance owners list.**
 
 ---
 
@@ -447,12 +466,23 @@ If you plan to grow beyond test:
 ### Severity Summary
 
 * **Critical:** BC-01, BC-02
-* **High:** BC-03, BC-04
-* **Medium:** BC-05, BC-06, AD-01, VA-01
-* **Low/Info:** VA-02, GOV-01, INFO-01
+* **High:** BC-03, BC-04, BC-05, BC-06, FUSD-01, FUSD-02
+* **Medium:** BC-07, BC-08, AD-01, VA-01, FUSD-03
+* **Low/Info:** GOV-01 and assorted UX/semantic issues
 
-### Production Readiness
+### Bottom Line
 
-* **Not production-ready** until BC-01 is fixed and the validator model is upgraded beyond a single EOA (or equivalent on-chain threshold security is implemented).
+* The bridge cannot be considered secure or reliable until:
+
+  * mint/burn refunds are fixed,
+  * the validator model is upgraded to multi-confirm threshold validation,
+  * and the custody “stable” asset is either a true non-taxed stablecoin or the system is redesigned to account for fee-on-transfer behavior.
 
 ---
+
+If you want the **concrete “working system” fix**, I can output:
+
+1. a full `ValidatorManager` contract (threshold signatures or on-chain confirmations),
+2. the exact `BridgeCore` edits to use it,
+3. the adapter upgrades for fee-on-transfer support, and
+4. the Vault sync additions — as complete Solidity files.
