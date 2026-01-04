@@ -479,9 +479,3 @@ Here is a practical blueprint you can implement without changing your entire sys
 
 ---
 
-If you want the **concrete “working system” fix**, I can output:
-
-1. a full `ValidatorManager` contract (threshold signatures or on-chain confirmations),
-2. the exact `BridgeCore` edits to use it,
-3. the adapter upgrades for fee-on-transfer support, and
-4. the Vault sync additions — as complete Solidity files.
