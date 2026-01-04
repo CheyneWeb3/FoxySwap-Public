@@ -1,4 +1,4 @@
-## Foxy Bridge System — Comprehensive Security Audit Report (Final, Revised Scope)
+## Roburna Arborswap Bridge System — Comprehensive GPT Created Security Audit Report.
 
 **Revision:** Includes **BridgeCore (flat)** + **FeeManager** + **MultiOwnerGovernance** + **GeneralV2Adapter** + **Vault (implementation you provided)**, and assumes **ValidatorManager is a single EOA operator** (no on-chain threshold validation).
 
@@ -6,8 +6,8 @@
 
 * `BridgeCore` / `FeeManager` / `MultiOwnerGovernance` from: `bridgecore251219Flat.sol`
 * `GeneralV2Adapter` from: `GeneralV2Adapter.sol`
-* `Vault` implementation (Solidity snippet you provided)
-
+* `Vault.sol` implementation
+* 
 **Out-of-Scope**
 
 * Off-chain validator/operator script logic and infrastructure
