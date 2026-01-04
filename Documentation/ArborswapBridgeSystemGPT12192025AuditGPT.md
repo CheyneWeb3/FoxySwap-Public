@@ -5,7 +5,7 @@
 * `BridgeCore` / `FeeManager` / `MultiOwnerGovernance` from: `bridgecore251219Flat.sol`
 * `GeneralV2Adapter` from: `GeneralV2Adapter.sol`
 * `Vault.sol` implementation
-* `FUSD.sol` inplace of USDC
+* `FUSD.sol` in place of USDC
 * 
 **Out-of-Scope**
 
