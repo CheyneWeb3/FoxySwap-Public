@@ -1,1 +1,10 @@
-{"name":"Golden Treasure Shovel","image":"https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/gldnShovel/1.gif","description":""}
+{
+  "name":"Golden Treasure Shovel",
+
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/gldnShovel/1.png",
+    "animation_url": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/gldnShovel/1.gif",
+  "description":""
+
+  
+
+}
