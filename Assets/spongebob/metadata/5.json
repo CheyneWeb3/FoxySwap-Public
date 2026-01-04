@@ -1,0 +1,15 @@
+{
+  "name": "Prismatic Bikini Bottom #5 — Golden Patrick (Big Smile)",
+  "description": "A prismatic, holographic take on classic undersea vibes — part of the Prismatic Bikini Bottom collection. (Sunny Seafloor; Character)",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/spongebob/assets/5.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "attributes": [
+    { "trait_type": "Collection", "value": "Prismatic Bikini Bottom" },
+    { "trait_type": "Characters", "value": "Patrick" },
+    { "trait_type": "Scene", "value": "Sunny Seafloor" },
+    { "trait_type": "Focus", "value": "Character" },
+    { "trait_type": "Style", "value": "Holographic" },
+    { "trait_type": "Mood", "value": "Playful" },
+    { "trait_type": "Edition", "value": "5" }
+  ]
+}

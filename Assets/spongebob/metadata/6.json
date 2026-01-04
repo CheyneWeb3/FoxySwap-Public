@@ -1,0 +1,15 @@
+{
+  "name": "Prismatic Bikini Bottom #6 — Squidward’s Clarinet Spotlight",
+  "description": "A prismatic, holographic take on classic undersea vibes — part of the Prismatic Bikini Bottom collection. (Bikini Bottom Theater; Performance)",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/spongebob/assets/6.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "attributes": [
+    { "trait_type": "Collection", "value": "Prismatic Bikini Bottom" },
+    { "trait_type": "Characters", "value": "Squidward" },
+    { "trait_type": "Scene", "value": "Bikini Bottom Theater" },
+    { "trait_type": "Focus", "value": "Performance" },
+    { "trait_type": "Style", "value": "Holographic" },
+    { "trait_type": "Mood", "value": "Classy" },
+    { "trait_type": "Edition", "value": "6" }
+  ]
+}

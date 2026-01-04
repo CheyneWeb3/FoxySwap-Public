@@ -1,0 +1,15 @@
+{
+  "name": "Prismatic Bikini Bottom #7 — Squidward in the Grand Salon",
+  "description": "A prismatic, holographic take on classic undersea vibes — part of the Prismatic Bikini Bottom collection. (Grand Piano Hall; Performance)",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/spongebob/assets/7.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "attributes": [
+    { "trait_type": "Collection", "value": "Prismatic Bikini Bottom" },
+    { "trait_type": "Characters", "value": "Squidward" },
+    { "trait_type": "Scene", "value": "Grand Piano Hall" },
+    { "trait_type": "Focus", "value": "Performance" },
+    { "trait_type": "Style", "value": "Holographic" },
+    { "trait_type": "Mood", "value": "Classy" },
+    { "trait_type": "Edition", "value": "7" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Prismatic Bikini Bottom #4 — Golden Patrick (Chill Mode)",
+  "description": "A prismatic, holographic take on classic undersea vibes — part of the Prismatic Bikini Bottom collection. (Sunburst Shore; Character)",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/spongebob/assets/4.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "attributes": [
+    { "trait_type": "Collection", "value": "Prismatic Bikini Bottom" },
+    { "trait_type": "Characters", "value": "Patrick" },
+    { "trait_type": "Scene", "value": "Sunburst Shore" },
+    { "trait_type": "Focus", "value": "Character" },
+    { "trait_type": "Style", "value": "Holographic" },
+    { "trait_type": "Mood", "value": "Chill" },
+    { "trait_type": "Edition", "value": "4" }
+  ]
+}

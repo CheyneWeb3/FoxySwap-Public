@@ -1,0 +1,15 @@
+{
+  "name": "Prismatic Bikini Bottom #9 — Jellyfish Fields — Mischief & Nets",
+  "description": "A prismatic, holographic take on classic undersea vibes — part of the Prismatic Bikini Bottom collection. (Jellyfish Fields; Action)",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/spongebob/assets/9.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "attributes": [
+    { "trait_type": "Collection", "value": "Prismatic Bikini Bottom" },
+    { "trait_type": "Characters", "value": "SpongeBob, Patrick" },
+    { "trait_type": "Scene", "value": "Jellyfish Fields" },
+    { "trait_type": "Focus", "value": "Action" },
+    { "trait_type": "Style", "value": "Holographic" },
+    { "trait_type": "Mood", "value": "Mischievous" },
+    { "trait_type": "Edition", "value": "9" }
+  ]
+}

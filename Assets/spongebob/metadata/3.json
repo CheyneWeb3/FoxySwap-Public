@@ -1,0 +1,15 @@
+{
+  "name": "Prismatic Bikini Bottom #3 — Steam Diver SpongeBob",
+  "description": "A prismatic, holographic take on classic undersea vibes — part of the Prismatic Bikini Bottom collection. (Steampunk Deep Sea; Character)",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/spongebob/assets/3.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "attributes": [
+    { "trait_type": "Collection", "value": "Prismatic Bikini Bottom" },
+    { "trait_type": "Characters", "value": "SpongeBob" },
+    { "trait_type": "Scene", "value": "Steampunk Deep Sea" },
+    { "trait_type": "Focus", "value": "Character" },
+    { "trait_type": "Style", "value": "Steampunk" },
+    { "trait_type": "Mood", "value": "Playful" },
+    { "trait_type": "Edition", "value": "3" }
+  ]
+}
