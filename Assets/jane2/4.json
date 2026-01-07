@@ -1,0 +1,13 @@
+{
+  "name": "Plain Jane — Alley Combat",
+  "description": "Armed with rhythm and confidence, Jane strikes a bold pose among neon graffiti warriors.",
+  "image": "ipfs://photo_4.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "background_color": "1A1218",
+  "attributes": [
+    { "trait_type": "Scene", "value": "Graffiti Battle" },
+    { "trait_type": "Outfit", "value": "Pink Daisy Shorts" },
+    { "trait_type": "Expression", "value": "Determined" },
+    { "trait_type": "Era", "value": "Urban 90s" }
+  ]
+}

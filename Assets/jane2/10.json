@@ -1,0 +1,13 @@
+{
+  "name": "Plain Jane — Chill Mode",
+  "description": "A tender moment of calm — Jane and her pup take a break from the streets in pure graffiti charm.",
+  "image": "ipfs://photo_10.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "background_color": "FFFFFF",
+  "attributes": [
+    { "trait_type": "Companion", "value": "Dog" },
+    { "trait_type": "Mood", "value": "Affectionate" },
+    { "trait_type": "Theme", "value": "Graffiti Portrait" },
+    { "trait_type": "Outfit", "value": "Black Streetwear" }
+  ]
+}

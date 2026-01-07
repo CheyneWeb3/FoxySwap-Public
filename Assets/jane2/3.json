@@ -1,0 +1,13 @@
+{
+  "name": "Plain Jane — Street Bloom",
+  "description": "Graffiti petals and city rhythm — Jane leaps in motion with daisy shorts and raw color bursting around her.",
+  "image": "ipfs://photo_3.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "background_color": "0F0E14",
+  "attributes": [
+    { "trait_type": "Backdrop", "value": "Urban Graffiti Wall" },
+    { "trait_type": "Style", "value": "Retro Streetwear" },
+    { "trait_type": "Accessories", "value": "Sunglasses" },
+    { "trait_type": "Vibe", "value": "Playful Chaos" }
+  ]
+}

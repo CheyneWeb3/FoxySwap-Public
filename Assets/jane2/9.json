@@ -1,0 +1,13 @@
+{
+  "name": "Plain Jane — Roller Groove",
+  "description": "Rolling through sunshine and laughter, Jane shows off daisy shorts and unstoppable balance on wheels.",
+  "image": "ipfs://photo_9.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "background_color": "F6D76F",
+  "attributes": [
+    { "trait_type": "Activity", "value": "Roller Skating" },
+    { "trait_type": "Scene", "value": "Skate Park" },
+    { "trait_type": "Mood", "value": "Sunny Joy" },
+    { "trait_type": "Palette", "value": "Warm Pastels" }
+  ]
+}

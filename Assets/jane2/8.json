@@ -1,0 +1,13 @@
+{
+  "name": "Plain Jane — Neon Street Clash",
+  "description": "A showdown of rhythm and color — Jane takes the spotlight among graffiti giants under the neon sky.",
+  "image": "ipfs://photo_8.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "background_color": "101018",
+  "attributes": [
+    { "trait_type": "Scene", "value": "Neon Street Battle" },
+    { "trait_type": "Theme", "value": "Urban Dance" },
+    { "trait_type": "Lighting", "value": "Electric Glow" },
+    { "trait_type": "Energy", "value": "High Voltage" }
+  ]
+}

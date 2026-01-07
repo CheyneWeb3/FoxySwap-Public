@@ -1,0 +1,13 @@
+{
+  "name": "Plain Jane — Roller Disco Jam",
+  "description": "Jane rolls with the daisy crew at the park, throwing 70s vibes and gravity-defying spins.",
+  "image": "ipfs://photo_6.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "background_color": "10141C",
+  "attributes": [
+    { "trait_type": "Activity", "value": "Roller Skating" },
+    { "trait_type": "Mood", "value": "Retro Joy" },
+    { "trait_type": "Palette", "value": "Pastel Neon" },
+    { "trait_type": "Vibe", "value": "Groovy Motion" }
+  ]
+}

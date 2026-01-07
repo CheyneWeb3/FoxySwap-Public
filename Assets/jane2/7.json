@@ -1,0 +1,13 @@
+{
+  "name": "Plain Jane — Boombox Groove",
+  "description": "Jane carries the rhythm through the block party — daisies, sunshine, and a boombox soundtrack.",
+  "image": "ipfs://photo_7.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "background_color": "0B101A",
+  "attributes": [
+    { "trait_type": "Accessory", "value": "Boombox" },
+    { "trait_type": "Setting", "value": "Street Festival" },
+    { "trait_type": "Tone", "value": "Vibrant Day" },
+    { "trait_type": "Expression", "value": "Confident" }
+  ]
+}

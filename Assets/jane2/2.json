@@ -1,0 +1,13 @@
+{
+  "name": "Plain Jane — Kung Funk Battle",
+  "description": "Jane drops into a street fight dance-off under graffiti lights, channeling martial rhythm and wild spirit.",
+  "image": "ipfs://photo_2.png",
+  "external_url": "https://foxyswap.net/market/home",
+  "background_color": "14121A",
+  "attributes": [
+    { "trait_type": "Scene", "value": "Graffiti Alley" },
+    { "trait_type": "Outfit", "value": "White Star Crop" },
+    { "trait_type": "Theme", "value": "Dance Battle" },
+    { "trait_type": "Energy", "value": "Combat Groove" }
+  ]
+}
