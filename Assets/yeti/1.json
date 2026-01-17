@@ -1,0 +1,18 @@
+{
+  "name": "YETI Founder of a New Frontier #001",
+  "description": "A bold Yeti founder staking a claim in the New Frontier — rugged, relentless, and ready to spread the wealth.",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/yeti/1.png",
+  "external_url": "https://yeti-token.com/",
+  "attributes": [
+    { "trait_type": "Character", "value": "Yeti" },
+    { "trait_type": "Role", "value": "Founder" },
+    { "trait_type": "Theme", "value": "New Frontier" },
+    { "trait_type": "Outfit", "value": "Frontier Leather" },
+    { "trait_type": "Headwear", "value": "Tricorn Hat" },
+    { "trait_type": "Accessory", "value": "Musket" },
+    { "trait_type": "Accessory", "value": "Map" },
+    { "trait_type": "Backdrop", "value": "Mountain Sunset" },
+    { "trait_type": "Vibe", "value": "Legendary" },
+    { "trait_type": "Edition", "value": "Test Mint" }
+  ]
+}
