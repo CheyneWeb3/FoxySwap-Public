@@ -1,0 +1,18 @@
+{
+  "name": "Wonder Boy in Monster World — Shion (Idle)",
+  "description": "Shion idle loop inspired by Wonder Boy in Monster World (Sega Genesis). Includes preview video + reference gameplay link.",
+  "image": "https://yourcdn.com/wonderboy/shion_idle_poster.png",
+  "animation_url": "https://www.youtube.com/watch?v=1vRSwykqMIQ",
+  "external_url": "https://vimm.net/vault/?p=play&mediaId=2437",
+  "attributes": [
+    { "trait_type": "Game", "value": "Wonder Boy in Monster World" },
+    { "trait_type": "Platform", "value": "Sega Genesis / Mega Drive" },
+    { "trait_type": "Character", "value": "Shion" },
+    { "trait_type": "Animation", "value": "Idle" }
+  ],
+  "properties": {
+    "youtube_url": "https://www.youtube.com/watch?v=1vRSwykqMIQ",
+    "animation_format": "video/mp4",
+    "source": "fan-art"
+  }
+}
