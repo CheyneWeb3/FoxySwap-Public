@@ -2,7 +2,7 @@
   "name": "Yeti Cashier Bot — Admin Key",
   "symbol": "YETI-ADMIN",
   "description": "The Yeti Cashier Bot Admin Key is an access NFT for the Yeti ecosystem.\n\nHolding this key in your connected wallet unlocks Admin-only features across the Yeti Cashier system — including protected sections, system stats, and internal information tied to Yeti Token operations.\n\nThis key is soulbound (non-transferable) and may be revoked for security or role changes. No login is required: access is granted by wallet ownership of the Admin Key.",
-  "image": "ipfs://REPLACE_WITH_IMAGE_CID",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/YetiNFTAdnminKeys/images/1.png",
   "external_url": "https://yeti-token.com/",
   "attributes": [
     { "trait_type": "Access Level", "value": "Admin" },
