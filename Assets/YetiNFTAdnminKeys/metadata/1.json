@@ -1,0 +1,43 @@
+{
+  "name": "Yeti Cashier Bot — Admin Key",
+  "symbol": "YETI-ADMIN",
+  "description": "The Yeti Cashier Bot Admin Key is an access NFT for the Yeti ecosystem.\n\nHolding this key in your connected wallet unlocks Admin-only features across the Yeti Cashier system — including protected sections, system stats, and internal information tied to Yeti Token operations.\n\nThis key is soulbound (non-transferable) and may be revoked for security or role changes. No login is required: access is granted by wallet ownership of the Admin Key.",
+  "image": "ipfs://REPLACE_WITH_IMAGE_CID",
+  "external_url": "https://yeti-token.com/",
+  "attributes": [
+    { "trait_type": "Access Level", "value": "Admin" },
+    { "trait_type": "Project", "value": "Yeti Token" },
+    { "trait_type": "System", "value": "Yeti Cashier Bot" },
+    { "trait_type": "Key Type", "value": "Admin Access Key" },
+    { "trait_type": "Access Method", "value": "Wallet-Gated" },
+    { "trait_type": "Login Required", "value": "No" },
+    { "trait_type": "Transferability", "value": "Soulbound (Non-Transferable)" },
+    { "trait_type": "Revocable", "value": "Yes" },
+    { "trait_type": "Unlocks", "value": "Admin Features" },
+    { "trait_type": "Unlocks", "value": "Protected Sections" },
+    { "trait_type": "Unlocks", "value": "Stats" },
+    { "trait_type": "Unlocks", "value": "Information" }
+  ],
+  "properties": {
+    "category": "access",
+    "project": "Yeti Token",
+    "app": "Yeti Cashier Bot",
+    "access": {
+      "level": "admin",
+      "wallet_gated": true,
+      "login_required": false,
+      "gated_sections": [
+        "Admin-only Features",
+        "Protected Application Sections",
+        "System Stats",
+        "Internal Information"
+      ]
+    },
+    "restrictions": {
+      "soulbound": true,
+      "transferable": false,
+      "revocable": true
+    },
+    "security_note": "Access is active only while this token is held by the connected wallet and has not been revoked."
+  }
+}
