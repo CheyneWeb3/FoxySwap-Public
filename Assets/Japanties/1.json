@@ -2,7 +2,6 @@
   "name": "Japanties #1",
   "description": "Japanties is a playful Japanese streetwear-inspired lingerie collection — neon nights, kawaii fabrics, and iconic Tokyo vibes. Non-explicit pin-up fashion art.",
   "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/Japanties/1.png",
-  "external_url": "https://REPLACE_WITH_PROJECT_SITE/mint/1",
   "attributes": [
     { "trait_type": "Collection", "value": "Japanties" },
     { "trait_type": "Series", "value": "Genesis" },
