@@ -1,0 +1,21 @@
+{
+  "name": "Japanties #1",
+  "description": "Japanties is a playful Japanese streetwear-inspired lingerie collection — neon nights, kawaii fabrics, and iconic Tokyo vibes. Non-explicit pin-up fashion art.",
+  "image": "ipfs://REPLACE_WITH_IMAGE_CID/1.png",
+  "external_url": "https://REPLACE_WITH_PROJECT_SITE/mint/1",
+  "attributes": [
+    { "trait_type": "Collection", "value": "Japanties" },
+    { "trait_type": "Series", "value": "Genesis" },
+
+    { "trait_type": "Undies Type", "value": "Boyshorts" },
+    { "trait_type": "Fabric", "value": "Satin" },
+    { "trait_type": "Pattern", "value": "Sakura Print" },
+    { "trait_type": "Colorway", "value": "Neon Pink" },
+
+    { "trait_type": "Vibe", "value": "Kawaii Streetwear" },
+    { "trait_type": "Background", "value": "Shibuya Neon" },
+    { "trait_type": "Accessory", "value": "Cat Charm" },
+
+    { "trait_type": "Rarity", "value": "Common" }
+  ]
+}
