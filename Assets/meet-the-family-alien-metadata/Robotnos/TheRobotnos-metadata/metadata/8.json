@@ -1,7 +1,7 @@
 {
   "name": "Scrapster",
   "description": "Scrapster, the junk dealer, is one of the Robot-No's \u2014 the rival neighbours. Trash Is Treasure. A patched-together salvage Robot-No with a boxy screen face, glowing X eyes, mismatched armour, tools, cables and scavenged machinery.",
-  "image": "8.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/Robotnos/TheRobotnos-metadata/images/8.png",
   "attributes": [
     {
       "trait_type": "Faction",

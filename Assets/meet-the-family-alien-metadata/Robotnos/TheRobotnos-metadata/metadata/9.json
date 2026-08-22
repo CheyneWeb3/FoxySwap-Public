@@ -1,7 +1,7 @@
 {
   "name": "Snipe-O",
   "description": "Snipe-O, the long shot, is one of the Robot-No's \u2014 the rival neighbours. Hits From Anywhere. A four-legged precision Robot-No built around a long-range optic and cannon, with red sensors and a rugged gunmetal chassis.",
-  "image": "9.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/Robotnos/TheRobotnos-metadata/images/9.png",
   "attributes": [
     {
       "trait_type": "Faction",

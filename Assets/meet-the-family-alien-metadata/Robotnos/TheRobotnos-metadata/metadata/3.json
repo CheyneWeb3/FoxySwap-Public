@@ -1,7 +1,7 @@
 {
   "name": "Zappit",
   "description": "Zappit, the shock unit, is one of the Robot-No's \u2014 the rival neighbours. Disruptor of Power. A yellow industrial Robot-No charged with electricity, twin coil antennae and a lightning-bolt display.",
-  "image": "3.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/Robotnos/TheRobotnos-metadata/images/3.png",
   "attributes": [
     {
       "trait_type": "Faction",

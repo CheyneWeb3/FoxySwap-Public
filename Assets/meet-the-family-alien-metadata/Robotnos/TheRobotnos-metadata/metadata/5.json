@@ -1,7 +1,7 @@
 {
   "name": "Mektox",
   "description": "Mektox, the toxic collector, is one of the Robot-No's \u2014 the rival neighbours. Poisons the Fun. A toxic industrial Robot-No carrying a brain beneath a glowing green containment dome, surrounded by tanks, pipes and dripping corrosive slime.",
-  "image": "5.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/Robotnos/TheRobotnos-metadata/images/5.png",
   "attributes": [
     {
       "trait_type": "Faction",

@@ -1,7 +1,7 @@
 {
   "name": "Grindo",
   "description": "Grindo, the joy crusher, is one of the Robot-No's \u2014 the rival neighbours. Hates All Good Things. A hulking hazard-striped Robot-No covered in spikes and armour, built around a huge grinding wheel and a glowing red X display.",
-  "image": "10.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/Robotnos/TheRobotnos-metadata/images/10.png",
   "attributes": [
     {
       "trait_type": "Faction",

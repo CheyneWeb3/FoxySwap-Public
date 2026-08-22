@@ -1,7 +1,7 @@
 {
   "name": "Dr. Void",
   "description": "Dr. Void, the hollow one, is one of the Robot-No's \u2014 the rival neighbours. Sucks Everything In. A dark techno-scientist Robot-No whose helmet contains a swirling violet void, backed by hoses, machinery and strange energy equipment.",
-  "image": "4.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/Robotnos/TheRobotnos-metadata/images/4.png",
   "attributes": [
     {
       "trait_type": "Faction",

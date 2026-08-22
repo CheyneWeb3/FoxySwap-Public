@@ -1,7 +1,7 @@
 {
   "name": "Boltbrain",
   "description": "Boltbrain, the overthinker, is one of the Robot-No's \u2014 the rival neighbours. Plans to Take Over. A calculating spider-like Robot-No with an exposed brain beneath a clear dome, glowing orange eyes and many articulated mechanical limbs.",
-  "image": "6.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/Robotnos/TheRobotnos-metadata/images/6.png",
   "attributes": [
     {
       "trait_type": "Faction",

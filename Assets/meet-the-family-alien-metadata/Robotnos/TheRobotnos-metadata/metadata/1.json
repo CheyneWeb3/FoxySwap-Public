@@ -1,7 +1,7 @@
 {
   "name": "Rustix",
   "description": "Rustix, the corroded, is one of the Robot-No's \u2014 the rival neighbours. Decayer of Everything. A battered, rust-armoured cyclops Robot-No with a glowing red eye, heavy claws and a skull-marked chassis.",
-  "image": "1.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/Robotnos/TheRobotnos-metadata/images/1.png",
   "attributes": [
     {
       "trait_type": "Faction",

@@ -1,7 +1,7 @@
 {
   "name": "Neo-No",
   "description": "Neo-No, the cold calculator, is one of the Robot-No's \u2014 the rival neighbours. Numbers Don't Lie. A sleek silver Robot-No analyst with a cyan digital visor, dark cape and holographic data display.",
-  "image": "7.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/Robotnos/TheRobotnos-metadata/images/7.png",
   "attributes": [
     {
       "trait_type": "Faction",
