@@ -1,0 +1,27 @@
+{
+  "name": "Mektox",
+  "description": "Mektox, the toxic collector, is one of the Robot-No's \u2014 the rival neighbours. Poisons the Fun. A toxic industrial Robot-No carrying a brain beneath a glowing green containment dome, surrounded by tanks, pipes and dripping corrosive slime.",
+  "image": "5.png",
+  "attributes": [
+    {
+      "trait_type": "Faction",
+      "value": "The Robot-No's"
+    },
+    {
+      "trait_type": "Relationship",
+      "value": "Rival Neighbour"
+    },
+    {
+      "trait_type": "Role",
+      "value": "The Toxic Collector"
+    },
+    {
+      "trait_type": "Specialty",
+      "value": "Poisons the Fun"
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 5
+    }
+  ]
+}

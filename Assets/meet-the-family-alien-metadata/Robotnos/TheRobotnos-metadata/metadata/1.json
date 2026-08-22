@@ -1,0 +1,27 @@
+{
+  "name": "Rustix",
+  "description": "Rustix, the corroded, is one of the Robot-No's \u2014 the rival neighbours. Decayer of Everything. A battered, rust-armoured cyclops Robot-No with a glowing red eye, heavy claws and a skull-marked chassis.",
+  "image": "1.png",
+  "attributes": [
+    {
+      "trait_type": "Faction",
+      "value": "The Robot-No's"
+    },
+    {
+      "trait_type": "Relationship",
+      "value": "Rival Neighbour"
+    },
+    {
+      "trait_type": "Role",
+      "value": "The Corroded"
+    },
+    {
+      "trait_type": "Specialty",
+      "value": "Decayer of Everything"
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 1
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Snipe-O",
+  "description": "Snipe-O, the long shot, is one of the Robot-No's \u2014 the rival neighbours. Hits From Anywhere. A four-legged precision Robot-No built around a long-range optic and cannon, with red sensors and a rugged gunmetal chassis.",
+  "image": "9.png",
+  "attributes": [
+    {
+      "trait_type": "Faction",
+      "value": "The Robot-No's"
+    },
+    {
+      "trait_type": "Relationship",
+      "value": "Rival Neighbour"
+    },
+    {
+      "trait_type": "Role",
+      "value": "The Long Shot"
+    },
+    {
+      "trait_type": "Specialty",
+      "value": "Hits From Anywhere"
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 9
+    }
+  ]
+}

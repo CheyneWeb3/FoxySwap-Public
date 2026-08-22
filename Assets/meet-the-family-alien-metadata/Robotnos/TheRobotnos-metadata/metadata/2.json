@@ -1,0 +1,27 @@
+{
+  "name": "Glitcho",
+  "description": "Glitcho, the broken signal, is one of the Robot-No's \u2014 the rival neighbours. Confuser of Minds. A hovering glitch-corrupted Robot-No with a black digital face, cyan and magenta signal fragments, and an unstable transmission field.",
+  "image": "2.png",
+  "attributes": [
+    {
+      "trait_type": "Faction",
+      "value": "The Robot-No's"
+    },
+    {
+      "trait_type": "Relationship",
+      "value": "Rival Neighbour"
+    },
+    {
+      "trait_type": "Role",
+      "value": "The Broken Signal"
+    },
+    {
+      "trait_type": "Specialty",
+      "value": "Confuser of Minds"
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 2
+    }
+  ]
+}

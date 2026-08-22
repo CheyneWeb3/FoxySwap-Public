@@ -1,0 +1,27 @@
+{
+  "name": "Dr. Void",
+  "description": "Dr. Void, the hollow one, is one of the Robot-No's \u2014 the rival neighbours. Sucks Everything In. A dark techno-scientist Robot-No whose helmet contains a swirling violet void, backed by hoses, machinery and strange energy equipment.",
+  "image": "4.png",
+  "attributes": [
+    {
+      "trait_type": "Faction",
+      "value": "The Robot-No's"
+    },
+    {
+      "trait_type": "Relationship",
+      "value": "Rival Neighbour"
+    },
+    {
+      "trait_type": "Role",
+      "value": "The Hollow One"
+    },
+    {
+      "trait_type": "Specialty",
+      "value": "Sucks Everything In"
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 4
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Zappit",
+  "description": "Zappit, the shock unit, is one of the Robot-No's \u2014 the rival neighbours. Disruptor of Power. A yellow industrial Robot-No charged with electricity, twin coil antennae and a lightning-bolt display.",
+  "image": "3.png",
+  "attributes": [
+    {
+      "trait_type": "Faction",
+      "value": "The Robot-No's"
+    },
+    {
+      "trait_type": "Relationship",
+      "value": "Rival Neighbour"
+    },
+    {
+      "trait_type": "Role",
+      "value": "The Shock Unit"
+    },
+    {
+      "trait_type": "Specialty",
+      "value": "Disruptor of Power"
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 3
+    }
+  ]
+}

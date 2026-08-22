@@ -1,0 +1,27 @@
+{
+  "name": "Grindo",
+  "description": "Grindo, the joy crusher, is one of the Robot-No's \u2014 the rival neighbours. Hates All Good Things. A hulking hazard-striped Robot-No covered in spikes and armour, built around a huge grinding wheel and a glowing red X display.",
+  "image": "10.png",
+  "attributes": [
+    {
+      "trait_type": "Faction",
+      "value": "The Robot-No's"
+    },
+    {
+      "trait_type": "Relationship",
+      "value": "Rival Neighbour"
+    },
+    {
+      "trait_type": "Role",
+      "value": "The Joy Crusher"
+    },
+    {
+      "trait_type": "Specialty",
+      "value": "Hates All Good Things"
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 10
+    }
+  ]
+}

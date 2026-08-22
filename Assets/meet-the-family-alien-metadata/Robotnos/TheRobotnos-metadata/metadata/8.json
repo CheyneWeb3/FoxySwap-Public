@@ -1,0 +1,27 @@
+{
+  "name": "Scrapster",
+  "description": "Scrapster, the junk dealer, is one of the Robot-No's \u2014 the rival neighbours. Trash Is Treasure. A patched-together salvage Robot-No with a boxy screen face, glowing X eyes, mismatched armour, tools, cables and scavenged machinery.",
+  "image": "8.png",
+  "attributes": [
+    {
+      "trait_type": "Faction",
+      "value": "The Robot-No's"
+    },
+    {
+      "trait_type": "Relationship",
+      "value": "Rival Neighbour"
+    },
+    {
+      "trait_type": "Role",
+      "value": "The Junk Dealer"
+    },
+    {
+      "trait_type": "Specialty",
+      "value": "Trash Is Treasure"
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 8
+    }
+  ]
+}
