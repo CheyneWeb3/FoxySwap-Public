@@ -1,0 +1,27 @@
+{
+  "name": "Zorp",
+  "description": "Zorp — The Dad of the Meet the Family cosmic collection. Curious, optimistic, always has a plan (usually works).",
+  "image": "1.png",
+  "attributes": [
+    {
+      "trait_type": "Family Role",
+      "value": "The Dad"
+    },
+    {
+      "trait_type": "Stage",
+      "value": "Explorer"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Zog Prime"
+    },
+    {
+      "trait_type": "Personality",
+      "value": "Curious, optimistic, always has a plan (usually works)."
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 1
+    }
+  ]
+}

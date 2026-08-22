@@ -1,0 +1,27 @@
+{
+  "name": "Luxa",
+  "description": "Luxa — The Mom of the Meet the Family cosmic collection. Brilliant, calm, keeps everyone together.",
+  "image": "2.png",
+  "attributes": [
+    {
+      "trait_type": "Family Role",
+      "value": "The Mom"
+    },
+    {
+      "trait_type": "Stage",
+      "value": "Scientist"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Lumina"
+    },
+    {
+      "trait_type": "Personality",
+      "value": "Brilliant, calm, keeps everyone together."
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 2
+    }
+  ]
+}

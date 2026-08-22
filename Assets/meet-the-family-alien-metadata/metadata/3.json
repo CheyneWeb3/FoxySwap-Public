@@ -1,0 +1,27 @@
+{
+  "name": "Bleep",
+  "description": "Bleep — The Kid of the Meet the Family cosmic collection. Clever, energetic, loves gadgets and chaos.",
+  "image": "3.png",
+  "attributes": [
+    {
+      "trait_type": "Family Role",
+      "value": "The Kid"
+    },
+    {
+      "trait_type": "Stage",
+      "value": "Inventor"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Beep-9"
+    },
+    {
+      "trait_type": "Personality",
+      "value": "Clever, energetic, loves gadgets and chaos."
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 3
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Skritch",
+  "description": "Skritch — The Teen of the Meet the Family cosmic collection. Cool, sarcastic, pretends not to care (but does).",
+  "image": "5.png",
+  "attributes": [
+    {
+      "trait_type": "Family Role",
+      "value": "The Teen"
+    },
+    {
+      "trait_type": "Stage",
+      "value": "Rebel"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Skritcha"
+    },
+    {
+      "trait_type": "Personality",
+      "value": "Cool, sarcastic, pretends not to care (but does)."
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 5
+    }
+  ]
+}

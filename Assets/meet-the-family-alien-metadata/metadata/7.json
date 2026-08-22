@@ -1,0 +1,27 @@
+{
+  "name": "Uncle Kvark",
+  "description": "Uncle Kvark — The Fun Uncle of the Meet the Family cosmic collection. Loud, funny, always the life of the party.",
+  "image": "7.png",
+  "attributes": [
+    {
+      "trait_type": "Family Role",
+      "value": "The Fun Uncle"
+    },
+    {
+      "trait_type": "Stage",
+      "value": "Performer"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Kvark-Tok"
+    },
+    {
+      "trait_type": "Personality",
+      "value": "Loud, funny, always the life of the party."
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 7
+    }
+  ]
+}

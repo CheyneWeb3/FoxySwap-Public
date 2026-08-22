@@ -1,0 +1,27 @@
+{
+  "name": "Cousin Dink",
+  "description": "Cousin Dink — The Young Cousin of the Meet the Family cosmic collection. Excited, brave, wants to be just like Bleep!",
+  "image": "9.png",
+  "attributes": [
+    {
+      "trait_type": "Family Role",
+      "value": "The Young Cousin"
+    },
+    {
+      "trait_type": "Stage",
+      "value": "Explorer (in Training)"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Dinkelot"
+    },
+    {
+      "trait_type": "Personality",
+      "value": "Excited, brave, wants to be just like Bleep!"
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 9
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Glomma",
+  "description": "Glomma — The Grandma of the Meet the Family cosmic collection. Loving, cook extraordinaire, tells the best (and longest) stories.",
+  "image": "4.png",
+  "attributes": [
+    {
+      "trait_type": "Family Role",
+      "value": "The Grandma"
+    },
+    {
+      "trait_type": "Stage",
+      "value": "Nurturer"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Glom Glom"
+    },
+    {
+      "trait_type": "Personality",
+      "value": "Loving, cook extraordinaire, tells the best (and longest) stories."
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 4
+    }
+  ]
+}

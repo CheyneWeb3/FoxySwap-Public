@@ -1,0 +1,27 @@
+{
+  "name": "Aunt Zeeba",
+  "description": "Aunt Zeeba — The Stylish Aunt of the Meet the Family cosmic collection. Graceful, smart, loves fashion and negotiation.",
+  "image": "8.png",
+  "attributes": [
+    {
+      "trait_type": "Family Role",
+      "value": "The Stylish Aunt"
+    },
+    {
+      "trait_type": "Stage",
+      "value": "Diplomat"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Zeebion"
+    },
+    {
+      "trait_type": "Personality",
+      "value": "Graceful, smart, loves fashion and negotiation."
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 8
+    }
+  ]
+}

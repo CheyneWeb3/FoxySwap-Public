@@ -1,0 +1,27 @@
+{
+  "name": "Wobble",
+  "description": "Wobble — The Pet of the Meet the Family cosmic collection. Loyal, goofy, loves snacks and belly rubs.",
+  "image": "6.png",
+  "attributes": [
+    {
+      "trait_type": "Family Role",
+      "value": "The Pet"
+    },
+    {
+      "trait_type": "Stage",
+      "value": "Companion"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Wobble World"
+    },
+    {
+      "trait_type": "Personality",
+      "value": "Loyal, goofy, loves snacks and belly rubs."
+    },
+    {
+      "trait_type": "Character Number",
+      "value": 6
+    }
+  ]
+}
