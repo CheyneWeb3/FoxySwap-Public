@@ -1,7 +1,7 @@
 {
   "name": "Zorp",
   "description": "Zorp — The Dad of the Meet the Family cosmic collection. Curious, optimistic, always has a plan (usually works).",
-  "image": "1.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/images/1.png",
   "attributes": [
     {
       "trait_type": "Family Role",

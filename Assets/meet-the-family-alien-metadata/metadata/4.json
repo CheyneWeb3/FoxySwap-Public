@@ -1,7 +1,7 @@
 {
   "name": "Glomma",
   "description": "Glomma — The Grandma of the Meet the Family cosmic collection. Loving, cook extraordinaire, tells the best (and longest) stories.",
-  "image": "4.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/images/4.png",
   "attributes": [
     {
       "trait_type": "Family Role",

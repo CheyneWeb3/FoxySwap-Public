@@ -1,7 +1,7 @@
 {
   "name": "Great-Grandpa Nibs",
   "description": "Great-Grandpa Nibs — The Wise One of the Meet the Family cosmic collection. Wise, patient, knows everything (literally).",
-  "image": "10.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/images/10.png",
   "attributes": [
     {
       "trait_type": "Family Role",

@@ -1,7 +1,7 @@
 {
   "name": "Uncle Kvark",
   "description": "Uncle Kvark — The Fun Uncle of the Meet the Family cosmic collection. Loud, funny, always the life of the party.",
-  "image": "7.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/images/7.png",
   "attributes": [
     {
       "trait_type": "Family Role",

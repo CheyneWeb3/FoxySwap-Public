@@ -1,7 +1,7 @@
 {
   "name": "Bleep",
   "description": "Bleep — The Kid of the Meet the Family cosmic collection. Clever, energetic, loves gadgets and chaos.",
-  "image": "3.png",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/meet-the-family-alien-metadata/images/3.png",
   "attributes": [
     {
       "trait_type": "Family Role",
