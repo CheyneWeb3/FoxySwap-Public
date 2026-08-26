@@ -1,7 +1,7 @@
 {
-  "name": "Jane Selena Neonverse #12 — Electric Drift",
-  "description": "Jane Selena glides through a saturated city night as cyan and pink energy streaks arc around her armor.",
-  "image": "REPLACE_WITH_IMAGE_BASE_URL/12.webp",
+  "name": "Jane Selena Neonverse #4 — Neon Afterglow",
+  "description": "Jane Selena glows against a warm cyberpunk sunset, her luminous armor reflecting the last light of the city.",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/neon%20purple%20girls%20picsfrom%20jane%20nft%20webp/images/4.webp",
   "attributes": [
     {
       "trait_type": "Character",
@@ -13,7 +13,7 @@
     },
     {
       "trait_type": "Scene",
-      "value": "Electric Night City"
+      "value": "Neon Sunset Avenue"
     },
     {
       "trait_type": "Pose",
@@ -21,23 +21,23 @@
     },
     {
       "trait_type": "Hair",
-      "value": "Silver Aqua-Pink"
+      "value": "Long Silver-Pink"
     },
     {
       "trait_type": "Headwear",
-      "value": "Neon Side Interface"
+      "value": "Cyber Temple Lights"
     },
     {
       "trait_type": "Outfit",
-      "value": "Blue-Black Cyber Armor"
+      "value": "Black Chrome Armor"
     },
     {
       "trait_type": "Energy Effect",
-      "value": "Electric Ribbon Trails"
+      "value": "Afterglow"
     },
     {
       "trait_type": "Palette",
-      "value": "Cyan Blue and Pink"
+      "value": "Rose Cyan and Amber"
     },
     {
       "trait_type": "Artwork Format",

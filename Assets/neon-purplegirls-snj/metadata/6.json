@@ -1,7 +1,7 @@
 {
-  "name": "Jane Selena Neonverse #2 — Signal Crown",
-  "description": "Jane Selena watches the city from a glowing high-rise district, framed by a luminous cyber headset and futuristic skyline.",
-  "image": "REPLACE_WITH_IMAGE_BASE_URL/2.webp",
+  "name": "Jane Selena Neonverse #6 — Mecha Halo",
+  "description": "Jane Selena appears in an elaborate cyber rig surrounded by luminous mechanical ornaments and floating city lights.",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/neon%20purple%20girls%20picsfrom%20jane%20nft%20webp/images/6.webp",
   "attributes": [
     {
       "trait_type": "Character",
@@ -13,7 +13,7 @@
     },
     {
       "trait_type": "Scene",
-      "value": "High-Rise Neon District"
+      "value": "Augmented City Plaza"
     },
     {
       "trait_type": "Pose",
@@ -21,23 +21,23 @@
     },
     {
       "trait_type": "Hair",
-      "value": "Silver-Lilac Ponytail"
+      "value": "Silver Twin Tails"
     },
     {
       "trait_type": "Headwear",
-      "value": "Magenta Signal Headset"
+      "value": "Mechanical Halo Rig"
     },
     {
       "trait_type": "Outfit",
-      "value": "Iridescent Cyber Suit"
+      "value": "Armored Neon Exosuit"
     },
     {
       "trait_type": "Energy Effect",
-      "value": "Holographic Light"
+      "value": "Floating Light Orbs"
     },
     {
       "trait_type": "Palette",
-      "value": "Lilac Pink and Electric Blue"
+      "value": "Violet Cyan and Pink"
     },
     {
       "trait_type": "Artwork Format",
