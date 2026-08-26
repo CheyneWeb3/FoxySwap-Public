@@ -1,7 +1,7 @@
 {
   "name": "Jane Selena Mermaid #5 — Pearlstream",
   "description": "Jane Selena floats through a field of pearl-like bubbles as rainbow sea light pours across her shimmering scales and flowing dark hair.",
-  "image": "REPLACE_WITH_IMAGE_BASE_URL/5.webp",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janeselenamermaidswebp/images/5.webp",
   "attributes": [
     {
       "trait_type": "Character",

@@ -1,7 +1,7 @@
 {
   "name": "Jane Selena Mermaid #2 — Reeflight Crown II",
   "description": "Jane Selena glides through a glittering reef current beneath a living sea crown, surrounded by bubbles and prismatic turquoise light.",
-  "image": "REPLACE_WITH_IMAGE_BASE_URL/2.webp",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janeselenamermaidswebp/images/2.webp",
   "attributes": [
     {
       "trait_type": "Character",

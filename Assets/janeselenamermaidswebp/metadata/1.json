@@ -1,7 +1,7 @@
 {
   "name": "Jane Selena Mermaid #1 — Reeflight Crown",
   "description": "Jane Selena drifts through a radiant underwater current, crowned in living reef growth and wrapped in sparkling turquoise light.",
-  "image": "REPLACE_WITH_IMAGE_BASE_URL/1.webp",
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/janeselenamermaidswebp/images/1.webp",
   "attributes": [
     {
       "trait_type": "Character",
