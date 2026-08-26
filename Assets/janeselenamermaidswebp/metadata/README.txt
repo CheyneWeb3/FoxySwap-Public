@@ -1,4 +1,4 @@
-Jane Selena Mermaids — NFT Metadata
+Aquatalia Mermaids — NFT Metadata
 
 Contains 1.json through 13.json, matching 1.webp through 13.webp.
 
