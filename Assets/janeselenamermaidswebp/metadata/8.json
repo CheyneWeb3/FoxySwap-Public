@@ -1,0 +1,43 @@
+{
+  "name": "Jane Selena Mermaid #8 — Coral Empress",
+  "description": "Jane Selena appears as a deep-sea empress, crowned in branching coral and surrounded by luminous reef life and streaming turquoise hair.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/8.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena Mermaid"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Royal Coral Reef"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Regal Portrait"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Long Navy with Teal Ends"
+    },
+    {
+      "trait_type": "Headpiece",
+      "value": "Grand Coral Crown"
+    },
+    {
+      "trait_type": "Tail",
+      "value": "Turquoise Violet Scales"
+    },
+    {
+      "trait_type": "Water Effect",
+      "value": "Flowing Current"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Royal Deep-Sea Glow"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Blue and Turquoise"
+    }
+  ]
+}

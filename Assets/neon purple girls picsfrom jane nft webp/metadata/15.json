@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #15 — Firewall Queen",
+  "description": "Jane Selena commands a neon workstation beneath towering columns of digital light, her high ponytail glowing against the data storm.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/15.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Cyber Operator"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Neon Server Chamber"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Command Console Pose"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "High Cyan-Pink Ponytail"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Cyber Temple Interface"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Silver Data Armor"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Firewall Glow"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Cyan Magenta and Deep Blue"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

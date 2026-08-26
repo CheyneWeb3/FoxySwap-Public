@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #12 — Electric Drift",
+  "description": "Jane Selena glides through a saturated city night as cyan and pink energy streaks arc around her armor.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/12.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Neon City"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Electric Night City"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Three-Quarter Portrait"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Silver Aqua-Pink"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Neon Side Interface"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Blue-Black Cyber Armor"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Electric Ribbon Trails"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Cyan Blue and Pink"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

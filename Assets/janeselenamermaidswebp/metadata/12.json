@@ -1,0 +1,43 @@
+{
+  "name": "Jane Selena Mermaid #12 — Midnight Current",
+  "description": "Jane Selena moves through a dark blue current in profile, encircled by a bright ribbon of water while her galaxy scales glow against the abyss.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/12.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena Mermaid"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Midnight Abyss"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Side Silhouette"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Long Deep Blue"
+    },
+    {
+      "trait_type": "Headpiece",
+      "value": "None"
+    },
+    {
+      "trait_type": "Tail",
+      "value": "Blue Green Galaxy Tail"
+    },
+    {
+      "trait_type": "Water Effect",
+      "value": "Luminous Water Ring"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Abyssal Sparkle"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Midnight Blue and Teal"
+    }
+  ]
+}

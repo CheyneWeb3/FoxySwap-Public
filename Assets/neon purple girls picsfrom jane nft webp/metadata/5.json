@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #5 — Midnight Operator",
+  "description": "Jane Selena steps through a crowded night district in a dark tactical suit lit by cool violet circuitry.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/5.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Neon City"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Midnight Tech District"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Front Portrait"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Dark High Ponytail"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Violet Hair Clips"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Black Tactical Cyber Suit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Circuit Glow"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Black Violet and Blue"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

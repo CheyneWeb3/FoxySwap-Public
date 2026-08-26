@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #4 — Neon Afterglow",
+  "description": "Jane Selena glows against a warm cyberpunk sunset, her luminous armor reflecting the last light of the city.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/4.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Neon City"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Neon Sunset Avenue"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Three-Quarter Portrait"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Long Silver-Pink"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Cyber Temple Lights"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Black Chrome Armor"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Afterglow"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Rose Cyan and Amber"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

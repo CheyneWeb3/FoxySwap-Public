@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #7 — Orbit Lights",
+  "description": "Jane Selena is wrapped in circular neon trails as the city behind her dissolves into violet and cyan bokeh.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/7.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Neon City"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Neon Boulevard"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Side-Turn Portrait"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Long Violet-Cyan"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Subtle Cyber Interface"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Blue-Violet Tech Armor"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Orbiting Light Rings"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Violet Cyan and Hot Pink"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

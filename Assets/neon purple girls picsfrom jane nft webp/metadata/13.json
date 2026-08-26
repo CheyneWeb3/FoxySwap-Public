@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #13 — Terminal Phantom",
+  "description": "Jane Selena works at a glowing terminal in a dark data chamber, surrounded by sharp pink and cyan signal noise.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/13.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Cyber Operator"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Dark Data Terminal"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Typing Profile"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Dark Cyber Undercut"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Neural Interface"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "White-Black Data Suit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Digital Signal Burst"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Black Cyan Pink and White"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

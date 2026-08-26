@@ -1,0 +1,43 @@
+{
+  "name": "Jane Selena Mermaid #1 — Reeflight Crown",
+  "description": "Jane Selena drifts through a radiant underwater current, crowned in living reef growth and wrapped in sparkling turquoise light.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/1.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena Mermaid"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Luminous Reef Current"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Three-Quarter Profile"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Long Brunette"
+    },
+    {
+      "trait_type": "Headpiece",
+      "value": "Seaweed Reef Crown"
+    },
+    {
+      "trait_type": "Tail",
+      "value": "Turquoise Galaxy Scales"
+    },
+    {
+      "trait_type": "Water Effect",
+      "value": "Spiral Current"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Prismatic Sparkle"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Teal and Aqua"
+    }
+  ]
+}

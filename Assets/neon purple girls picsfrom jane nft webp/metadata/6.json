@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #6 — Mecha Halo",
+  "description": "Jane Selena appears in an elaborate cyber rig surrounded by luminous mechanical ornaments and floating city lights.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/6.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Neon City"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Augmented City Plaza"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Front Portrait"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Silver Twin Tails"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Mechanical Halo Rig"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Armored Neon Exosuit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Floating Light Orbs"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Violet Cyan and Pink"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

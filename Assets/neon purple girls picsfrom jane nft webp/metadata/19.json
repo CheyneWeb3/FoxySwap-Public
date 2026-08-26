@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #19 — Orbit Dancer",
+  "description": "Jane Selena dances through rings of golden and violet light as the cosmic arena bends into luminous arcs around her.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/19.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Cosmic Stage"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Orbital Light Arena"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Dance Pose"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Long Lavender Waves"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Golden Star Accents"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Violet Sequin Stage Suit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Orbiting Light Arcs"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Violet Gold and Silver"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Widescreen"
+    }
+  ]
+}

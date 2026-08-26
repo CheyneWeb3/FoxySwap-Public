@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #9 — Prism Circuit",
+  "description": "Jane Selena is surrounded by radiant rings and floating particles as her armor pulses with multicolored circuitry.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/9.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Neon City"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Prismatic City Deck"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Three-Quarter Portrait"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Silver-Cyan Ponytail"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Angular Cyber Ears"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Prismatic Circuit Armor"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Floating Prism Rings"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Cyan Pink Yellow and Violet"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

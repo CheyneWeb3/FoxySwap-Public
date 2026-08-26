@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #2 — Signal Crown",
+  "description": "Jane Selena watches the city from a glowing high-rise district, framed by a luminous cyber headset and futuristic skyline.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/2.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Neon City"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "High-Rise Neon District"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Front Portrait"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Silver-Lilac Ponytail"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Magenta Signal Headset"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Iridescent Cyber Suit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Holographic Light"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Lilac Pink and Electric Blue"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

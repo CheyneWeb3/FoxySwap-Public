@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #20 — Midnight Constellation",
+  "description": "Jane Selena performs under a moonlit lattice of lasers, dressed in dark celestial shimmer and surrounded by drifting particles.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/20.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Cosmic Stage"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Moonlit Laser Stage"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Open-Arms Performance"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Dark Violet Bob"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Constellation Accent"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Midnight Galaxy Suit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Laser Constellation"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Midnight Purple and Silver"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Widescreen"
+    }
+  ]
+}

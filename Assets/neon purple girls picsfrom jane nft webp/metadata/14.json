@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #14 — Codebreaker",
+  "description": "Jane Selena leans into a holographic keyboard while cascades of neon data illuminate the cyber lab around her.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/14.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Cyber Operator"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Holographic Cyber Lab"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Focused Keyboard Pose"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Dark Side-Swept"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Minimal Neural Ports"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Chrome Data Suit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Data Stream Glow"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Blue Magenta and Cyan"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}

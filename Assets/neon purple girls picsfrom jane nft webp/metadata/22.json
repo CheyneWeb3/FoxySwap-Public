@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #22 — Nova Bloom",
+  "description": "Jane Selena raises a hand through a burst of multicolored lights as a nova-like halo blooms behind the stage.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/22.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Cosmic Stage"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Nova Festival Stage"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Raised-Hand Performance"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Blue-Violet Waves"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Prismatic Hair Gems"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Gold-Violet Sequin Suit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Nova Light Bloom"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Violet Gold Cyan and Pink"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Widescreen"
+    }
+  ]
+}

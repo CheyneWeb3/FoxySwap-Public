@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #17 — Starlight Debut",
+  "description": "Jane Selena takes the cosmic stage beneath violet beams, wearing a shimmering silver-violet performance suit.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/17.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Cosmic Stage"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Cosmic Concert Stage"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Center Stage"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Long Violet Waves"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Starlight Hair Accents"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Silver-Violet Stage Suit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Falling Starlight"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Violet Silver and Blue"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Widescreen"
+    }
+  ]
+}

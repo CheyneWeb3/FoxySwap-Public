@@ -1,0 +1,47 @@
+{
+  "name": "Jane Selena Neonverse #8 — Sunset Vanguard",
+  "description": "Jane Selena stands against a golden skyline wearing a sharp black suit with a dramatic luminous mechanical crown.",
+  "image": "REPLACE_WITH_IMAGE_BASE_URL/8.webp",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Jane Selena"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Neon City"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Golden Cyber Skyline"
+    },
+    {
+      "trait_type": "Pose",
+      "value": "Full Upper-Body Portrait"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Blonde High Ponytail"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Prismatic Mecha Crown"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Black Vanguard Suit"
+    },
+    {
+      "trait_type": "Energy Effect",
+      "value": "Sunset Neon Flare"
+    },
+    {
+      "trait_type": "Palette",
+      "value": "Gold Pink and Black"
+    },
+    {
+      "trait_type": "Artwork Format",
+      "value": "Portrait"
+    }
+  ]
+}
