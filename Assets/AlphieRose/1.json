@@ -1,0 +1,71 @@
+{
+  "name": "Alphie Rose — Gossip Hour Friday",
+  "description": "Alphie Rose rides into Gossip Hour Friday on Only Rose VC — a weekly community collectible celebrating the stories, laughs, hot takes and chaos of Gossip Hour. This NFT includes the animated MP4 as its primary media and the official Alphie Rose artwork as its cover image.",
+  "external_url": "https://ADD-ONLYROSE-VC-LINK-HERE",
+  "image": "https://ADD-PUBLIC-IMAGE-URL-HERE/alphie-rose-gossip-hour.png",
+  "animation_url": "https://ADD-PUBLIC-MP4-URL-HERE/alphie-rose-gossip-hour.mp4",
+  "background_color": "79C7F2",
+  "attributes": [
+    {
+      "trait_type": "Character",
+      "value": "Alphie Rose"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Gossip Hour"
+    },
+    {
+      "trait_type": "Edition",
+      "value": "Friday"
+    },
+    {
+      "trait_type": "Platform",
+      "value": "Only Rose VC"
+    },
+    {
+      "trait_type": "Media",
+      "value": "Animated"
+    },
+    {
+      "trait_type": "Animation Format",
+      "value": "MP4"
+    },
+    {
+      "trait_type": "Scene",
+      "value": "Race Day"
+    },
+    {
+      "trait_type": "Companion",
+      "value": "Racing Cat"
+    },
+    {
+      "trait_type": "Horse Number",
+      "value": "7"
+    }
+  ],
+  "media": [
+    {
+      "type": "video/mp4",
+      "uri": "https://ADD-PUBLIC-MP4-URL-HERE/alphie-rose-gossip-hour.mp4",
+      "role": "animation"
+    },
+    {
+      "type": "image/png",
+      "uri": "https://ADD-PUBLIC-IMAGE-URL-HERE/alphie-rose-gossip-hour.png",
+      "role": "cover"
+    }
+  ],
+  "properties": {
+    "category": "video",
+    "files": [
+      {
+        "uri": "https://ADD-PUBLIC-MP4-URL-HERE/alphie-rose-gossip-hour.mp4",
+        "type": "video/mp4"
+      },
+      {
+        "uri": "https://ADD-PUBLIC-IMAGE-URL-HERE/alphie-rose-gossip-hour.png",
+        "type": "image/png"
+      }
+    ]
+  }
+}
