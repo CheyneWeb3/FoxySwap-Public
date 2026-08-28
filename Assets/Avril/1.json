@@ -1,0 +1,117 @@
+{
+  "name": "Losing Grip — Avril Lavigne",
+  "description": "Music NFT celebrating \"Losing Grip\" by Avril Lavigne, from her debut album Let Go. Written by Avril Lavigne and Clif Magness and produced by Clif Magness, the track became one of the defining heavier songs of Avril's early era. This NFT includes collectible artwork, an audio media link and a reference to the official music video. This token is a collectible and does not grant copyright, publishing, recording, performance or commercial rights to the underlying song, recording, music video or artwork; all such rights remain with their respective rights holders.",
+  "external_url": "https://www.youtube.com/watch?v=LOcKckBLouM",
+
+  "image": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/Avril/1.webp",
+
+  "audio_url": "https://github.com/CheyneWeb3/FoxySwap-Public/raw/refs/heads/main/Assets/Avril/AL-trial.mp3",
+
+  "youtube_url": "https://www.youtube.com/watch?v=LOcKckBLouM",
+
+  "images": [
+    "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/Avril/1.webp",
+    "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/Avril/2.webp"
+  ],
+
+  "additional_media": [
+    {
+      "url": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/Avril/2.webp",
+      "type": "image/webp",
+      "label": "Alternate Artwork"
+    }
+  ],
+
+  "background_color": "09090D",
+
+  "attributes": [
+    {
+      "trait_type": "Track",
+      "value": "Losing Grip"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Avril Lavigne"
+    },
+    {
+      "trait_type": "Album",
+      "value": "Let Go"
+    },
+    {
+      "trait_type": "Songwriters",
+      "value": "Avril Lavigne, Clif Magness"
+    },
+    {
+      "trait_type": "Producer",
+      "value": "Clif Magness"
+    },
+    {
+      "trait_type": "Label",
+      "value": "Arista Records"
+    },
+    {
+      "trait_type": "Album Release Date",
+      "display_type": "date",
+      "value": 1023148800
+    },
+    {
+      "trait_type": "Single Release Date",
+      "display_type": "date",
+      "value": 1048464000
+    },
+    {
+      "trait_type": "Genre",
+      "value": "Grunge / Nu Metal / Pop"
+    },
+    {
+      "trait_type": "BPM",
+      "value": 158
+    },
+    {
+      "trait_type": "Key",
+      "value": "G♯ Minor"
+    },
+    {
+      "trait_type": "Time Signature",
+      "value": "4/4"
+    },
+    {
+      "trait_type": "Era",
+      "value": "Let Go"
+    },
+    {
+      "trait_type": "Audio Format",
+      "value": "MP3"
+    },
+    {
+      "trait_type": "Video Format",
+      "value": "Official Music Video"
+    },
+    {
+      "trait_type": "Artwork",
+      "value": "2 Images"
+    }
+  ],
+
+  "properties": {
+    "category": "audio",
+    "files": [
+      {
+        "uri": "addurlto.here/AL-lg.mp3",
+        "type": "audio/mpeg"
+      },
+      {
+        "uri": "addurlto.here/1.webp",
+        "type": "image/webp"
+      },
+      {
+        "uri": "addurlto.here/2.webp",
+        "type": "image/webp"
+      },
+      {
+        "uri": "https://www.youtube.com/watch?v=LOcKckBLouM",
+        "type": "text/html"
+      }
+    ]
+  }
+}
