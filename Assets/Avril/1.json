@@ -97,15 +97,15 @@
     "category": "audio",
     "files": [
       {
-        "uri": "addurlto.here/AL-lg.mp3",
+        "uri": "https://github.com/CheyneWeb3/FoxySwap-Public/raw/refs/heads/main/Assets/Avril/AL-trial.mp3",
         "type": "audio/mpeg"
       },
       {
-        "uri": "addurlto.here/1.webp",
+        "uri": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/Avril/1.webp",
         "type": "image/webp"
       },
       {
-        "uri": "addurlto.here/2.webp",
+        "uri": "https://raw.githubusercontent.com/CheyneWeb3/FoxySwap-Public/refs/heads/main/Assets/Avril/2.webp",
         "type": "image/webp"
       },
       {
