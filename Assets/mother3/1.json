@@ -1,0 +1,91 @@
+{
+  "name": "Mother 3 — Game Boy Advance",
+  "symbol": "MOTHER3",
+  "description": "A retro gaming collectible celebrating Mother 3, the cult-classic Game Boy Advance role-playing game released in Japan in 2006. This multimedia NFT brings together artwork, promotional imagery and gameplay video as a digital collector item honoring one of the most distinctive titles of the GBA era. Created as part of a retro game collection documenting notable releases, platforms and gaming history. Unofficial fan collectible; not affiliated with or endorsed by Nintendo or the original rights holders.",
+  "image": "https://1.bp.blogspot.com/-pdYfJ785hSE/YJlLvEgb0iI/AAAAAAABFxg/-etBUl-SjpAvuEHQ5R5lnlte8QgcUuQEwCLcBGAsYHQ/s2048/mother3_0.jpg",
+  "external_url": "https://archive.org/details/mother-3-tr_202503#",
+  "animation_url": "https://www.youtube.com/watch?v=fmYxUKxoWzw&t=1599s",
+  "attributes": [
+    {
+      "trait_type": "Collection",
+      "value": "Retro Game Collection"
+    },
+    {
+      "trait_type": "Title",
+      "value": "Mother 3"
+    },
+    {
+      "trait_type": "Platform",
+      "value": "Game Boy Advance"
+    },
+    {
+      "trait_type": "Console Era",
+      "value": "Game Boy Advance Era"
+    },
+    {
+      "trait_type": "Genre",
+      "value": "Role-Playing Game"
+    },
+    {
+      "trait_type": "Series",
+      "value": "Mother"
+    },
+    {
+      "trait_type": "Original Region",
+      "value": "Japan"
+    },
+    {
+      "trait_type": "Release Year",
+      "value": "2006"
+    },
+    {
+      "trait_type": "Publisher",
+      "value": "Nintendo"
+    },
+    {
+      "trait_type": "Collector Category",
+      "value": "Retro Gaming"
+    },
+    {
+      "trait_type": "Media Format",
+      "value": "Multimedia"
+    },
+    {
+      "trait_type": "Image Count",
+      "value": "5"
+    },
+    {
+      "trait_type": "Video Count",
+      "value": "1"
+    }
+  ],
+  "properties": {
+    "category": "image",
+    "files": [
+      {
+        "uri": "https://1.bp.blogspot.com/-pdYfJ785hSE/YJlLvEgb0iI/AAAAAAABFxg/-etBUl-SjpAvuEHQ5R5lnlte8QgcUuQEwCLcBGAsYHQ/s2048/mother3_0.jpg",
+        "type": "image/jpeg"
+      },
+      {
+        "uri": "https://images.launchbox-app.com/ef6bddad-ba09-4827-bbf1-0eb22119770d.jpg",
+        "type": "image/jpeg"
+      },
+      {
+        "uri": "https://game.watch.impress.co.jp/img/gmw/list/1495/042/1.png",
+        "type": "image/png"
+      },
+      {
+        "uri": "https://cdn.mos.cms.futurecdn.net/7fGuBZKuUAaQToKpzQPkSo.jpg",
+        "type": "image/jpeg"
+      },
+      {
+        "uri": "https://e0.pxfuel.com/wallpapers/707/999/desktop-wallpaper-mother-3-earthbound-2-mother-3-forum.jpg",
+        "type": "image/jpeg"
+      },
+      {
+        "uri": "https://www.youtube.com/watch?v=fmYxUKxoWzw&t=1599s",
+        "type": "text/html"
+      }
+    ]
+  }
+}
