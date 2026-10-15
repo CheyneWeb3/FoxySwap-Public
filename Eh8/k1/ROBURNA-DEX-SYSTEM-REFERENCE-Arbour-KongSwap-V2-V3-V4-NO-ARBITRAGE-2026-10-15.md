@@ -1,11 +1,11 @@
 # Roburna Multi-DEX System Reference
-## Arbour V2/V3 + KongSwap V2/V3/V4 + Kong Universal Router + Analytics + Route API + Arbitrage Integration
+## Arbour V2/V3 + KongSwap V2/V3/V4 + Kong Universal Router + Analytics + Route API
 
 **Network:** Roburna Testnet  
 **Chain ID:** `159` (`0x9f`)  
 **Reference date:** 2026-10-15  
 **Status:** Engineering handoff / system reference for the next test system and future SDK work.  
-**Scope:** Contracts, protocol mechanics, routing, pool discovery, quoting, Universal Router construction, analytics/API integration, liquidity models, execution safety, and arbitrage integration. Wallet UI/private-key scripting is intentionally deferred to a later document.
+**Scope:** Contracts, protocol mechanics, routing, pool discovery, quoting, Universal Router construction, analytics/API integration, liquidity models, and execution safety. Wallet UI/private-key scripting is intentionally deferred to a later document.
 
 ---
 
@@ -109,7 +109,7 @@ Frequently used test tokens:
 
 ## Execution-price rule
 
-Do **not** build the future router, SDK, or arb engine around a hardcoded historical stable-per-WRBA value. Older test scripts used values such as `0.752 stable/WRBA`; later tests proved those assumptions become stale as pools are traded or repaired.
+Do **not** build the future router, SDK, or automated execution layer around a hardcoded historical stable-per-WRBA value. Older test scripts used values such as `0.752 stable/WRBA`; later tests proved those assumptions become stale as pools are traded or repaired.
 
 The execution rule adopted by the later scripts is:
 
@@ -732,7 +732,7 @@ The lack of a compatible ReservesLens does **not** prevent:
 - hook indexing;
 - position management.
 
-For execution depth and arbitrage, the intended trade amount should be passed through the live V4 quoter.
+For execution depth, the intended trade amount should be passed through the live V4 quoter.
 
 ---
 
@@ -874,7 +874,6 @@ ALL_HOOK_MASK      = 0x3fff
 BEFORE_SWAP_FLAG   = 1 << 7
 ```
 
-These belong in one pinned protocol module in the future SDK. Do not duplicate them across UI, arb, and CLI code.
 
 ---
 
@@ -1037,7 +1036,7 @@ BROADCAST SAFELY
 VERIFY RECEIPT + OUTPUT DELTA
 ```
 
-Discovery and execution should remain separate. This is essential for an SDK, arb engine, browser UI, server agent, and test harness.
+Discovery and execution should remain separate. This is essential for an SDK, browser UI, server agent, automation service, and test harness.
 
 ---
 
@@ -1204,7 +1203,7 @@ maxAgeBlocks
 routeFingerprint
 ```
 
-For arbitrage, always re-quote and re-simulate before execution.
+For automated execution, always re-quote and re-simulate before execution.
 
 ---
 
@@ -1683,7 +1682,7 @@ PoolManager events
 hook events
 ```
 
-The indexer work also stored block hash/cursor state and included reorg-aware cursor validation. Preserve that behavior if the data is used by arbitrage logic.
+The indexer work also stored block hash/cursor state and included reorg-aware cursor validation. Preserve that behavior in any system that depends on indexed state.
 
 ---
 
@@ -1880,7 +1879,7 @@ Useful for:
 - pool discovery;
 - dashboards;
 - selecting test pools;
-- arb graph construction.
+- route and pool-state analysis.
 
 It should not replace a live amount-specific quote for execution.
 
@@ -1893,12 +1892,12 @@ Supports bounded event retrieval and optional protocol filter.
 Useful for:
 
 - activity monitoring;
-- swap-triggered arb refresh;
+- swap-triggered route/pool refresh;
 - liquidity mutation tracking;
 - debugging;
 - transaction attribution.
 
-For extremely latency-sensitive arbitrage, direct RPC subscriptions/log streams may be preferable to polling an API, but the endpoint is useful as a normalized data source.
+For latency-sensitive routing or automation, direct RPC subscriptions/log streams may be preferable to polling an API, but the endpoint is useful as a normalized data source.
 
 ---
 
@@ -2211,15 +2210,12 @@ type Quote = {
 }
 ```
 
-For arbitrage, add:
+For automated execution, add:
 
 ```text
 routeFingerprint
 gasEstimate
 source block/state identity
-expected gross profit
-expected net profit
-minimum profit floor
 tax assumptions
 simulation result
 ```
@@ -2363,179 +2359,7 @@ Do not interpret every `latest != pending` as proof of a pending transaction.
 
 ---
 
-# 62. Arbitrage integration architecture
-
-The DEX stack should be used by the arbitrage engine through adapters, not copied/reimplemented independently.
-
-Recommended separation:
-
-```text
-Analytics/indexer
-    -> discovery + historical context + event triggers
-
-Live RPC quote adapters
-    -> authoritative current executable prices
-
-Kong Route API
-    -> Kong V2/V3/V4 route enumeration + calldata build
-
-Arbitrage planner
-    -> graph + cycles + gross/net-profit model
-
-Atomic executor
-    -> final current-state simulation + transaction
-```
-
-Analytics should identify opportunities; live chain state should authorize execution.
-
----
-
-# 63. Historical arbitrage package capability warning
-
-A validated historical `roburna-multidex-arb-v2.0.0` package recorded:
-
-```text
-Arbour V2 = enabled
-Kong V2   = enabled
-Kong V3   = swap venue
-Kong V4   = swap venue
-```
-
-At that version, flash-source state was:
-
-```text
-Arbour V2 = enabled
-Kong V2   = enabled
-Kong V3   = audit-only
-Kong V4   = audit-only
-```
-
-This is historical package evidence, not a statement about every later arb version.
-
-A future capability registry should use independent flags:
-
-```text
-CAN_DISCOVER
-CAN_QUOTE
-CAN_SWAP
-CAN_ADD_LIQUIDITY
-CAN_REMOVE_LIQUIDITY
-CAN_PROVIDE_FLASH_SOURCE
-CAN_SETTLE_FLASH_CALLBACK
-CAN_ATOMICALLY_ARB
-```
-
-Do not infer flash capability from swap capability.
-
----
-
-# 64. Pool discovery for arbitrage
-
-## V2
-
-Use:
-
-```text
-PairCreated events
-factory.allPairs
-factory.getPair
-```
-
-## V3
-
-Use:
-
-```text
-PoolCreated events
-factory.getPool
-```
-
-Capture:
-
-```text
-token0
-token1
-fee
-tickSpacing
-pool address
-creation block
-```
-
-## V4
-
-Use PoolManager `Initialize` and relevant PoolManager events.
-
-Capture:
-
-```text
-PoolId
-PoolKey
-hooks
-fee mode
-tick spacing
-initialization block
-```
-
-There is no child V4 pool address to scan.
-
----
-
-# 65. Event-driven arb refresh model
-
-A scalable design:
-
-```text
-Indexer / live event stream
-        |
-        +--> V2 Sync/Swap/liquidity event
-        +--> V3 Swap/Mint/Burn/tick-state mutation
-        +--> V4 PoolManager Swap/liquidity event
-        +--> hook fee update
-        |
-        v
-invalidate affected graph edges
-        |
-        v
-re-quote only affected routes
-        |
-        v
-search cycles
-        |
-        v
-build exact execution candidate
-        |
-        v
-final eth_call simulation
-        |
-        v
-broadcast only if net profit > configured floor
-```
-
-This is more efficient than repeatedly quoting every possible edge at the same frequency.
-
----
-
-# 66. Arbitrage profitability model
-
-Compare net executable economics, not quote spread alone:
-
-```text
-gross token profit
-- swap fees
-- flash fee
-- transfer/tax loss
-- gas
-- safety margin
-= net executable profit
-```
-
-For taxed/non-standard tokens, prefer actual balance-delta simulation rather than nominal transfer assumptions.
-
-Historical arb validation already used actual received deltas and final atomic simulation as authority.
-
----
-
-# 67. Analytics vs live quote vs route API
+# 62. Analytics vs live quote vs route API
 
 These are different data classes.
 
@@ -2559,7 +2383,6 @@ Best for:
 
 ```text
 execution validation
-arb validation
 final route comparison
 ```
 
@@ -2578,7 +2401,7 @@ The future SDK can expose all three, but should preserve provenance and freshnes
 
 ---
 
-# 68. Suggested future SDK package layout
+# 63. Suggested future SDK package layout
 
 ```text
 @roburna/chain
@@ -2618,12 +2441,6 @@ The future SDK can expose all three, but should preserve provenance and freshnes
     route API client
     pool/event/position types
 
-@roburna/arb
-    graph
-    cycle search
-    gas/profit model
-    simulation
-    executor adapters
 
 @roburna/wallet
     later:
@@ -2637,7 +2454,7 @@ Wallet/private-key scripting is deliberately not specified here because it shoul
 
 ---
 
-# 69. Recommended quote/execution SDK boundary
+# 64. Recommended quote/execution SDK boundary
 
 Conceptual application flow:
 
@@ -2684,31 +2501,7 @@ selected.exchange == kongswap
 
 ---
 
-# 70. Recommended arbitrage SDK boundary
-
-```ts
-const changed = await analytics.changedPools()
-const graph = arb.updateGraph(changed)
-
-for (const candidate of graph.cycles()) {
-  const live = await dex.requoteCycle(candidate)
-  if (!live.profitable) continue
-
-  const tx = await arbExecutor.build(live)
-  const sim = await chain.simulate(tx)
-
-  if (!sim.ok) continue
-  if (sim.netProfit < configuredFloor) continue
-
-  await executor.broadcastSafe(tx)
-}
-```
-
-This keeps historical data, live quotes, and atomic execution cleanly separated.
-
----
-
-# 71. Suggested future control-plane commands
+# 65. Suggested future control-plane commands
 
 A future CLI/API can expose one normalized operator surface:
 
@@ -2732,16 +2525,13 @@ roburna nft cleanup ...
 
 roburna analytics status
 
-roburna arb discover
-roburna arb simulate <candidate>
-roburna arb execute <candidate>
 ```
 
 These commands should call shared SDK modules rather than each containing independent ABI/routing logic.
 
 ---
 
-# 72. Commands for the current systems
+# 66. Commands for the current systems
 
 ## Inspect current Kong deployment manifest
 
@@ -2818,7 +2608,7 @@ For a real test, replace the recipient and inspect the returned route/transactio
 
 ---
 
-# 73. Source-of-truth hierarchy
+# 67. Source-of-truth hierarchy
 
 ## Contract addresses
 
@@ -2856,7 +2646,7 @@ For a real test, replace the recipient and inspect the returned route/transactio
 
 ---
 
-# 74. Constants that must remain versioned
+# 68. Constants that must remain versioned
 
 Do not scatter these across multiple projects:
 
@@ -2896,7 +2686,7 @@ code hashes where practical
 
 ---
 
-# 75. Startup validation for the future combined system
+# 69. Startup validation for the future combined system
 
 Before enabling writes:
 
@@ -2927,23 +2717,23 @@ Before enabling writes:
 
 ---
 
-# 76. Capability matrix recommendation
+# 70. Capability matrix recommendation
 
 Do not use one generic `enabled` flag for every capability.
 
-| Venue | Discover | Quote | Swap | LP | NFT positions | Kong Universal Router | Flash source |
-|---|---|---|---|---|---|---|---|
-| Arbour V2 | yes | yes | yes | yes | no | no | version/system dependent |
-| Arbour V3 | yes | yes | yes | yes | yes | no | separate validation required |
-| Kong V2 | yes | yes | yes | yes | no | yes | version/system dependent |
-| Kong V3 | yes | yes | yes | yes | yes | yes | separate validation required |
-| Kong V4 | yes | yes | yes | yes | yes | yes | unlock/settlement adapter required |
+| Venue | Discover | Quote | Swap | LP | NFT positions | Kong Universal Router |
+|---|---|---|---|---|---|---|
+| Arbour V2 | yes | yes | yes | yes | no | no |
+| Arbour V3 | yes | yes | yes | yes | yes | no |
+| Kong V2 | yes | yes | yes | yes | no | yes |
+| Kong V3 | yes | yes | yes | yes | yes | yes |
+| Kong V4 | yes | yes | yes | yes | yes | yes |
 
-The final column should be populated only from the arb/executor version currently running.
+Treat each capability independently rather than using one generic `enabled` flag.
 
 ---
 
-# 77. Active pool liquidity vs wallet position liquidity
+# 71. Active pool liquidity vs wallet position liquidity
 
 For V3/V4:
 
@@ -2968,7 +2758,7 @@ Use the PositionManager to manage wallet LP. Use pool/StateView active liquidity
 
 ---
 
-# 78. Pool existence vs quote success vs executable transaction
+# 72. Pool existence vs quote success vs executable transaction
 
 Model these as separate states:
 
@@ -2995,7 +2785,7 @@ This is especially important for V3 and V4.
 
 ---
 
-# 79. Current analytics-state caveat
+# 73. Current analytics-state caveat
 
 A captured analytics registry successfully contained:
 
@@ -3012,7 +2802,7 @@ Do not silently assume the analytics registry and the executable venue set are i
 
 ---
 
-# 80. Historical/stale data that should not become SDK constants
+# 74. Historical/stale data that should not become SDK constants
 
 Do not promote these into durable configuration:
 
@@ -3043,7 +2833,7 @@ Live values must be re-read.
 
 ---
 
-# 81. Recommended build order for the next separate system
+# 75. Recommended build order for the next separate system
 
 ## Phase 1 — immutable/config foundation
 
@@ -3094,17 +2884,7 @@ event-driven pool invalidation
 pool graph
 ```
 
-## Phase 6 — arbitrage integration
-
-```text
-cycle search
-profit model
-gas model
-flash capability adapters
-atomic executor
-```
-
-## Phase 7 — wallet layer
+## Phase 6 — wallet layer
 
 ```text
 wallet connection
@@ -3119,7 +2899,7 @@ Do not begin by merging all shell scripts into one giant program. Extract shared
 
 ---
 
-# 82. Final architecture summary
+# 76. Final architecture summary
 
 The clean mental model is:
 
@@ -3159,7 +2939,7 @@ Above the contract layer:
                |                                |
                +---------------+----------------+
                                |
-                        arbitrage engine
+                    consumer applications
 ```
 
 The core design rule is:
@@ -3169,10 +2949,9 @@ The core design rule is:
 Do not flatten V2 pairs, V3 pools, and V4 PoolIds into the same primitive.  
 Do not flatten Arbour and KongSwap into one execution router.  
 Do not flatten analytics prices and executable quotes into one trust level.  
-Do not infer flash capability from swap capability.  
 Do not allow one dead pool to kill a multi-venue route search.
 
-With those boundaries preserved, the current Roburna work can be converted cleanly into a reusable SDK and later combined with the analytics, arbitrage, wallet, and other systems.
+With those boundaries preserved, the current Roburna work can be converted cleanly into a reusable SDK and later combined with analytics, wallet, and other systems.
 
 ---
 
@@ -3370,10 +3149,6 @@ src/
     route-api.ts
     types.ts
 
-  arb/
-    graph.ts
-    planner.ts
-    simulator.ts
 
   wallet/
     # deliberately later
@@ -3395,7 +3170,7 @@ src/
 9. Kong V4 pools are PoolIds/PoolKeys, not pool contracts.
 10. V4 StateView is not a reserves lens.
 11. Analytics data is excellent for discovery, not final execution authority.
-12. Separate CAN_SWAP from CAN_FLASH.
+12. Track discovery, quote, swap, LP, and position capabilities separately.
 13. Position NFT burn must be preceded by live zero-state validation.
 14. Ambiguous transaction sends must be resolved by hash before failover.
 15. Version protocol constants and deployment data in one registry.
@@ -3421,7 +3196,6 @@ Before using this document as input to the next combined system:
 [ ] test a mixed Kong two-step route
 [ ] confirm router ends with no unexpected token balances
 [ ] compare Arbour direct quotes against Kong routes
-[ ] validate current arb capability matrix separately
 [ ] keep live execution disabled until all simulations pass
 ```
 
@@ -3431,4 +3205,4 @@ Before using this document as input to the next combined system:
 
 This document is a consolidation of the deployed contract manifests, routing source, analytics registry/runtime behavior, liquidity tooling, swap tests, cleanup tests, and execution lessons used in the Roburna DEX work through 2026-10-15.
 
-Treat it as a detailed engineering handoff, not as a substitute for live-chain verification. Contract addresses and protocol topology are durable configuration; pool prices, liquidity, balances, route winners, pool counts, and arb opportunities are live state and must be re-read.
+Treat it as a detailed engineering handoff, not as a substitute for live-chain verification. Contract addresses and protocol topology are durable configuration; pool prices, liquidity, balances, route winners, and pool counts are live state and must be re-read.
